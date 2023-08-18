@@ -1,0 +1,80 @@
+version: '3.5'
+
+services:
+
+  postgres:
+    build:
+      context: .
+      dockerfile: ./docker/postgres/Dockerfile
+    volumes:
+      - ./postgresql.conf:/etc/postgresql.conf
+      - ./pg-data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - backend
+
+  backend-app:
+    image: backend-app
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    volumes:
+      - /var/www/app
+      - static_volume:/app/static
+    networks:
+      - backend
+    ports:
+      - '8000:8000'
+
+  ui:
+    build:
+      context: ./frontend
+      dockerfile: ./docker/ui/Dockerfile
+    networks:
+      - backend
+    ports:
+      - "3000:3000"
+
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    depends_on:
+      - ui
+      - backend-app
+    networks:
+      - backend
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+      - static_volume:/app/static
+    ports:
+      - "80:80"
+      - "443:443"
+
+  certbot:
+    image: certbot/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+
+volumes:
+  pg_data:
+  static_volume:
+
+networks:
+  backend:
+    driver: bridge

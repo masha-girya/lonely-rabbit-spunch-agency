@@ -1,0 +1,9 @@
+/backend/cms_core/.env
+/.env
+/frontend/.env
+/frontend/.env.development
+/frontend/.env.local
+/frontend/.env.production
+/frontend/.env.test
+/frontend/node_modules/
+/pg-data/
