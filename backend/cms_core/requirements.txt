@@ -1,4 +1,5 @@
 Django>=4.2,<4.3
 wagtail>=5.1,<5.2
-environ==1.0
+django-environ
 djangorestframework==3.14.0
+psycopg2
