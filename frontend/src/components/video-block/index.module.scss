@@ -1,0 +1,56 @@
+@import "src/styles/mixins.scss";
+
+.videoBlock {
+  height: 100vh;
+  min-height: 580px;
+
+  h1 {
+    @include blockTitle();
+  }
+
+  &__container {
+    padding: 60px 64px;
+  }
+
+  &__content {
+    display: flex;
+    column-gap: 40px;
+    margin-top: 60px;
+
+    &__text {
+      width: 45%;
+
+      p {
+        @include bodyText();
+
+        &:first-of-type {
+          margin-bottom: 20px;
+        }
+      }
+    }
+
+    &__video {
+      position: relative;
+      width: 55%;
+
+      img {
+        width: 100%;
+      }
+
+      &__playButton {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: max-content;
+        height: max-content;
+
+        svg {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

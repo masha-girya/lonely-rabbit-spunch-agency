@@ -1,0 +1,30 @@
+@import "src/styles/mixins.scss";
+
+.ctaBanner {
+  height: 100vh;
+  min-height: 500px;
+  background-image: url(./assets/Banner.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  &__container {
+    padding: 60px 64px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  h1 {
+    color: #FBFBFB;
+    margin: 0 42px;
+    max-width: 1230px;
+    @include blockTitle();
+  }
+
+  &__button {
+    width: 273px;
+  }
+}

@@ -1,0 +1,40 @@
+.banner {
+  height: 100vh;
+  min-height: 500px;
+
+  &__bannerContainer {
+    padding: 0 64px;
+    height: calc(100% - 100px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 40px;
+  }
+
+  &__content {
+    width: 50%;
+
+    h1 {
+      // width: 670px;
+      font-size: 50px;
+      font-weight: 700;
+      line-height: normal;
+      margin-bottom: 24px;
+    }
+
+    &__button {
+      width: 156px;
+    }
+  }
+
+  &__images {
+    width: 50%;
+    height: 90%;
+
+    img {
+      min-width: 602px;
+      min-height: 100%;
+      border: 1px solid black;
+    }
+  }
+}
