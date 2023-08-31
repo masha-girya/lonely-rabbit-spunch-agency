@@ -1,5 +1,116 @@
+@import "src/styles/mixins.scss";
+
 .news {
   &__container {
-    padding: 60px 64px;
+    padding: 60px 0 60px 64px;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  &__header {
+    padding-right: 64px;
+    display: flex;
+    justify-content: space-between;
+
+    &__title {
+      position: relative;
+
+      h1 {
+        @include blockTitle();
+      }
+
+      svg {
+        position: absolute;
+        top: 0;
+        bottom: 10px;
+        left: -50%;
+        margin: auto;
+
+        &:hover {
+          path {
+            fill: none;
+          }
+        }
+      }
+    }
+
+    &__button {
+      width: 188px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    column-gap: 14px;
+    justify-content: space-between;
+    // overflow-x: scroll;
+    padding-bottom: 5px;
+    @include scrollBar();
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    width: max-content;
+    margin-top: 41px;
+  }
+}
+
+.cards2 {
+  margin-top: 41px;
+  padding-right: 64px;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 14px;
+  overflow-x: scroll;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+  }
+
+  &__nextIcon {
+    position: absolute;
+    z-index: 9;
+    right: 44px;
+    top: 310px;
+    margin: auto;
+    cursor: pointer;
+
+    svg {
+      display: flex;
+    }
+  }
+
+  &__prevIcon {
+    position: absolute;
+    z-index: 9;
+    left: 44px;
+    top: 310px;
+    margin: auto;
+    cursor: pointer;
+
+    svg {
+      display: flex;
+    }
+  }
+}
+
+.swiper {
+  display: flex;
+  justify-content: center;
+  column-gap: 6px;
+  margin: 60px auto 0;
+
+  &__circle {
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    background-color: rgba(84, 161, 120, 0.49);
+    transition: background-color .2s ease-in-out;
+
+    &_main {
+      background-color: #54A178;
+    }
   }
 }

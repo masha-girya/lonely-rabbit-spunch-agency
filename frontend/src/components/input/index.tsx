@@ -1,9 +1,5 @@
-import { TransitionWrapper } from "@components/transition-wrapper";
 import classNames from "classnames";
-import { useRouter } from "next/router";
-import { useCallback, useEffect, useRef } from "react";
-import { useDevice } from "src/hooks/useDevice";
-import { Lang } from "src/hooks/useLang";
+import { useCallback, useState } from "react";
 import styles from "./index.module.scss";
 
 interface IInput {
@@ -16,50 +12,43 @@ interface IInput {
 
 export const Input: React.FC<IInput> = (props) => {
   const { value, placeholder, onChange, errorText, type = "text" } = props;
-  const { isMobile } = useDevice();
-  const router = useRouter();
-  const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
+  const [focus, setFocus] = useState(false);
 
   const handleChange = useCallback((event: any) => {
     onChange(event.target.value);
   }, []);
 
-  useEffect(() => {
-    if (textAreaRef.current) {
-      textAreaRef.current.style.height = "0px";
-      const scrollHeight = textAreaRef.current.scrollHeight + 2;
-      const emptyHeight = router.locale === Lang.ua ? "52px" : "53px";
+  const handleFocus = useCallback(() => {
+    setFocus(true);
+  }, []);
 
-      textAreaRef.current.style.height =
-        value.length > 0 ? scrollHeight + "px" : emptyHeight;
-    }
-  }, [textAreaRef, value]);
+  const handleBlur = useCallback(() => {
+    setFocus(false);
+  }, []);
 
   return (
-    <div>
+    <div className={styles.inputBox}>
       {type === "text" && (
+        <>
+        <span className={classNames(styles.inputBox__placeholder, {
+          [styles.inputBox__placeholder_onFocus]: focus || value.trim().length > 0
+        })}>
+          {placeholder}
+        </span>
         <input
           name={placeholder}
           type={type}
           value={value}
-          placeholder={placeholder}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           onChange={handleChange}
-          className={styles.input}
+          className={styles.inputBox__input}
         />
+        </>
       )}
-      {type === "textarea" && (
-        <textarea
-          ref={textAreaRef}
-          className={classNames(styles.input, styles.input__message)}
-          placeholder={placeholder}
-          onChange={handleChange}
-          value={value}
-          rows={1}
-        />
-      )}
-      <TransitionWrapper inCondition={errorText !== undefined && errorText.length > 0}>
+      {/* <TransitionWrapper inCondition={errorText !== undefined && errorText.length > 0}>
         <p className={styles.error}>{errorText}</p>
-      </TransitionWrapper>
+      </TransitionWrapper> */}
     </div>
   );
 };

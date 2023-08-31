@@ -1,0 +1,53 @@
+@import "src/styles/mixins.scss";
+
+.card {
+  width: 600px;
+  min-width: 600px;
+  height: 340px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+
+  &__img {
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &__text {
+    max-width: 536px;
+    position: absolute;
+    bottom: 34px;
+    left: 32px;
+    z-index: 2;
+
+    &__title {
+      margin-bottom: 10px;
+      color: #FBFBFB;
+      font-size: 22px;
+      font-weight: 800;
+      line-height: normal;
+    }
+
+    &__desc {
+      margin-bottom: 10px;
+      color: #FBFBFB;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: normal;
+    }
+
+    &__date {
+      margin-bottom: 13px;
+      color: #BEBEBE;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: normal;
+    }
+  }
+
+  &__button {
+    width: max-content;
+  }
+}

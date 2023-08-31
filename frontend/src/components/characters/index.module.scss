@@ -9,6 +9,8 @@
 
   &__container {
     padding: 40px 0;
+    position: relative;
+    height: 100%;
   }
 
   h1 {
@@ -23,18 +25,60 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    // column-gap: 27px;
+    column-gap: 40px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+
+    &__box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 18%;
+      height: 445px;
+      cursor: pointer;
+
+      &_main {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 28%;
+      }
+    }
 
     &__item {
       height: 345px;
+      margin: 0 auto;
       position: relative;
+      // animation: 1s ease swiperAnimation;
+      // transition: all .2s ease;
+
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 240px;
+        height: 320px;
+        border-radius: 20px;
+        background: rgba(217, 217, 217, 0.05);
+        filter: blur(2.5px);
+      }
 
       &_main {
         height: 445px;
+        transition: all .2s ease;
+
+        &::before {
+          display: none;
+        }
       }
 
       img {
+        object-fit: contain;
         height: 100%;
+        width: 100%;
       }
     }
   }
@@ -42,21 +86,33 @@
 
 .mainContent {
   position: absolute;
-  left: -30%;
+  left: 0;
+  right: 0;
   margin: 40px auto 0;
   display: flex;
   align-items: center;
+  justify-content: center;
   column-gap: 69px;
-  width: 160%;
+  transition: all 0.2s ease;
 
   &__button {
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+
+    &:hover {
+      svg {
+        path {
+          fill: #54A178;
+        }
+      }
+    }
   }
 
   &__text {
+    width: 450px;
+
     h2 {
       @include blockTitle();
       color: #FBFBFB;
@@ -68,5 +124,20 @@
       text-align: center;
       color: #FBFBFB;
     }
+  }
+}
+
+@keyframes swiperAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(25%);
+  }
+  50% {
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }

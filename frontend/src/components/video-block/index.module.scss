@@ -49,6 +49,11 @@
 
         svg {
           cursor: pointer;
+          &:hover {
+            path {
+              fill: #7BB495;
+            }
+          }
         }
       }
     }

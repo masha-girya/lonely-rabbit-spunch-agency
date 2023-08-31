@@ -17,12 +17,12 @@
 
   &__name {
     white-space: nowrap;
-    color: #333333;
     font-size: 14px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
     text-transform: uppercase;
+    transition: all ease-in-out 0.2s;
 
     &_invisible {
       visibility: hidden;
@@ -54,13 +54,28 @@
     border-radius: 10px;
     background: #98DDB8;
 
+    &__name {
+      color: #333333;
+    }
+
     &:hover, &:active {
       background: #7BB495;
     }
+  }
 
-    &_move {
-      &:hover, &:active {
-      }
+  &--secondary {
+    border-bottom: 1px solid #98DDB8;
+
+    &__name {
+      color: #98DDB8;
+    }
+
+    &:hover {
+      border-bottom-color: #7BB495;
+    }
+
+    &:hover &__name {
+      color: #7BB495;
     }
   }
 
