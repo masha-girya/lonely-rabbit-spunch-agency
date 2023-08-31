@@ -30,7 +30,6 @@ COPY --from=builder /ui/package.json ./package.json
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=builder --chown=bloguser:bloggroup /ui/.next/standalone ./
 COPY --from=builder --chown=bloguser:bloggroup /ui/.next/static ./.next/static
 
 USER bloguser
