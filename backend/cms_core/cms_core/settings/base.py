@@ -17,7 +17,9 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 
+DEBUG = env("DEBUG")
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SECRET_KEY = "django-insecure-*urovx)q%#*2^nh0_tls6xoz519q@jv59yzs3p_v=*nipbn_xy"
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 # Quick-start development settings - unsuitable for production
