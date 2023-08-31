@@ -23,7 +23,7 @@ services:
     image: backend-app
     build:
       context: .
-      dockerfile: ./docker/app/Dockerfile
+      dockerfile: ./docker/backend/Dockerfile
     command: python manage.py runserver 0.0.0.0:8000
     depends_on:
       - postgres
