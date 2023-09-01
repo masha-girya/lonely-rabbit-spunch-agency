@@ -31,10 +31,71 @@
     width: 50%;
     height: 90%;
 
-    img {
-      min-width: 602px;
-      min-height: 100%;
-      border: 1px solid black;
+    &__box {
+      position: relative;
+      max-width: 90%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: #333333;
+      animation: changeShape 8s ease-in-out infinite alternate;
+      // transition: opacity 1s ease-in-out;
+      // opacity: 1;
     }
+
+    &__img {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      object-fit: contain;
+      object-position: center;
+      transition: all 0.5s ease;
+      // animation: fadeOut 1s ease 2s;
+      animation: fadeIn 1s ease;
+    }
+
+    &__imgBack {
+      position: absolute;
+      z-index: 0;
+      width: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+  }
+}
+
+@keyframes changeShape {
+  0% {
+    border-radius: 50% 50% 50% 50%;
+  }
+  25% {
+    border-radius: 40% 25% 50% 50%;
+  }
+  50% {
+    border-radius: 50% 50% 25% 40%;
+  }
+  75% {
+    border-radius: 50% 40% 50% 25%;
+  }
+  100% {
+    border-radius: 50%;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

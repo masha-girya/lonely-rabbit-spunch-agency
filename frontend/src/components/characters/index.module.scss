@@ -20,14 +20,21 @@
     text-align: start;
   }
 
+  &__charsListBox {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+
   &__charsList {
-    margin-top: 40px;
+    flex-shrink: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    column-gap: 40px;
+    column-gap: 80px;
+    margin-top: 40px;
+    width: max-content;
     overflow: hidden;
-    // transition: all 0.2s ease;
 
     &__box {
       display: flex;
@@ -49,8 +56,6 @@
       height: 345px;
       margin: 0 auto;
       position: relative;
-      // transition: all .2s ease;
-      // opacity: 0;
 
       &::before {
         content: "";
@@ -68,8 +73,6 @@
 
       &_main {
         height: 445px;
-        animation: slideAnimation .2s ease;
-        // transition: all .2s ease;
 
         &::before {
           display: none;
@@ -80,8 +83,6 @@
         object-fit: contain;
         height: 100%;
         width: 100%;
-        animation: slideAnimation .2s ease;
-        // animation: slideAnimation .2s ease;
       }
     }
   }
@@ -96,7 +97,6 @@
   align-items: center;
   justify-content: center;
   column-gap: 69px;
-  // transition: all 0.2s ease;
 
   &__button {
     display: flex;
@@ -114,8 +114,8 @@
   }
 
   &__text {
+    height: 150px;
     width: 450px;
-    transition: all 0.2s ease;
     overflow: hidden;
 
     h2 {
@@ -132,24 +132,6 @@
   }
 }
 
-@keyframes slideAnimationRight {
-  from {
-    transform: translateX(50%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideAnimationLeft {
-  from {
-    transform: translateX(-50%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
 
 @keyframes slideAnimation{
   0% {
@@ -157,5 +139,17 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes textAnimation{
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
   }
 }

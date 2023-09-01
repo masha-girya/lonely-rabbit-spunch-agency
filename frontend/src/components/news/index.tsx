@@ -78,6 +78,12 @@ export const News = () => {
     }
   }, [ref.current]);
 
+  const moveTo = useCallback((i: number) => {
+    if(ref.current) {
+      ref.current.scrollTo(600 * i, 0)
+    }
+  }, [ref])
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < listWidth) {
@@ -130,7 +136,7 @@ export const News = () => {
             </button>
           )}
           {news.map((item) => (
-            <NewsCard card={item} />
+            <NewsCard key={item.id} card={item} />
           ))}
           {scrollable && (
             <button
@@ -143,8 +149,10 @@ export const News = () => {
           )}
         </div>
         <div className={styles.swiper}>
-          {news.map((item) => (
+          {news.map((item, i) => (
             <div
+              key={item.id}
+              onClick={() => moveTo(i)}
               className={classNames(styles.swiper__circle, {
                 [styles.swiper__circle_main]: item.id === circle,
               })}

@@ -64,18 +64,29 @@
   }
 
   &--secondary {
-    border-bottom: 1px solid #98DDB8;
+    // border-bottom: 1px solid #98DDB8;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: #98DDB8;
+      transition: width .2s ease;
+    }
 
     &__name {
       color: #98DDB8;
+      font-weight: 500;
     }
 
     &:hover {
-      border-bottom-color: #7BB495;
-    }
-
-    &:hover &__name {
-      color: #7BB495;
+      &::after {
+        width: 30%;
+      }
     }
   }
 

@@ -15,7 +15,7 @@ export const Nav: React.FC<INav> = (props) => {
         [styles.nav__navList_footer]: isFooter,
       })}>
         {NAV.map((item) => (
-          <li key={item.link}>
+          <li key={item.title}>
             <a href={item.link}>{item.title}</a>
           </li>
         ))}
