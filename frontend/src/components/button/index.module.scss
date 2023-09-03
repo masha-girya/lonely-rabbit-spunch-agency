@@ -33,7 +33,7 @@
     display: flex;
 
     svg {
-      transition: all ease-in-out 0.2s;
+      @include transition(button);
     }
 
     &_start {
@@ -64,8 +64,6 @@
   }
 
   &--secondary {
-    // border-bottom: 1px solid #98DDB8;
-
     &::after {
       content: "";
       position: absolute;
@@ -75,7 +73,7 @@
       width: 100%;
       height: 1px;
       background: #98DDB8;
-      transition: width .2s ease;
+      @include transition(link);
     }
 
     &__name {

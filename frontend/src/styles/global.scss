@@ -56,6 +56,6 @@ ul {
 
 svg {
   path {
-    transition: all ease-in-out 0.2s;
+    @include transition(button);
   }
 }

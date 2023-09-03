@@ -1,40 +1,33 @@
 import { Button } from "@components/button";
-import { animated, useTransition, config } from '@react-spring/web'
+import { animated, useTransition, config } from "@react-spring/web";
 import styles from "./index.module.scss";
 import { Header } from "@components/header";
 import { useEffect, useRef, useState } from "react";
 import { BANNER_IMGS } from "src/constants";
+import { useSpringCarousel } from "react-spring-carousel";
 
 export const Banner = () => {
   const [title, setTitle] = useState(
     "Lonely Rabbit: Into the Realm of Darkness and Fear"
   );
-  const [imageIndex, setImageIndex] = useState(0);
-  const [imageOnChange, setImageOnChange] = useState(false);
-  // const [items, setItems] = useState(BANNER_IMGS.map((img, index) => ({ ...img, key: index })));
   const ref = useRef<any | null>(null);
 
-  const [index, setIndex] = useState(0);
-  const [indexBack, setIndexBack] = useState(BANNER_IMGS.length - 1);
+  const [images, setImages] = useState(BANNER_IMGS);
+
+  const { carouselFragment, slideToNextItem } = useSpringCarousel({
+    withLoop: true,
+    items: images.map((item, index) => ({
+      id: index.toString(),
+      renderItem: (
+        <img className={styles.banner__images__img} src={item.src} ref={ref} />
+      ),
+    })),
+  });
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      // const lastItem = items[items.length - 1];
+    const timer = setInterval(slideToNextItem, 5000);
 
-      // setItems(prev => [...prev.slice(1), lastItem]);
-      setIndex((prevIndex) => (prevIndex + 1) % BANNER_IMGS.length);
-    }, 3000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-  const transitions = useTransition(index, {
-    from: { opacity: '0' },
-    enter: { opacity: '1' },
-    // leave: { transform: 'translateX(100%)' },
-    lazy: false,
+    return () => clearInterval(timer);
   });
 
   return (
@@ -49,24 +42,34 @@ export const Banner = () => {
         </div>
         <div className={styles.banner__images}>
           <div className={styles.banner__images__box}>
-            {transitions((style, i) => (
-              <animated.div
-                key={i}
-                style={{
-                  ...style,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <img
-                  className={styles.banner__images__img}
-                  src={BANNER_IMGS[index].src}
-                  ref={ref}
-                />
-              </animated.div>
-            ))}
+            <div className={styles.banner__images__boxItem}>
+              {carouselFragment}
+            </div>
           </div>
+          <svg
+            style={{ visibility: "hidden", position: "absolute" }}
+            width="0"
+            height="0"
+            xmlns="http://www.w3.org/2000/svg"
+            version="1.1"
+          >
+            <defs>
+              <filter id="round">
+                <feGaussianBlur
+                  in="SourceGraphic"
+                  stdDeviation="20"
+                  result="blur"
+                />
+                <feColorMatrix
+                  in="blur"
+                  mode="matrix"
+                  values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 19 -9"
+                  result="goo"
+                />
+                <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+              </filter>
+            </defs>
+          </svg>
         </div>
       </div>
     </div>

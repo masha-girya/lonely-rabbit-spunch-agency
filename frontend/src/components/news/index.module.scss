@@ -2,7 +2,7 @@
 
 .news {
   &__container {
-    padding: 60px 0 60px 64px;
+    padding: 60px 0 120px 64px;
     overflow-x: hidden;
     position: relative;
   }
@@ -22,15 +22,9 @@
       svg {
         position: absolute;
         top: 0;
-        bottom: 10px;
+        bottom: 20px;
         left: -50%;
         margin: auto;
-
-        &:hover {
-          path {
-            fill: none;
-          }
-        }
       }
     }
 
@@ -54,7 +48,7 @@
   }
 }
 
-.cards2 {
+.cards {
   margin-top: 41px;
   padding-right: 64px;
   display: flex;

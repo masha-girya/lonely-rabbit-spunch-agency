@@ -12,10 +12,10 @@
   }
 
   &__content {
-    width: 50%;
+    width: 55%;
 
     h1 {
-      // width: 670px;
+      max-width: 670px;
       font-size: 50px;
       font-weight: 700;
       line-height: normal;
@@ -28,7 +28,7 @@
   }
 
   &__images {
-    width: 50%;
+    width: 45%;
     height: 90%;
 
     &__box {
@@ -37,19 +37,29 @@
       height: 100%;
       border-radius: 50%;
       overflow: hidden;
-      background-color: #333333;
-      animation: changeShape 8s ease-in-out infinite alternate;
+      // background-color: #333333;
+      // animation: changeShape 8s linear infinite alternate;
+      filter:url(#round);
+
+    }
+
+    &__boxItem {
+      width: 100%;
+      height: 100%;
+      // padding-top:86.6%;
+      background-color: transparent;
+      clip-path: polygon(29% 4%, 93% 0, 100% 36%, 100% 88%, 60% 95%, 0 98%, 7% 55%, 1% 19%);
+      animation: changeShape 8s linear infinite alternate;
+
     }
 
     &__img {
       position: relative;
       z-index: 3;
       width: 100%;
-      object-fit: contain;
-      object-position: center;
+      object-fit: cover;
+      object-position: top;
       transition: all 0.5s ease;
-      // animation: fadeOut 1s ease 2s;
-      animation: fadeIn 1s ease;
     }
   }
 }
@@ -57,35 +67,47 @@
 @keyframes changeShape {
   0% {
     border-radius: 50% 50% 50% 50%;
+    // clip-path: polygon(39% 6%, 100% 0, 92% 33%, 100% 84%, 51% 97%, 6% 91%, 7% 55%, 0 9%);
+    clip-path: polygon(29% 4%, 93% 0, 100% 36%, 100% 88%, 60% 95%, 0 98%, 7% 55%, 1% 19%);
+
   }
   25% {
     border-radius: 40% 25% 50% 50%;
+    clip-path: polygon(33% 8%, 96% 3%, 100% 52%, 100% 91%, 74% 100%, 15% 91%, 7% 55%, 0 18%);
   }
   50% {
     border-radius: 50% 50% 25% 40%;
+    clip-path: polygon(11% 6%, 70% 3%, 99% 11%, 97% 50%, 100% 99%, 15% 93%, 7% 55%, 0 24%);
   }
   75% {
     border-radius: 50% 40% 50% 25%;
+    clip-path: polygon(13% 0, 70% 3%, 100% 0, 90% 32%, 100% 99%, 5% 100%, 13% 72%, 0 24%);
   }
   100% {
     border-radius: 50%;
+    clip-path: polygon(29% 4%, 93% 0, 100% 36%, 100% 88%, 60% 95%, 0 98%, 7% 55%, 1% 19%);
   }
 }
 
-@keyframes fadeOut {
-  from {
-    opacity: 1;
+@keyframes changeShape2 {
+  0% {
+    border-radius: 50%;
+    clip-path: ellipse(50% 50% at 40% 40%);
   }
-  to {
-    opacity: 0;
+  25% {
+    border-radius: 30%;
+    clip-path: ellipse(70% 70% at 20% 20%);
   }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+  50% {
+    border-radius: 20%;
+    clip-path: ellipse(80% 80% at 60% 60%);
   }
-  to {
-    opacity: 1;
+  75% {
+    border-radius: 40%;
+    clip-path: ellipse(60% 60% at 30% 30%);
+  }
+  100% {
+    border-radius: 50%;
+    clip-path: ellipse(50% 50% at 40% 40%);
   }
 }

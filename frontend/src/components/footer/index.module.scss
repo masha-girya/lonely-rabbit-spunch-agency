@@ -1,3 +1,5 @@
+@import "src/styles/mixins.scss";
+
 .footer {
   background-color: #333333;
 
@@ -24,15 +26,7 @@
       column-gap: 32px;
       margin-top: 46px;
 
-      
-
       li {
-        svg {
-          path {
-            transition: all .2s ease;
-          }
-        }
-
         &:hover {
           svg {
             path {

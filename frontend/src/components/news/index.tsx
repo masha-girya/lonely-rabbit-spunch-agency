@@ -15,6 +15,8 @@ export const News = () => {
   const [scrollFinish, setScrollFinish] = useState(false);
   const [circle, setCircle] = useState(1);
   const [scrollingTimeout, setScrollingTimeout] = useState<null | any>(null);
+  const [prevOnHover, setPrevOnHover] = useState(false);
+  const [nextOnHover, setNextOnHover] = useState(false);
 
   const cardWidth = useMemo(() => {
     return 600;
@@ -125,14 +127,16 @@ export const News = () => {
             <Button name="All our news" onClick={() => {}} />
           </div>
         </div>
-        <div className={styles.cards2} ref={ref}>
+        <div className={styles.cards} ref={ref}>
           {scrollable && (
             <button
               type="button"
-              className={styles.cards2__prevIcon}
+              className={styles.cards__prevIcon}
               onClick={handleScrollLeft}
+              onMouseEnter={() => setPrevOnHover(true)}
+              onMouseLeave={() => setPrevOnHover(false)}
             >
-              <PrevIcon />
+              <PrevIcon color={prevOnHover ? "#54A178" : "#98DDB8"} />
             </button>
           )}
           {news.map((item) => (
@@ -141,10 +145,12 @@ export const News = () => {
           {scrollable && (
             <button
               type="button"
-              className={styles.cards2__nextIcon}
+              className={styles.cards__nextIcon}
               onClick={handleScrollRight}
+              onMouseEnter={() => setNextOnHover(true)}
+              onMouseLeave={() => setNextOnHover(false)}
             >
-              <NextIcon />
+              <NextIcon color={nextOnHover ? "#54A178" : "#98DDB8"} />
             </button>
           )}
         </div>

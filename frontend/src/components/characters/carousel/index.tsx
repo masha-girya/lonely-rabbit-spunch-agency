@@ -25,28 +25,6 @@ export const Carousel: React.FC<ICarousel> = (props) => {
   );
   const [mainCharOnChange, setMainCharOnChange] = useState(false);
 
-  const character = chars.map((item) => (
-    <div
-      onClick={() => slideToItem(item.charId)}
-      key={item.charId}
-      className={classNames(styles.charsList__charBox, {
-        [styles.charsList__charBox_main]: currentSlide === item.charId,
-      })}
-    >
-      <div
-        className={classNames(styles.charsList__item, {
-          [styles.charsList__item_main]: currentSlide === item.charId,
-        })}
-      >
-        <img
-          src={item.img.src}
-          alt={item.title}
-          className={styles.charsList__item__image}
-        />
-      </div>
-    </div>
-  ));
-
   const {
     carouselFragment,
     useListenToCustomEvent,

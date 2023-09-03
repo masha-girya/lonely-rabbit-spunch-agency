@@ -12,6 +12,17 @@
   }
 }
 
+@mixin transition($item) {
+  @if $item == button {
+    transition: all .2s ease-in-out;
+  }
+
+  @if $item == link {
+    transition: width .3s ease;
+
+  }
+}
+
 @mixin scrollBar {
   scrollbar-width: thin;
   scrollbar-color: #FBFBFB #333333;

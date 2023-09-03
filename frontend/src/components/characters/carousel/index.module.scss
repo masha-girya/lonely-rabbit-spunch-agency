@@ -15,31 +15,29 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 345px;
+    height: 445px;
     margin: auto;
     cursor: pointer;
-    transition: all .2s linear;
+    transition: all 1s linear;
+    position: relative;
 
     &_main {
-      display: flex;
       justify-content: center;
-      align-items: center;
       width: 345px;
-      height: 445px;
-      transition: all .2s ease;
+      transition: all 1s ease;
     }
   }
 
   &__item {
-    height: 100%;
+    height: 75%;
     margin: 0 auto;
-    position: relative;
+    transition: all 1s ease;
 
     &::before {
       content: "";
       display: block;
       position: absolute;
-      bottom: 0;
+      bottom: 50px;
       left: 50%;
       transform: translateX(-50%);
       width: 240px;
@@ -51,6 +49,7 @@
 
     &_main {
       height: 100%;
+      transition: all 1s ease;
 
       &::before {
         display: none;

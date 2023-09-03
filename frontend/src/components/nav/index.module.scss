@@ -1,3 +1,5 @@
+@import "src/styles/mixins.scss";
+
 .nav {
   display: flex;
   justify-content: center;
@@ -11,6 +13,28 @@
 
     &_footer {
       column-gap: 76px;
+    }
+  }
+
+  &__link {
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      display: block;
+      width: 0%;
+      height: 1px;
+      background: #FFFFFF;
+      @include transition(link);
+    }
+
+    &:hover {
+      &::after {
+        width: 100%;
+      }
     }
   }
 }
