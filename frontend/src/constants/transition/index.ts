@@ -1,4 +1,4 @@
-export const DURATION = 300;
+export const DURATION = 150;
 
 export const DEFAULT_STYLE = {
   transition: `all ${DURATION}ms linear`,

@@ -15,7 +15,7 @@ export const Footer = () => {
             <ul className={styles.footer__mainBlock__socials}>
               {SOCIALS.map(item => (
                 <li key={item.title}>
-                  <a href={item.link}>{item.Icon}</a>
+                  <a href={item.link} title={item.title}>{item.Icon}</a>
                 </li>
               ))}
             </ul>

@@ -1,0 +1,132 @@
+@import "src/styles/mixins.scss";
+
+.charsList {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: 40px;
+
+
+  &__container {
+
+  }
+
+  &__charBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 345px;
+    margin: auto;
+    cursor: pointer;
+    transition: all .2s linear;
+
+    &_main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 345px;
+      height: 445px;
+      transition: all .2s ease;
+    }
+  }
+
+  &__item {
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 240px;
+      height: 320px;
+      border-radius: 20px;
+      background: rgba(217, 217, 217, 0.05);
+      filter: blur(2.5px);
+    }
+
+    &_main {
+      height: 100%;
+
+      &::before {
+        display: none;
+      }
+    }
+
+    &__image {
+      object-fit: contain;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+.mainContent {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 40px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 69px;
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+      svg {
+        path {
+          fill: #54A178;
+        }
+      }
+    }
+  }
+
+  &__text {
+    height: 150px;
+    width: 450px;
+    overflow: hidden;
+
+    h2 {
+      @include blockTitle();
+      color: #FBFBFB;
+      margin-bottom: 20px;
+    }
+
+    p {
+      @include bodyText();
+      text-align: center;
+      color: #FBFBFB;
+    }
+  }
+}
+
+
+@keyframes slideAnimation{
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes textAnimation{
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
