@@ -24,6 +24,9 @@ export const Carousel: React.FC<ICarousel> = (props) => {
     chars[Math.floor(chars.length / 2)].charId
   );
   const [mainCharOnChange, setMainCharOnChange] = useState(false);
+  const [currentChar, setCurrentChar] = useState<undefined | (typeof chars)[0]>(
+    chars[Math.floor(chars.length / 2)]
+  );
 
   const {
     carouselFragment,
@@ -41,7 +44,7 @@ export const Carousel: React.FC<ICarousel> = (props) => {
       id: item.charId.toString(),
       renderItem: (
         <div
-          onClick={() => slideToItem(item.charId.toString())}
+          // onClick={() => slideToItem(item.charId.toString())}
           key={item.charId}
           className={classNames(styles.charsList__charBox, {
             [styles.charsList__charBox_main]: currentSlide === item.charId,
@@ -66,6 +69,13 @@ export const Carousel: React.FC<ICarousel> = (props) => {
   useListenToCustomEvent((event) => {
     if (event.eventName === "onSlideStartChange") {
       setCurrentSlide(+event?.nextItem?.id);
+      setTimeout(
+        () =>
+          setCurrentChar(
+            chars.find((item) => +event?.nextItem?.id === item.charId)
+          ),
+        100
+      );
     }
   });
 
@@ -112,20 +122,8 @@ export const Carousel: React.FC<ICarousel> = (props) => {
                 ref={refText}
                 style={{ ...DEFAULT_STYLE_TEXT, ...TRANS_STYLES_TEXT[state] }}
               >
-                <h2>
-                  {
-                    CHARACTERS_MOCK.find(
-                      (item) => item.charId === +currentSlide
-                    )?.title
-                  }
-                </h2>
-                <p>
-                  {
-                    CHARACTERS_MOCK.find(
-                      (item) => item.charId === +currentSlide
-                    )?.description
-                  }
-                </p>
+                <h2>{currentChar?.title}</h2>
+                <p>{currentChar?.description}</p>
               </div>
             )}
           </Transition>

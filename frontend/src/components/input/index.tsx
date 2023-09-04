@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import styles from "./index.module.scss";
 
 interface IInput {
@@ -13,6 +13,7 @@ interface IInput {
 export const Input: React.FC<IInput> = (props) => {
   const { value, placeholder, onChange, errorText, type = "text" } = props;
   const [focus, setFocus] = useState(false);
+  const ref = useRef<null | any>(null);
 
   const handleChange = useCallback((event: any) => {
     onChange(event.target.value);
@@ -26,16 +27,27 @@ export const Input: React.FC<IInput> = (props) => {
     setFocus(false);
   }, []);
 
+  const focusOnInput = useCallback(() => {
+    if(ref.current) {
+      ref.current.focus();
+      handleFocus();
+    }
+  }, [ref]);
+
   return (
     <div className={styles.inputBox}>
       {type === "text" && (
         <>
-        <span className={classNames(styles.inputBox__placeholder, {
-          [styles.inputBox__placeholder_onFocus]: focus || value.trim().length > 0
-        })}>
+        <span
+          onClick={focusOnInput}
+          className={classNames(styles.inputBox__placeholder, {
+            [styles.inputBox__placeholder_onFocus]: focus || value.trim().length > 0
+          })}
+        >
           {placeholder}
         </span>
         <input
+          ref={ref}
           name={placeholder}
           type={type}
           value={value}

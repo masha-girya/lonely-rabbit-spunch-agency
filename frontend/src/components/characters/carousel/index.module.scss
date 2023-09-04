@@ -12,12 +12,15 @@
   }
 
   &__charBox {
+    user-select: none; // Chrome, Opera
+    -moz-user-select: none; // Firefox
+    -webkit-text-select: none; // IOS Safari
+    -webkit-user-select: none; // Safari
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 445px;
     margin: auto;
-    cursor: pointer;
     transition: all 1s linear;
     position: relative;
 

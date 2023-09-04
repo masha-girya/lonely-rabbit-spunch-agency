@@ -6,35 +6,35 @@ import Rabbit from "@components/characters/assets/Rabbit.png";
 
 export const CHARACTERS_MOCK = [
   {
-    title: "1 Lorem ipsum",
+    title: "Lorem ipsum 1",
     description:
       "Lorem ipsum dolor sit amet consectetur. Integer quisque a tellus id. Scelerisque malesuada ultrices in vitae blandit congue egestas magna sed.",
     charId: 1,
     img: Showman,
   },
   {
-    title: "2 Lorem ipsum",
+    title: "Lorem ipsum 2",
     description:
       "Lorem ipsum dolor sit amet consectetur. Integer quisque a tellus id. Scelerisque malesuada ultrices in vitae blandit congue egestas magna sed.",
     charId: 2,
     img: Rabbit,
   },
   {
-    title: "3 Lorem ipsum",
+    title: "Lorem ipsum 3",
     description:
       "Lorem ipsum dolor sit amet consectetur. Integer quisque a tellus id. Scelerisque malesuada ultrices in vitae blandit congue egestas magna sed.",
     charId: 3,
     img: CenterMan,
   },
   {
-    title: "4 Lorem ipsum",
+    title: "Lorem ipsum 4",
     description:
       "Lorem ipsum dolor sit amet consectetur. Integer quisque a tellus id. Scelerisque malesuada ultrices in vitae blandit congue egestas magna sed.",
     charId: 4,
     img: Man,
   },
   {
-    title: "5 Lorem ipsum",
+    title: "Lorem ipsum 5",
     description:
       "Lorem ipsum dolor sit amet consectetur. Integer quisque a tellus id. Scelerisque malesuada ultrices in vitae blandit congue egestas magna sed.",
     charId: 5,
