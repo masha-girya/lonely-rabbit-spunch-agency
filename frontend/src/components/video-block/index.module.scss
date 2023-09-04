@@ -4,12 +4,20 @@
   height: 100vh;
   min-height: 580px;
 
-  h1 {
-    @include blockTitle();
+  @include devices(mobile) {
+    height: max-content;
   }
 
   &__container {
     padding: 60px 64px;
+
+    @include devices(mobile) {
+      padding: 40px 16px;
+    }
+  }
+
+  h1 {
+    @include blockTitle();
   }
 
   &__content {
@@ -17,8 +25,18 @@
     column-gap: 40px;
     margin-top: 60px;
 
+    @include devices(mobile) {
+      flex-direction: column;
+      margin-top: 26px;
+    }
+
     &__text {
       width: 45%;
+
+      @include devices(mobile) {
+        width: 100%;
+        margin-bottom: 26px;
+      }
 
       p {
         @include bodyText();
@@ -26,12 +44,22 @@
         &:first-of-type {
           margin-bottom: 20px;
         }
+
+        @include devices(mobile) {
+          &:last-of-type {
+            margin-top: 20px;
+          }
+        }
       }
     }
 
     &__video {
       position: relative;
       width: 55%;
+
+      @include devices(mobile) {
+        width: 100%;
+      }
 
       img {
         width: 100%;

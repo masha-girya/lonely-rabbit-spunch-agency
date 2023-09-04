@@ -11,6 +11,7 @@ import {
 import { LeftIcon } from "@components/icons/LeftIcon";
 import { RightIcon } from "@components/icons/RightIcon";
 import { Transition } from "react-transition-group";
+import { Circles } from "@components/circles";
 
 interface ICarousel {
   chars: typeof CHARACTERS_MOCK;
@@ -30,6 +31,7 @@ export const Carousel: React.FC<ICarousel> = (props) => {
 
   const {
     carouselFragment,
+    thumbsFragment,
     useListenToCustomEvent,
     slideToPrevItem,
     slideToNextItem,
@@ -40,6 +42,7 @@ export const Carousel: React.FC<ICarousel> = (props) => {
     itemsPerSlide: 5,
     withLoop: true,
     initialActiveItem: Math.floor(chars.length / 2),
+    withThumbs: true,
     items: chars.map((item) => ({
       id: item.charId.toString(),
       renderItem: (
@@ -63,6 +66,9 @@ export const Carousel: React.FC<ICarousel> = (props) => {
           </div>
         </div>
       ),
+      renderThumb: (
+        <Circles highlighted={item.charId === currentChar?.charId} handleMove={() => slideToItem(item.charId.toString())} />
+      )
     })),
   });
 
@@ -136,6 +142,9 @@ export const Carousel: React.FC<ICarousel> = (props) => {
         >
           <RightIcon />
         </button>
+      </div>
+      <div className={styles.swiper}>
+        {thumbsFragment}
       </div>
     </>
   );

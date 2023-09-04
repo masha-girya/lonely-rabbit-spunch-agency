@@ -11,6 +11,10 @@
     justify-content: space-between;
     column-gap: 40px;
 
+    @include devices(mobile) {
+      display: none;
+    }
+
     &_footer {
       column-gap: 76px;
     }

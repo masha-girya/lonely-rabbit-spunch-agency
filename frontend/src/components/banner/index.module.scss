@@ -1,6 +1,12 @@
+@import "src/styles/mixins.scss";
+
 .banner {
   height: 100vh;
   min-height: 500px;
+
+  @include devices(mobile) {
+    min-height: 750px;
+  }
 
   &__bannerContainer {
     padding: 0 64px;
@@ -9,10 +15,23 @@
     justify-content: center;
     align-items: center;
     column-gap: 40px;
+
+    @include devices(mobile) {
+      flex-direction: column;
+      justify-content: space-evenly;
+      column-gap: 0;
+      padding: 16px;
+      height: calc(100% - 95px);
+      overflow: hidden;
+    }
   }
 
   &__content {
     width: 55%;
+
+    @include devices(mobile) {
+      width: 100%;
+    }
 
     h1 {
       max-width: 670px;
@@ -20,16 +39,37 @@
       font-weight: 700;
       line-height: normal;
       margin-bottom: 24px;
+
+      @include devices(mobile) {
+        font-size: 30px;
+        margin-bottom: 0;
+      }
     }
 
     &__button {
       width: 156px;
+
+      @include devices(mobile) {
+        display: none;
+      }
+
+      &_mob {
+        display: none;
+        @include devices(mobile) {
+          display: block;
+        }
+      }
     }
   }
 
   &__images {
     width: 45%;
     height: 90%;
+
+    @include devices(mobile) {
+      width: 150%;
+      max-height: 414px;
+    }
 
     &__box {
       position: relative;

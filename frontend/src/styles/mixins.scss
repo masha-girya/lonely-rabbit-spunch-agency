@@ -67,7 +67,7 @@
   line-height: normal;
 
   @include devices(mobile) {
-    // font-size: 24px;
+    font-size: 24px;
   }
 }
 
@@ -75,6 +75,10 @@
   font-size: 18px;
   font-weight: 400;
   line-height: normal;
+
+  @include devices(mobile) {
+    font-size: 16px;
+  }
 }
 
 @mixin errorText($margin-top) {

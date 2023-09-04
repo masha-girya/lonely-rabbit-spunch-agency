@@ -24,10 +24,19 @@
     transition: all 1s linear;
     position: relative;
 
+    @include devices(mobile) {
+      height: 293px;
+    }
+
     &_main {
       justify-content: center;
       width: 345px;
       transition: all 1s ease;
+
+      @include devices(mobile) {
+        width: 227px;
+        height: 100%;
+      }
     }
   }
 
@@ -40,19 +49,29 @@
       content: "";
       display: block;
       position: absolute;
-      bottom: 50px;
+      bottom: 12%;
       left: 50%;
       transform: translateX(-50%);
-      width: 240px;
-      height: 320px;
+      // width: 240px;
+      // height: 320px;
+      width: 100%;
+      height: 70%;
       border-radius: 20px;
       background: rgba(217, 217, 217, 0.05);
       filter: blur(2.5px);
     }
 
+    @include devices(mobile) {
+      height: 227px;
+    }
+
     &_main {
       height: 100%;
       transition: all 1s ease;
+
+      // @include devices(mobile) {
+      //   height: 70%;
+      // }
 
       &::before {
         display: none;
@@ -83,6 +102,10 @@
     align-items: center;
     cursor: pointer;
 
+    @include devices(mobile) {
+      display: none;
+    }
+
     &:hover {
       svg {
         path {
@@ -108,6 +131,14 @@
       text-align: center;
       color: #FBFBFB;
     }
+  }
+}
+
+.swiper {
+  display: none;
+
+  @include devices(mobile) {
+    display: flex;
   }
 }
 

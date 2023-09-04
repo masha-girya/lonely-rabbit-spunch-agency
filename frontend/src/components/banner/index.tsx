@@ -5,6 +5,7 @@ import { Header } from "@components/header";
 import { useEffect, useRef, useState } from "react";
 import { BANNER_IMGS } from "src/constants";
 import { useSpringCarousel } from "react-spring-carousel";
+import classNames from "classnames";
 
 export const Banner = () => {
   const [title, setTitle] = useState(
@@ -70,6 +71,9 @@ export const Banner = () => {
               </filter>
             </defs>
           </svg>
+        </div>
+        <div className={classNames(styles.banner__content__button, styles.banner__content__button_mob)}>
+          <Button onClick={() => {}} name="Play Now" />
         </div>
       </div>
     </div>

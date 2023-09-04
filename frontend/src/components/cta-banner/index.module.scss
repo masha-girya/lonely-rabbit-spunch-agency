@@ -15,6 +15,10 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
+    @include devices(mobile) {
+      padding: 60px 16px;
+    }
   }
 
   h1 {
@@ -22,9 +26,17 @@
     margin: 0 42px;
     max-width: 1230px;
     @include blockTitle();
+
+    @include devices(mobile) {
+      width: 100%;
+    }
   }
 
   &__button {
     width: 273px;
+
+    @include devices(mobile) {
+      width: 237px;
+    }
   }
 }
