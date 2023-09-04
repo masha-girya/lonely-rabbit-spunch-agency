@@ -14,9 +14,6 @@ environ.Env.read_env()
 
 from django.core.wsgi import get_wsgi_application
 
-if env("MODE") == 'dev':
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cms_core.settings.dev")
-if env("MODE") == 'prod':
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cms_core.settings.production")
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cms_core.settings.base')
 
 application = get_wsgi_application()

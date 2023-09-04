@@ -25,6 +25,10 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
+if env("DEBUG") == 'True':
+    ALLOWED_HOSTS = ['*']
+else:
+    ALLOWED_HOSTS = env("ALLOWED_HOST").split(",")
 
 # Application definition
 
@@ -52,7 +56,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'wagtail.api.v2',
     'rest_framework',
-    'news'
+    'news',
+    'recruitment',
+    'licensig'
 ]
 
 MIDDLEWARE = [
