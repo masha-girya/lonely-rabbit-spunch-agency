@@ -6,7 +6,7 @@ import { YoutubeIcon } from "@components/icons/YoutubeIcon";
 export const NAV = [
   { title: "Midnight Strikes", link: "" },
   { title: "News", link: "" },
-  { title: "About Us", link: "" },
+  { title: "About Us", link: "about-us" },
   { title: "Recruitment", link: "" },
 ];
 
