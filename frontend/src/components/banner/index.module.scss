@@ -78,6 +78,9 @@
       filter:url(#round);
       animation: changeShapeBox 5s linear infinite;
 
+      @include devices(mobile) {
+        filter: none;
+      }
     }
 
     &__boxItem {
