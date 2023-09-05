@@ -1,16 +1,86 @@
+@import "src/styles/mixins.scss";
+
 .nav {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
 
+  &_footer {
+    width: 100%;
+  }
+
+  &_mobMenu {
+    height: max-content;
+  }
+
+  @include devices(tablet) {
+    display: none;
+
+    &_footer, &_mobMenu {
+      display: flex;
+    }
+  }
+
   &__navList {
     display: flex;
     justify-content: space-between;
-    column-gap: 40px;
+    width: 60%;
+    max-width: 462px;
 
     &_footer {
-      column-gap: 76px;
+      width: 100%;
+      max-width: 100%;
+      // column-gap: normal;
+
+      @include devices(tablet) {
+        flex-direction: column;
+        row-gap: 20px;
+      }
+    }
+
+    &_mobMenu {
+      flex-direction: column;
+      row-gap: 26px;
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+
+  &__link {
+    position: relative;
+
+    &_mobMenu {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      display: block;
+      width: 0%;
+      height: 1px;
+      background: #FFFFFF;
+      @include transition(link);
+    }
+
+    &:hover {
+      &::after {
+        width: 100%;
+      }
+    }
+
+    @include devices(tablet) {
+      text-align: center;
+
+      &:hover {
+        &::after {
+          width: 0;
+        }
+      }
     }
   }
 }

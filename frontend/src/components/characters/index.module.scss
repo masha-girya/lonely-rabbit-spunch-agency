@@ -7,8 +7,19 @@
   background-repeat: no-repeat;
   background-size: cover;
 
+  @include devices(mobile) {
+    min-height: max-content;
+  }
+
   &__container {
     padding: 40px 0;
+    position: relative;
+    height: 100%;
+
+    @include devices(mobile) {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   h1 {
@@ -16,57 +27,10 @@
     padding-left: 64px;
     color: #FBFBFB;
     text-align: start;
-  }
 
-  &__charsList {
-    margin-top: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    // column-gap: 27px;
-
-    &__item {
-      height: 345px;
-      position: relative;
-
-      &_main {
-        height: 445px;
-      }
-
-      img {
-        height: 100%;
-      }
-    }
-  }
-}
-
-.mainContent {
-  position: absolute;
-  left: -30%;
-  margin: 40px auto 0;
-  display: flex;
-  align-items: center;
-  column-gap: 69px;
-  width: 160%;
-
-  &__button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
-
-  &__text {
-    h2 {
-      @include blockTitle();
-      color: #FBFBFB;
-      margin-bottom: 20px;
-    }
-
-    p {
-      @include bodyText();
+    @include devices(tablet) {
       text-align: center;
-      color: #FBFBFB;
+      padding-left: 0;
     }
   }
 }

@@ -1,0 +1,51 @@
+@import "src/styles/mixins.scss";
+
+.inputBox {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  height: 51px;
+
+  &__placeholder {
+    position: absolute;
+    bottom: 5px;
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    color: #B0B0B0;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    transition: all .2s ease-in-out;
+
+    &_onFocus {
+      transform: translateY(-26px);
+    }
+  }
+
+  &__input {
+    padding: 5px 0;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #33333350;
+    background: none;
+    outline: none;
+    width: 110%;
+    box-sizing: border-box;
+    color: #F0F0F0;
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    color: #333333;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+}
+
+.error {
+  @include errorText(7px);
+}

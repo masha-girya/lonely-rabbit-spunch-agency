@@ -1,0 +1,14 @@
+.socials {
+  display: flex;
+  column-gap: 32px;
+
+  li {
+    &:hover {
+      svg {
+        path {
+          fill: #98DDB8;
+        }
+      }
+    }
+  }
+}

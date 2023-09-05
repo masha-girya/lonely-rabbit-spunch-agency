@@ -1,0 +1,86 @@
+@import "src/styles/mixins.scss";
+
+.thumbs {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 40px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 69px;
+
+  @include devices(mobile) {
+    flex-direction: column;
+    position: relative;
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    @include devices(mobile) {
+      display: none;
+    }
+
+    &:hover {
+      svg {
+        path {
+          fill: #54A178;
+        }
+      }
+    }
+  }
+
+  &__text {
+    height: 150px;
+    width: 450px;
+    overflow: hidden;
+
+    @include devices(mobile) {
+      width: 100%;
+      padding: 0 16px;
+      height: max-content;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      @include blockTitle();
+      color: #FBFBFB;
+      margin-bottom: 20px;
+    }
+
+    p {
+      @include bodyText();
+      text-align: center;
+      color: #FBFBFB;
+    }
+  }
+}
+
+.swiper {
+  display: none;
+
+  div {
+    gap: 6px;
+    justify-content: center;
+  }
+
+  @include devices(mobile) {
+    display: flex;
+  }
+}
+
+@keyframes textAnimation{
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
