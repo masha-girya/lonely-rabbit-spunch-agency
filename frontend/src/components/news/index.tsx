@@ -44,9 +44,10 @@ export const News = () => {
     slideToNextItem,
     slideToPrevItem,
     slideToItem,
+    getCurrentActiveItem,
   } = useSpringCarousel({
     withLoop: false,
-    itemsPerSlide: isMobile ? 1 : 3,
+    itemsPerSlide: isMobile ? 1 : news.length,
     gutter: 20,
     items: news.map((item, i) => ({
       id: item.id.toString(),
@@ -59,6 +60,19 @@ export const News = () => {
       setCurrentNews(+event?.nextItem?.id);
     }
   });
+
+  const handleNext = () => {
+    const index = news.findIndex(item => item.id === currentNews) + 1;
+
+    if(index === news.length - 2 && window.innerWidth > 600 * 3) {
+      setCurrentNews(news[news.length - 2].id);
+      return;
+    }
+
+    if(index < news.length -1 && index >= 0) {
+      slideToItem(index)
+    }
+  }
 
   return (
     <article className={styles.news}>
@@ -91,7 +105,7 @@ export const News = () => {
           <button
             type="button"
             className={styles.cards__nextIcon}
-            onClick={slideToNextItem}
+            onClick={handleNext}
             onMouseEnter={() => setNextOnHover(true)}
             onMouseLeave={() => setNextOnHover(false)}
           >

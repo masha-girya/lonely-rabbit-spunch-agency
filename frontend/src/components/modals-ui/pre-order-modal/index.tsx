@@ -40,6 +40,7 @@ export const PreOrderModal: React.FC<IPreOrderModal> = (props) => {
         </div>
       </div>
       <div className={styles.preOrder__rightCol}>
+        <div className={styles.preOrder__rightCol__background}></div>
         <img className={styles.preOrder__leftImg} src={LeftImg.src}/>
         <img className={styles.preOrder__centerImg} src={CenterImg.src}/>
         <img className={styles.preOrder__rightImg} src={RightImg.src}/>

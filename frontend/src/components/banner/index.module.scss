@@ -71,9 +71,10 @@
 
     &__box {
       position: relative;
+      z-index: 1;
       width: 100%;
       height: 100%;
-      border-radius: 50%;
+      border-radius: 50% 50% 50% 50%;
       overflow: hidden;
       filter:url(#round);
       animation: changeShapeBox 5s linear infinite;
@@ -93,6 +94,8 @@
       animation: changeShape 7s linear infinite;
 
       @include devices(mobile) {
+        position: relative;
+        z-index: 0;
         clip-path: none;
         animation: none;
       }
@@ -141,6 +144,6 @@
     border-radius: 45% 42% 48% 44%;
   }
   100% {
-    border-radius: 50%;
+    border-radius: 50% 50% 50% 50%;
   }
 }

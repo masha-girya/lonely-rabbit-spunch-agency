@@ -97,6 +97,7 @@
     &::after {
       content: "";
       position: absolute;
+      z-index: 1;
       bottom: 0;
       right: 0;
       width: 619px;
@@ -104,12 +105,18 @@
       border-radius: 619px;
       background: rgba(251, 251, 251, 0.40);
       filter: blur(250px);
+
+      @include devices(mobile) {
+        width: 246px;
+        height: 246px;
+        filter: blur(99.35028839111328px);
+      }
     }
   }
 
   &__rightImg, &__centerImg, &__leftImg {
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     bottom: -95px;
     right: -11%;
 
@@ -124,7 +131,7 @@
 
   &__centerImg {
     right: -10%;
-    z-index: 2;
+    z-index: 3;
 
     @include devices(tablet) {
       right: 0;

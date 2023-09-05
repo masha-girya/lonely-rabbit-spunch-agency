@@ -2,7 +2,7 @@
 
 @mixin swipeIcons() {
   position: absolute;
-  z-index: 9;
+  z-index: 8;
   top: 310px;
   margin: auto;
   cursor: pointer;
@@ -76,18 +76,10 @@
 
 .cards {
   margin-top: 41px;
-  padding-right: 64px;
+  // padding-right: 64px;
   display: flex;
   justify-content: space-between;
   column-gap: 14px;
-  // overflow-x: scroll;
-  // -ms-overflow-style: none;  /* Internet Explorer 10+ */
-  // scrollbar-width: none;
-  // scroll-behavior: smooth;
-
-  &::-webkit-scrollbar {
-    // display: none;  /* Safari and Chrome */
-  }
 
   &_end {
     margin-right: 64px;
