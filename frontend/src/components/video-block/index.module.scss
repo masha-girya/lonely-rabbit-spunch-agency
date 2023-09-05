@@ -4,14 +4,14 @@
   height: 100vh;
   min-height: 580px;
 
-  @include devices(mobile) {
+  @include devices(tablet) {
     height: max-content;
   }
 
   &__container {
     padding: 60px 64px;
 
-    @include devices(mobile) {
+    @include devices(tablet) {
       padding: 40px 16px;
     }
   }
@@ -25,7 +25,7 @@
     column-gap: 40px;
     margin-top: 60px;
 
-    @include devices(mobile) {
+    @include devices(tablet) {
       flex-direction: column;
       margin-top: 26px;
     }
@@ -33,7 +33,7 @@
     &__text {
       width: 45%;
 
-      @include devices(mobile) {
+      @include devices(tablet) {
         width: 100%;
         margin-bottom: 26px;
       }
@@ -45,7 +45,7 @@
           margin-bottom: 20px;
         }
 
-        @include devices(mobile) {
+        @include devices(tablet) {
           &:last-of-type {
             margin-top: 20px;
           }
@@ -57,7 +57,7 @@
       position: relative;
       width: 55%;
 
-      @include devices(mobile) {
+      @include devices(tablet) {
         width: 100%;
       }
 

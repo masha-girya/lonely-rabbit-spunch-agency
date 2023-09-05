@@ -79,6 +79,10 @@
     &__name {
       color: #98DDB8;
       font-weight: 500;
+
+      @include devices(mobile) {
+        font-size: 12px;
+      }
     }
 
     &:hover {

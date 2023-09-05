@@ -16,18 +16,18 @@
     justify-content: space-between;
     align-items: center;
 
-    @include devices(mobile) {
+    @include devices(tablet) {
       padding: 60px 16px;
     }
   }
 
-  h1 {
+  &__title {
     color: #FBFBFB;
     margin: 0 42px;
     max-width: 1230px;
     @include blockTitle();
 
-    @include devices(mobile) {
+    @include devices(tablet) {
       width: 100%;
     }
   }
@@ -35,7 +35,7 @@
   &__button {
     width: 273px;
 
-    @include devices(mobile) {
+    @include devices(tablet) {
       width: 237px;
     }
   }

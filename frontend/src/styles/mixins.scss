@@ -47,16 +47,14 @@
   }
 }
 
-@mixin mainPageBlock () {
-  padding-left: 64px;
-  padding-right: 64px;
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 1440px;
+@mixin mainTitle {
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 
   @include devices(mobile) {
-    padding-left: 16px;
-    padding-right: 16px;
+    font-size: 30px;
   }
 }
 
@@ -87,4 +85,17 @@
   line-height: 14px;
   color: #f87272;
   margin-top: $margin-top;
+}
+
+@mixin swiperBox {
+  display: none;
+
+  div {
+    gap: 6px;
+    justify-content: center;
+  }
+
+  @include devices(mobile) {
+    display: flex;
+  }
 }

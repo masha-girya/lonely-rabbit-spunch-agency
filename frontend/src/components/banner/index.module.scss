@@ -4,7 +4,7 @@
   height: 100vh;
   min-height: 500px;
 
-  @include devices(mobile) {
+  @include devices(tablet) {
     min-height: 750px;
   }
 
@@ -16,12 +16,13 @@
     align-items: center;
     column-gap: 40px;
 
-    @include devices(mobile) {
+    @include devices(tablet) {
       flex-direction: column;
       justify-content: space-evenly;
       column-gap: 0;
       padding: 16px;
-      height: calc(100% - 95px);
+      padding-top: 111px;
+      height: 100%;
       overflow: hidden;
     }
   }
@@ -29,19 +30,16 @@
   &__content {
     width: 55%;
 
-    @include devices(mobile) {
+    @include devices(tablet) {
       width: 100%;
     }
 
     h1 {
+      @include mainTitle();
       max-width: 670px;
-      font-size: 50px;
-      font-weight: 700;
-      line-height: normal;
       margin-bottom: 24px;
 
-      @include devices(mobile) {
-        font-size: 30px;
+      @include devices(tablet) {
         margin-bottom: 0;
       }
     }
@@ -49,13 +47,13 @@
     &__button {
       width: 156px;
 
-      @include devices(mobile) {
+      @include devices(tablet) {
         display: none;
       }
 
       &_mob {
         display: none;
-        @include devices(mobile) {
+        @include devices(tablet) {
           display: block;
         }
       }
@@ -66,7 +64,7 @@
     width: 45%;
     height: 90%;
 
-    @include devices(mobile) {
+    @include devices(tablet) {
       width: 150%;
       max-height: 414px;
     }
@@ -77,26 +75,19 @@
       height: 100%;
       border-radius: 50%;
       overflow: hidden;
-      // background-color: #333333;
       filter:url(#round);
-      animation: changeShape3 5s linear infinite;
-
-      // border-radius: 40% 25% 50% 50%;
+      animation: changeShapeBox 5s linear infinite;
 
     }
 
     &__boxItem {
       width: 100%;
       height: 100%;
-      // padding-top:86.6%;
       background-color: transparent;
       transition: all 0.5s ease-in-out;
 
       clip-path: polygon(29% 4%, 93% 0, 100% 36%, 100% 88%, 60% 95%, 0 98%, 7% 55%, 1% 19%);
       animation: changeShape 7s linear infinite;
-      // clip-path: polygon(45% 7%, 91% 0, 100% 65%, 89% 100%, 60% 95%, 0 91%, 3% 34%, 5% 10%); // 2
-      // clip-path: polygon(58% 0, 93% 9%, 87% 49%, 98% 100%, 35% 95%, 0 87%, 7% 31%, 5% 2%); //3
-      // clip-path: polygon(58% 0, 93% 9%, 100% 60%, 90% 100%, 30% 88%, 0 87%, 0 24%, 5% 2%); //4
 
     }
 
@@ -116,15 +107,12 @@
     clip-path: polygon(29% 4%, 93% 0, 100% 36%, 100% 88%, 60% 95%, 0 98%, 7% 55%, 1% 19%);
   }
   25% {
-    // clip-path: polygon(45% 7%, 91% 0, 100% 65%, 89% 100%, 60% 95%, 0 91%, 3% 34%, 5% 10%); // 2
     clip-path: polygon(38% 8%, 93% 7%, 94% 32%, 96% 85%, 62% 100%, 0 88%, 4% 53%, 6% 11%);
   }
   50% {
-    // clip-path: polygon(58% 0, 93% 9%, 87% 49%, 98% 100%, 35% 95%, 0 87%, 7% 31%, 5% 2%); //3
     clip-path: polygon(44% 9%, 98% 4%, 92% 49%, 97% 80%, 52% 100%, 2% 90%, 1% 41%, 9% 5%);
   }
   75% {
-    // clip-path: polygon(58% 0, 93% 9%, 100% 60%, 90% 100%, 30% 88%, 0 87%, 0 24%, 5% 2%); //4
     clip-path: polygon(52% 4%, 100% 7%, 98% 53%, 99% 90%, 44% 95%, 0 98%, 1% 41%, 16% 1%);
   }
   100% {
@@ -132,7 +120,7 @@
   }
 }
 
-@keyframes changeShape3 {
+@keyframes changeShapeBox {
   0% {
     border-radius: 50% 50% 50% 50%;
   }
@@ -147,28 +135,5 @@
   }
   100% {
     border-radius: 50%;
-  }
-}
-
-@keyframes changeShape2 {
-  0% {
-    border-radius: 50%;
-    clip-path: ellipse(50% 50% at 40% 40%);
-  }
-  25% {
-    border-radius: 30%;
-    clip-path: ellipse(70% 70% at 20% 20%);
-  }
-  50% {
-    border-radius: 20%;
-    clip-path: ellipse(80% 80% at 60% 60%);
-  }
-  75% {
-    border-radius: 40%;
-    clip-path: ellipse(60% 60% at 30% 30%);
-  }
-  100% {
-    border-radius: 50%;
-    clip-path: ellipse(50% 50% at 40% 40%);
   }
 }

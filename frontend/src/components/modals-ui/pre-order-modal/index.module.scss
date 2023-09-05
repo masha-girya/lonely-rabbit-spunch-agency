@@ -1,0 +1,179 @@
+@import "src/styles/mixins.scss";
+
+.preOrder {
+  border-radius: 20px;
+  height: 100vh;
+  width: 90%;
+  display: flex;
+  padding: 95px 80px;
+
+  width: max-content;
+  max-width: 1180px;
+  height: 600px;
+
+  @media only screen and (max-width: 1180px) {
+    width: 100%;
+    height: 100%;
+  }
+
+  @include devices(tablet) {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  &__closeBtn {
+    position: absolute;
+    z-index: 10;
+    top: 30px;
+    right: 30px;
+    margin: auto;
+    width: max-content;
+    cursor: pointer;
+
+    svg {
+      transition: all 0.2s ease-in-out;
+    }
+
+    &:hover {
+      svg {
+        transform: rotate(90deg)
+      }
+    }
+
+    @include devices(tablet) {
+      right: 20px;
+      top: 24px;
+
+      &:hover {
+        svg {
+          transform: rotate(0);
+        }
+      }
+    }
+  }
+
+  &__leftCol {
+    order: 1;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    width: 35%;
+
+    @include devices(tablet) {
+      order: 2;
+      width: 100%;
+      height: 60%;
+      padding: 30px 20px;
+      margin: auto;
+      max-height: 400px;
+    }
+  }
+
+  &__rightCol {
+    order: 2;
+    width: 65%;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+
+    @include devices(tablet) {
+      overflow: hidden;
+      order: 1;
+      width: 100%;
+      height: 40%;
+      min-height: 230px;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 619px;
+      height: 619px;
+      border-radius: 619px;
+      background: rgba(251, 251, 251, 0.40);
+      filter: blur(250px);
+    }
+  }
+
+  &__rightImg, &__centerImg, &__leftImg {
+    position: absolute;
+    z-index: 1;
+    bottom: -95px;
+    right: -11%;
+
+    @include devices(tablet) {
+      height: 127px;
+      object-fit: contain;
+      bottom: 0;
+      right: 6%;
+      bottom: 7%;
+    }
+  }
+
+  &__centerImg {
+    right: -10%;
+    z-index: 2;
+
+    @include devices(tablet) {
+      right: 0;
+      left: 0;
+      margin: 0 auto;
+      height: 215px;
+      bottom: 0;
+    }
+  }
+
+  &__leftImg {
+    right: 15%;
+
+    @include devices(tablet) {
+      height: 185px;
+      right: 25%;
+      bottom: 0;
+    }
+  }
+
+  &__title {
+    @include mainTitle();
+    color: #FBFBFB;
+    text-align: start;
+  }
+
+  &__releaseDate {
+    color: #BEBEBE;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 12px;
+  }
+
+  &__text {
+    color: #FBFBFB;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: normal;
+
+    @include devices(tablet) {
+      font-size: 16px;
+    }
+  }
+
+  &__price {
+    color: #FBFBFB;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 12px;
+  }
+
+  &__button {
+    width: 201px;
+
+    @include devices(mobile) {
+      width: 100%;
+    }
+  }
+}

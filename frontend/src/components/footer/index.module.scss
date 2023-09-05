@@ -5,6 +5,10 @@
 
   &__container {
     padding: 0 64px;
+
+    @include devices(tablet) {
+      padding: 0 16px;
+    }
   }
 
   &__mainBlock {
@@ -15,25 +19,21 @@
     height: max-content;
     border-bottom: 1px solid #FBFBFB;
 
+    @include devices(tablet) {
+      flex-direction: column;
+    }
+
     &__rightCol {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-    }
+      row-gap: 46px;
+      flex: 1;
+      max-width: 746px;
 
-    &__socials {
-      display: flex;
-      column-gap: 32px;
-      margin-top: 46px;
-
-      li {
-        &:hover {
-          svg {
-            path {
-              fill: #98DDB8;
-            }
-          }
-        }
+      @include devices(tablet) {
+        align-items: center;
+        margin-top: 36px;
       }
     }
   }
@@ -53,6 +53,10 @@
       line-height: normal;
       display: flex;
       column-gap: 14px;
+
+      @include devices(tablet) {
+        font-size: 14px;
+      }
     }
   }
 }

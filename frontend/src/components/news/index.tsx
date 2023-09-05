@@ -1,119 +1,64 @@
 import { GameIcon } from "@components/icons/GameIcon";
 import styles from "./index.module.scss";
 import { Button } from "@components/button";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { NEWS_MOCK } from "src/constants/news";
 import { NewsCard } from "./news-card";
 import { NextIcon } from "@components/icons/NextIcon";
 import { PrevIcon } from "@components/icons/PrevIcon";
 import classNames from "classnames";
+import { Circles } from "@components/circles";
+import { useSpringCarousel } from "react-spring-carousel";
+import { useDevice } from "src/hooks/useDevice";
 
 export const News = () => {
   const [news, setNews] = useState(NEWS_MOCK);
   const ref = useRef<any | null>(null);
-  const [scrollable, setScrollable] = useState(false);
-  const [scrollFinish, setScrollFinish] = useState(false);
-  const [circle, setCircle] = useState(1);
-  const [scrollingTimeout, setScrollingTimeout] = useState<null | any>(null);
   const [prevOnHover, setPrevOnHover] = useState(false);
   const [nextOnHover, setNextOnHover] = useState(false);
 
-  const cardWidth = useMemo(() => {
-    return 600;
-  }, []);
+  const [listOnEnd, setListOnEnd] = useState(false);
+  const [currentNews, setCurrentNews] = useState(news[0].id);
+  const { isMobile } = useDevice();
+  const circlesArr = useMemo(() => {
+    return isMobile ? news : news.slice(0, -1);
+  }, [isMobile]);
+  //   const handleScroll = () => {
+  //     if (ref.current) {
+  //       if (ref.current.scrollX > 2400) {
+  //         setListOnEnd(true);
+  //       } else {
+  //         setListOnEnd(false);
+  //       }
+  //     }
+  //   };
 
-  const listWidth = useMemo(() => {
-    return cardWidth * news.length + cardWidth;
-  }, [news, cardWidth]);
+  //   ref.current.addEventListener("scroll", handleScroll);
 
-  const handleScroll = () => {
-    if (ref.current) {
-      clearTimeout(scrollingTimeout);
+  //   return () => ref.current.removeEventListener("scroll", handleScroll)
+  // });
 
-      // we detect when scroll stops via timeout
-      const newTimeout = setTimeout(() => {
-        // finish
-        if (window.innerWidth + ref.current.scrollLeft > listWidth - (cardWidth - 200)) {
-          setCircle(news.length);
-          return;
-        }
-
-        // start
-        if (ref.current.scrollLeft < cardWidth) {
-          console.log("cond 1")
-          setCircle(1);
-          return;
-        }
-
-        // second circle
-        if (ref.current.scrollLeft >= cardWidth && ref.current.scrollLeft < cardWidth * 2) {
-          setCircle(2);
-          return;
-        }
-
-        const newCircle =
-          news.length - Math.floor(listWidth / ref.current.scrollLeft);
-        setCircle(newCircle);
-
-        console.log({
-          newCircle,
-          refScroll: ref.current.scrollLeft,
-          listWidth
-        })
-
-        setScrollingTimeout(null);
-      }, 200);
-
-      setScrollingTimeout(newTimeout);
-    }
-  };
-
-  const handleScrollRight = useCallback(() => {
-    if (ref.current) {
-      ref.current.scrollLeft += 600;
-    }
-  }, [ref.current]);
-
-  const handleScrollLeft = useCallback(() => {
-    if (ref.current) {
-      ref.current.scrollLeft -= 600;
-    }
-  }, [ref.current]);
-
-  const moveTo = useCallback((i: number) => {
-    if(ref.current) {
-      ref.current.scrollTo(600 * i, 0)
-    }
-  }, [ref])
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < listWidth) {
-        setScrollable(true);
-      } else {
-        setScrollable(false);
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+  const {
+    carouselFragment,
+    useListenToCustomEvent,
+    slideToNextItem,
+    slideToPrevItem,
+    slideToItem,
+  } = useSpringCarousel({
+    withLoop: false,
+    itemsPerSlide: isMobile ? 1 : 3,
+    gutter: 20,
+    items: news.map((item, i) => ({
+      id: item.id.toString(),
+      renderItem: <NewsCard card={item} />,
+    })),
   });
 
-  useEffect(() => {
-    if (ref.current) {
-      ref.current.addEventListener("scroll", handleScroll);
+  useListenToCustomEvent((event) => {
+    if (event.eventName === "onSlideStartChange") {
+      setCurrentNews(+event?.nextItem?.id);
     }
-
-    return () => {
-      if (ref.current) {
-        ref.current.removeEventListener("scroll", handleScroll);
-      }
-    };
-  }, []);
+  });
 
   return (
     <article className={styles.news}>
@@ -127,43 +72,43 @@ export const News = () => {
             <Button name="All our news" onClick={() => {}} />
           </div>
         </div>
-        <div className={styles.cards} ref={ref}>
-          {scrollable && (
-            <button
-              type="button"
-              className={styles.cards__prevIcon}
-              onClick={handleScrollLeft}
-              onMouseEnter={() => setPrevOnHover(true)}
-              onMouseLeave={() => setPrevOnHover(false)}
-            >
-              <PrevIcon color={prevOnHover ? "#54A178" : "#98DDB8"} />
-            </button>
-          )}
-          {news.map((item) => (
-            <NewsCard key={item.id} card={item} />
-          ))}
-          {scrollable && (
-            <button
-              type="button"
-              className={styles.cards__nextIcon}
-              onClick={handleScrollRight}
-              onMouseEnter={() => setNextOnHover(true)}
-              onMouseLeave={() => setNextOnHover(false)}
-            >
-              <NextIcon color={nextOnHover ? "#54A178" : "#98DDB8"} />
-            </button>
-          )}
+        <div
+          className={classNames(styles.cards, {
+            [styles.cards_end]: listOnEnd,
+          })}
+          ref={ref}
+        >
+          <button
+            type="button"
+            className={styles.cards__prevIcon}
+            onClick={slideToPrevItem}
+            onMouseEnter={() => setPrevOnHover(true)}
+            onMouseLeave={() => setPrevOnHover(false)}
+          >
+            <PrevIcon color={prevOnHover ? "#54A178" : "#98DDB8"} />
+          </button>
+          {carouselFragment}
+          <button
+            type="button"
+            className={styles.cards__nextIcon}
+            onClick={slideToNextItem}
+            onMouseEnter={() => setNextOnHover(true)}
+            onMouseLeave={() => setNextOnHover(false)}
+          >
+            <NextIcon color={nextOnHover ? "#54A178" : "#98DDB8"} />
+          </button>
         </div>
         <div className={styles.swiper}>
-          {news.map((item, i) => (
-            <div
+          {circlesArr.map((item, i) => (
+            <Circles
               key={item.id}
-              onClick={() => moveTo(i)}
-              className={classNames(styles.swiper__circle, {
-                [styles.swiper__circle_main]: item.id === circle,
-              })}
-            ></div>
+              highlighted={item.id === currentNews}
+              handleMove={() => slideToItem(i)}
+            />
           ))}
+        </div>
+        <div className={styles.news__header__buttonMob}>
+          <Button name="All our news" onClick={() => {}} />
         </div>
       </div>
     </article>
