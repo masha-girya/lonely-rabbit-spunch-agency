@@ -65,7 +65,7 @@
     height: 90%;
 
     @include devices(tablet) {
-      width: 400px;
+      width: 130%;
       max-height: 414px;
     }
 
@@ -89,6 +89,10 @@
       clip-path: polygon(29% 4%, 93% 0, 100% 36%, 100% 88%, 60% 95%, 0 98%, 7% 55%, 1% 19%);
       animation: changeShape 7s linear infinite;
 
+      @include devices(mobile) {
+        clip-path: none;
+        animation: none;
+      }
     }
 
     &__img {
