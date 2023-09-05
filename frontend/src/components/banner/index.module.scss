@@ -10,7 +10,8 @@
 
   &__bannerContainer {
     padding: 0 64px;
-    height: calc(100% - 100px);
+    padding-top: 111px;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,7 +23,6 @@
       column-gap: 0;
       padding: 16px;
       padding-top: 111px;
-      height: 100%;
       overflow: hidden;
     }
   }
@@ -65,7 +65,7 @@
     height: 90%;
 
     @include devices(tablet) {
-      width: 150%;
+      width: 400px;
       max-height: 414px;
     }
 

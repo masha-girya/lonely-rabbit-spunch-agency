@@ -11,12 +11,16 @@ export const Header = () => {
 
   const handleMobileMenu = () => {
     setMenuOpen(!menuOpen);
-    if (!menuOpen) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "unset";
+    if (!menuOpen) document.getElementsByTagName("html")[0].style.overflow = "hidden";
+    else document.getElementsByTagName("html")[0].style.overflow = "auto";
   };
 
   return (
-    <header className={styles.header}>
+    <header
+      className={classNames(styles.header, {
+        [styles.header_open]: menuOpen,
+      })}
+    >
       <div className={styles.header__container}>
         <img src={Logo.src} alt="logo" className={styles.header__logo} />
         <div className={styles.burger}>

@@ -85,6 +85,12 @@
 }
 
 .charListBox {
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+
   @include devices(mobile) {
     display: flex;
     flex-direction: column;

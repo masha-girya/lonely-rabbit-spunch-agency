@@ -1,15 +1,18 @@
 @import "src/styles/mixins.scss";
 
 .header {
-  position: relative;
+  position: fixed;
+  z-index: 9;
   width: 100%;
   background-color: #333333;
   height: 100px;
 
   @include devices(tablet) {
     height: 95px;
-    position: fixed;
-    z-index: 9;
+
+    &_open {
+      height: 100%;
+    }
   }
 
   &__container {
@@ -17,6 +20,7 @@
     height: 100%;
 
     @include devices(tablet) {
+      height: 95px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -101,7 +105,10 @@
 }
 
 .mobMenu {
-  height: calc(100vh - 95px);
+  overflow: auto;
+  @include scrollBar();
+  min-height: 400px;
+  height: calc(100% - 95px);
   background-color: #333333;
   position: relative;
   z-index: 9;

@@ -1,11 +1,16 @@
 @import "src/styles/mixins.scss";
 
 .preOrder {
+  position: relative;
   border-radius: 20px;
   height: 100vh;
   width: 90%;
   display: flex;
   padding: 95px 80px;
+  background-color: #333333;
+  border-radius: 20px;
+  overflow: auto;
+  @include scrollBar();
 
   width: max-content;
   max-width: 1180px;
@@ -19,6 +24,8 @@
   @include devices(tablet) {
     flex-direction: column;
     padding: 0;
+    height: 80%;
+    width: 360px;
   }
 
   &__closeBtn {
@@ -90,6 +97,8 @@
     &::after {
       content: "";
       position: absolute;
+      bottom: 0;
+      right: 0;
       width: 619px;
       height: 619px;
       border-radius: 619px;
