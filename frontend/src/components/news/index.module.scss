@@ -23,7 +23,7 @@
     position: relative;
 
     @include devices(tablet) {
-      padding: 76px 16px 60px;
+      padding: 60px 16px 60px;
     }
   }
 
@@ -33,23 +33,21 @@
     justify-content: space-between;
 
     &__title {
-      position: relative;
-
       h1 {
         @include blockTitle();
       }
 
       svg {
+        width: 196px;
         position: absolute;
         top: 0;
-        bottom: 20px;
-        left: -50%;
+        left: -5px;
         margin: auto;
 
         @include devices(tablet) {
           width: 116px;
-          bottom: 10px;
-          right: 52%;
+          left: -20px;
+          top: -10px;
         }
       }
     }
@@ -75,8 +73,7 @@
 }
 
 .cards {
-  margin-top: 41px;
-  // padding-right: 64px;
+  margin-top: 66px;
   display: flex;
   justify-content: space-between;
   column-gap: 14px;

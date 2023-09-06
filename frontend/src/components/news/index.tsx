@@ -11,7 +11,13 @@ import { Circles } from "@components/circles";
 import { useSpringCarousel } from "react-spring-carousel";
 import { useDevice } from "src/hooks/useDevice";
 
-export const News = () => {
+interface INews {
+  title?: string,
+  buttonTitle?: string,
+}
+
+export const NewsList: React.FC<INews> = (props) => {
+  const { title, buttonTitle } = props;
   const [news, setNews] = useState(NEWS_MOCK);
   const ref = useRef<any | null>(null);
   const [prevOnHover, setPrevOnHover] = useState(false);
@@ -23,28 +29,12 @@ export const News = () => {
   const circlesArr = useMemo(() => {
     return isMobile ? news : news.slice(0, -1);
   }, [isMobile]);
-  //   const handleScroll = () => {
-  //     if (ref.current) {
-  //       if (ref.current.scrollX > 2400) {
-  //         setListOnEnd(true);
-  //       } else {
-  //         setListOnEnd(false);
-  //       }
-  //     }
-  //   };
-
-  //   ref.current.addEventListener("scroll", handleScroll);
-
-  //   return () => ref.current.removeEventListener("scroll", handleScroll)
-  // });
 
   const {
     carouselFragment,
     useListenToCustomEvent,
-    slideToNextItem,
     slideToPrevItem,
     slideToItem,
-    getCurrentActiveItem,
   } = useSpringCarousel({
     withLoop: false,
     itemsPerSlide: isMobile ? 1 : news.length,
@@ -80,10 +70,10 @@ export const News = () => {
         <div className={styles.news__header}>
           <div className={styles.news__header__title}>
             <GameIcon />
-            <h1>News</h1>
+            <h1>{title ?? "News"}</h1>
           </div>
           <div className={styles.news__header__button}>
-            <Button name="All our news" onClick={() => {}} />
+            <Button name={buttonTitle ?? "All our news"} onClick={() => {}} />
           </div>
         </div>
         <div
@@ -122,7 +112,7 @@ export const News = () => {
           ))}
         </div>
         <div className={styles.news__header__buttonMob}>
-          <Button name="All our news" onClick={() => {}} />
+          <Button name={buttonTitle} onClick={() => {}} />
         </div>
       </div>
     </article>

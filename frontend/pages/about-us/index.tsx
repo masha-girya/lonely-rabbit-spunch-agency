@@ -14,57 +14,59 @@ const AboutUs = () => {
   const [aboutUsData, setAboutUsData] = useState(ABOUT_US_MOCK);
 
   return (
-    <main className={styles.aboutUs}>
+    <div>
       <Header />
-      <div className={styles.aboutUs__banner}>
-        <div className={styles.aboutUs__banner__container}>
-          <div className={styles.aboutUs__banner__text}>
-            <h1>About us</h1>
-            <p>{text}</p>
+      <main className={styles.aboutUs}>
+        <div className={styles.aboutUs__banner}>
+          <div className={styles.aboutUs__banner__container}>
+            <div className={styles.aboutUs__banner__text}>
+              <h1>About us</h1>
+              <p>{text}</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div className={styles.aboutUs__list}>
-        {aboutUsData.map((item, i) => (
-          <section key={i} className={styles.aboutUs__item}>
-            <div
-              className={classNames(styles.aboutUs__item__text, {
-                [styles.aboutUs__item__text_even]: i % 2 === 0,
-              })}
-            >
-              <h1>{item.title}</h1>
-              <div className={styles.aboutUs__item__text__textBox}>
-                {item.text.map((text, index) => (
-                  <p key={index}>{text}</p>
-                ))}
+        <div className={styles.aboutUs__list}>
+          {aboutUsData.map((item, i) => (
+            <section key={i} className={styles.aboutUs__item}>
+              <div
+                className={classNames(styles.aboutUs__item__text, {
+                  [styles.aboutUs__item__text_even]: i % 2 === 0,
+                })}
+              >
+                <h1>{item.title}</h1>
+                <div className={styles.aboutUs__item__text__textBox}>
+                  {item.text.map((text, index) => (
+                    <p key={index}>{text}</p>
+                  ))}
+                </div>
               </div>
-            </div>
-            <div className={classNames(styles.aboutUs__item__imgBox, {
-                  [styles.aboutUs__item__imgBox]: i % 2 === 0,
-                })}>
-              <h1 className={styles.aboutUs__item__imgBox__title}>
-                {item.title}
-              </h1>
-              <img
-                src={item.image.src}
-                alt={item.title}
-                className={styles.aboutUs__item__imgBox__img}
-              />
-            </div>
-          </section>
-        ))}
-      </div>
-      <section className={styles.aboutUs__ctaSection}>
-        <h1>{ctaText}</h1>
-        <div className={styles.aboutUs__ctaSection__button}>
-          <Button
-            name="Join Us"
-            onClick={() => {}}
-          />
+              <div className={classNames(styles.aboutUs__item__imgBox, {
+                    [styles.aboutUs__item__imgBox]: i % 2 === 0,
+                  })}>
+                <h1 className={styles.aboutUs__item__imgBox__title}>
+                  {item.title}
+                </h1>
+                <img
+                  src={item.image.src}
+                  alt={item.title}
+                  className={styles.aboutUs__item__imgBox__img}
+                />
+              </div>
+            </section>
+          ))}
         </div>
-      </section>
+        <section className={styles.aboutUs__ctaSection}>
+          <h1>{ctaText}</h1>
+          <div className={styles.aboutUs__ctaSection__button}>
+            <Button
+              name="Join Us"
+              onClick={() => {}}
+            />
+          </div>
+        </section>
+      </main>
       <Footer/>
-    </main>
+    </div>
   );
 };
 

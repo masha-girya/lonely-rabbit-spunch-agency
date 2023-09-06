@@ -3,6 +3,8 @@ import { NEWS_MOCK } from "src/constants/news";
 import styles from "./index.module.scss";
 import { useDevice } from "src/hooks/useDevice";
 import { useMemo } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 interface INewsCard {
   card: (typeof NEWS_MOCK)[0];
@@ -12,6 +14,7 @@ export const NewsCard: React.FC<INewsCard> = (props) => {
   const { card } = props;
   const { id, img, title, text, date } = card;
   const { isMobile } = useDevice();
+  const router = useRouter();
 
   const formatDesc = useMemo(() => {
     return isMobile ? text.split(" ").slice(0, 5).join(" ") : text;
@@ -25,7 +28,7 @@ export const NewsCard: React.FC<INewsCard> = (props) => {
         <p className={styles.card__text__desc}>{formatDesc}</p>
         <p className={styles.card__text__date}>{date}</p>
         <div className={styles.card__button}>
-          <Button name="Read more" onClick={() => {}} variant="secondary" />
+          <Button name="Read more" onClick={() => router.push(`/news/news-${id}`)} variant="secondary" />
         </div>
       </div>
     </div>

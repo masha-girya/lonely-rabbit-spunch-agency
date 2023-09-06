@@ -6,6 +6,7 @@
   background-image: url(./assets/Background.png);
   background-repeat: no-repeat;
   background-size: cover;
+  margin-bottom: 16px;
 
   @include devices(mobile) {
     min-height: max-content;
