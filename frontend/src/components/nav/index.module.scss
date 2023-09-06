@@ -31,7 +31,6 @@
     &_footer {
       width: 100%;
       max-width: 100%;
-      // column-gap: normal;
 
       @include devices(tablet) {
         flex-direction: column;
@@ -52,6 +51,9 @@
 
     &_mobMenu {
       font-size: 24px;
+    }
+
+    &_isActive {
       font-weight: 700;
     }
 

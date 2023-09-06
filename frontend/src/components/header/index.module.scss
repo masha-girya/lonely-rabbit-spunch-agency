@@ -37,6 +37,7 @@
     top: 0;
     bottom: 0;
     margin: auto;
+    cursor: pointer;
 
     @include devices(tablet) {
       margin: 0;

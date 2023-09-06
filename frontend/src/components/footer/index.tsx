@@ -3,13 +3,16 @@ import { Nav } from "@components/nav";
 import { RightsIcon } from "@components/icons/RightsIcon";
 import Logo from "@styles/assets/Logo.png";
 import { Socials } from "@components/socials";
+import Link from "next/link";
 
 export const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.footer__container}>
         <div className={styles.footer__mainBlock}>
-          <img src={Logo.src} alt="logo"/>
+          <Link href="/">
+            <img className={styles.footer__mainBlock__logo} src={Logo.src} alt="logo"/>
+          </Link>
           <div className={styles.footer__mainBlock__rightCol}>
             <Nav isFooter />
             <Socials />

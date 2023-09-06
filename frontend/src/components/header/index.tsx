@@ -4,6 +4,7 @@ import { Nav } from "@components/nav";
 import { useRef, useState } from "react";
 import { Socials } from "@components/socials";
 import classNames from "classnames";
+import Link from "next/link";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -22,7 +23,9 @@ export const Header = () => {
       })}
     >
       <div className={styles.header__container}>
-        <img src={Logo.src} alt="logo" className={styles.header__logo} />
+        <Link href="/">
+          <img src={Logo.src} alt="logo" className={styles.header__logo} />
+        </Link>
         <div className={styles.burger}>
           <input onClick={handleMobileMenu} type="checkbox" />
           <span></span>

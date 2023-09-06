@@ -1,0 +1,209 @@
+@import "src/styles/mixins.scss";
+
+.aboutUs {
+  width: 100%;
+
+  &__banner {
+    height: 540px;
+    width: 100%;
+    padding-top: 100px;
+
+    @include devices(tablet) {
+      height: 500px;
+      padding-top: 95px;
+    }
+
+    &__container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 16px;
+      width: 100%;
+      height: 100%;
+      background-image: url(./assets/Banner.png);
+      background-repeat: no-repeat;
+      background-position: bottom 0 left 65%;
+      background-size: cover;
+
+      &::after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 540px;
+        background: rgba(51, 51, 51, 0.50);
+
+        @include devices(tablet) {
+          height: 500px;
+        }
+      }
+    }
+
+    &__text {
+      max-width: 572px;
+      position: relative;
+      z-index: 2;
+
+      h1 {
+        @include blockTitle();
+        color: #FBFBFB;
+        margin-bottom: 40px;
+      }
+  
+      p {
+        @include bodyText();
+        font-size: 20px;
+        text-align: center;
+        color: #FBFBFB;
+        line-height: 27px;
+
+        @include devices(tablet) {
+          font-size: 16px;
+          line-height: 28px;
+        }
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 120px;
+    padding: 60px 64px 63px;
+
+    @include devices(tablet) {
+      padding: 40px 16px 60px;
+      row-gap: 40px;
+    }
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 40px;
+
+    @include devices(tablet) {
+      flex-direction: column;
+      row-gap: 16px;
+    }
+
+    &__text {
+      order: 2;
+
+      &_even {
+        order: 1;
+
+        @include devices(tablet) {
+          order: 2;
+        }
+      }
+
+      h1 {
+        @include blockTitle();
+        text-align: start;
+        margin-bottom: 40px;
+
+        @include devices(tablet) {
+          display: none;
+        }
+      }
+
+      &__textBox {
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+
+        @include devices(mobile) {
+          row-gap: 16px;
+        }
+
+        p {
+          @include bodyText();
+          font-size: 20px;
+
+          @include devices(mobile) {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+
+    &__imgBox {
+      order: 1;
+      width: 54%;
+      min-width: 54%;
+
+      @include devices(tablet) {
+        width: 100%;
+        min-width: 100%;
+      }
+
+      &_even {
+        order: 2;
+
+        @include devices(tablet) {
+          order: 1;
+        }
+      }
+
+      &__title {
+        display: none;
+        @include blockTitle();
+        margin-bottom: 16px;
+
+        @include devices(tablet) {
+          display: inline-block;
+        }
+      }
+
+      &__img {
+        width: 100%;
+        object-fit: cover;
+        border-radius: 20px;
+      }
+    }
+  }
+
+  &__ctaSection {
+    position: relative;
+    z-index: 0;
+    height: 325px;
+    background-image: url(./assets/CtaBackground.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 16px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(51, 51, 51, 0.25);
+      backdrop-filter: blur(2.5px);
+    }
+
+    h1 {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 56px;
+      @include blockTitle();
+      color: #FBFBFB;
+    }
+
+    &__button {
+      position: relative;
+      z-index: 2;
+      width: 134px;
+    }
+  }
+}
