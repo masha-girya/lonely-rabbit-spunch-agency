@@ -1,0 +1,77 @@
+@import "src/styles/mixins.scss";
+
+.vacancies {
+  &__banner {
+    position: relative;
+    height: 540px;
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include devices(tablet) {
+      padding-top: 95px;
+      height: 300px;
+    }
+
+    &__img {
+      position: relative;
+      z-index: 0;
+      background-image: url(./assets/Banner.png);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+
+      @include devices(tablet) {
+        background-position: top 0 right 37%;
+        padding: 0 16px;
+        height: 100%;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        right: 0;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        background: rgba(51, 51, 51, 0.25);
+        backdrop-filter: blur(2.5px);
+      }
+
+      &__text {
+        max-width: 572px;
+        h1 {
+          position: relative;
+          z-index: 2;
+          margin-bottom: 40px;
+          @include blockTitle();
+          color: #FBFBFB;
+        }
+  
+        p {
+          position: relative;
+          z-index: 2;
+          @include bodyText();
+          font-size: 20px;
+          text-align: center;
+          color: #FBFBFB;
+          line-height: 27px;
+  
+          @include devices(tablet) {
+            font-size: 16px;
+            line-height: 28px;
+          }
+        }
+      }
+    }
+  }
+}

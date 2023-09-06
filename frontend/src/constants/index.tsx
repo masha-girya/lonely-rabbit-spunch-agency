@@ -16,7 +16,7 @@ export const NAV = [
   { title: "Midnight Strikes", link: "/" },
   { title: "News", link: "/news" },
   { title: "About Us", link: "/about-us" },
-  { title: "Recruitment", link: "/recruitment" },
+  { title: "Recruitment", link: "/vacancies" },
 ];
 
 export const NAV_FOOTER = [
