@@ -56,12 +56,6 @@ ul {
 
 svg {
   path {
-    transition: all ease-in-out 0.2s;
-  }
-
-  &:hover {
-    path {
-      fill: #7BB495;
-    }
+    @include transition(button);
   }
 }

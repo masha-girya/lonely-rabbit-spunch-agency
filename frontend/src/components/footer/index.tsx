@@ -1,8 +1,8 @@
 import styles from "./index.module.scss";
 import { Nav } from "@components/nav";
-import { SOCIALS } from "src/constants";
 import { RightsIcon } from "@components/icons/RightsIcon";
 import Logo from "@styles/assets/Logo.png";
+import { Socials } from "@components/socials";
 
 export const Footer = () => {
   return (
@@ -12,13 +12,7 @@ export const Footer = () => {
           <img src={Logo.src} alt="logo"/>
           <div className={styles.footer__mainBlock__rightCol}>
             <Nav isFooter />
-            <ul className={styles.footer__mainBlock__socials}>
-              {SOCIALS.map(item => (
-                <li key={item.title}>
-                  <a href={item.link}>{item.Icon}</a>
-                </li>
-              ))}
-            </ul>
+            <Socials />
           </div>
         </div>
         <div className={styles.footer__rights}>

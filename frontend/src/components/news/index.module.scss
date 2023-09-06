@@ -1,5 +1,114 @@
+@import "src/styles/mixins.scss";
+
+@mixin swipeIcons() {
+  position: absolute;
+  z-index: 8;
+  top: 310px;
+  margin: auto;
+  cursor: pointer;
+
+  @include devices(tablet) {
+    display: none;
+  }
+
+  svg {
+    display: flex;
+  }
+}
+
 .news {
   &__container {
-    padding: 60px 64px;
+    padding: 60px 0 60px 64px;
+    overflow-x: hidden;
+    position: relative;
+
+    @include devices(tablet) {
+      padding: 76px 16px 60px;
+    }
+  }
+
+  &__header {
+    padding-right: 64px;
+    display: flex;
+    justify-content: space-between;
+
+    &__title {
+      position: relative;
+
+      h1 {
+        @include blockTitle();
+      }
+
+      svg {
+        position: absolute;
+        top: 0;
+        bottom: 20px;
+        left: -50%;
+        margin: auto;
+
+        @include devices(tablet) {
+          width: 116px;
+          bottom: 10px;
+          right: 52%;
+        }
+      }
+    }
+
+    &__button {
+      width: 188px;
+
+      @include devices(tablet) {
+        display: none;
+      }
+    }
+
+    &__buttonMob {
+      display: none;
+      width: 188px;
+      margin: 32px auto 0;
+
+      @include devices(tablet) {
+        display: block;
+      }
+    }
+  }
+}
+
+.cards {
+  margin-top: 41px;
+  // padding-right: 64px;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 14px;
+
+  &_end {
+    margin-right: 64px;
+  }
+
+  @include devices(mobile) {
+    margin-top: 51px;
+    overflow: hidden;
+    padding-right: 0;
+  }
+
+  &__nextIcon {
+    @include swipeIcons();
+    right: 44px;
+  }
+
+  &__prevIcon {
+    @include swipeIcons();
+    left: 44px;
+  }
+}
+
+.swiper {
+  margin: 60px auto 0;
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+
+  @include devices(mobile) {
+    margin-top: 18px;
   }
 }

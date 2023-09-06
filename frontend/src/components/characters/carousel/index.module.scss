@@ -1,0 +1,110 @@
+@import "src/styles/mixins.scss";
+
+.charsList {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: 40px;
+
+  @include devices(mobile) {
+    margin-top: 0;
+    height: 293px;
+  }
+
+  &__charBox {
+    user-select: none; // Chrome, Opera
+    -moz-user-select: none; // Firefox
+    -webkit-text-select: none; // IOS Safari
+    -webkit-user-select: none; // Safari
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 445px;
+    margin: auto;
+    transition: all 1s linear;
+    position: relative;
+
+    @include devices(mobile) {
+      height: 293px;
+    }
+
+    &_main {
+      justify-content: center;
+      width: 345px;
+      transition: all 1s ease;
+
+      @include devices(mobile) {
+        width: 227px;
+        height: 100%;
+      }
+    }
+  }
+
+  &__item {
+    height: 75%;
+    margin: 0 auto;
+    transition: all 1s ease;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 12%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 70%;
+      border-radius: 20px;
+      background: rgba(217, 217, 217, 0.05);
+      filter: blur(2.5px);
+    }
+
+    @include devices(mobile) {
+      height: 227px;
+    }
+
+    &_main {
+      height: 100%;
+      transition: all 1s ease;
+
+      @include devices(mobile) {
+        max-height: 293px;
+      }
+
+      &::before {
+        display: none;
+      }
+    }
+
+    &__image {
+      object-fit: contain;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+.charListBox {
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  @include devices(mobile) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex: 1;
+  }
+}
+
+
+@keyframes slideAnimation{
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
