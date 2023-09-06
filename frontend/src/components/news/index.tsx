@@ -10,14 +10,16 @@ import classNames from "classnames";
 import { Circles } from "@components/circles";
 import { useSpringCarousel } from "react-spring-carousel";
 import { useDevice } from "src/hooks/useDevice";
+import { useRouter } from "next/router";
 
 interface INews {
-  title?: string,
-  buttonTitle?: string,
+  title?: string;
+  buttonTitle?: string;
 }
 
 export const NewsList: React.FC<INews> = (props) => {
   const { title, buttonTitle } = props;
+  const router = useRouter();
   const [news, setNews] = useState(NEWS_MOCK);
   const ref = useRef<any | null>(null);
   const [prevOnHover, setPrevOnHover] = useState(false);
@@ -52,17 +54,17 @@ export const NewsList: React.FC<INews> = (props) => {
   });
 
   const handleNext = () => {
-    const index = news.findIndex(item => item.id === currentNews) + 1;
+    const index = news.findIndex((item) => item.id === currentNews) + 1;
 
-    if(index === news.length - 2 && window.innerWidth > 600 * 3) {
+    if (index === news.length - 2 && window.innerWidth > 600 * 3) {
       setCurrentNews(news[news.length - 2].id);
       return;
     }
 
-    if(index < news.length -1 && index >= 0) {
-      slideToItem(index)
+    if (index < news.length - 1 && index >= 0) {
+      slideToItem(index);
     }
-  }
+  };
 
   return (
     <article className={styles.news}>
@@ -112,7 +114,7 @@ export const NewsList: React.FC<INews> = (props) => {
           ))}
         </div>
         <div className={styles.news__header__buttonMob}>
-          <Button name={buttonTitle} onClick={() => {}} />
+          <Button name={buttonTitle ?? "All our news"} onClick={() => router.push("/news")} />
         </div>
       </div>
     </article>

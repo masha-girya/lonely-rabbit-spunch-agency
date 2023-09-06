@@ -10,6 +10,7 @@
 
   @include devices(mobile) {
     min-height: max-content;
+    height: max-content;
   }
 
   &__container {
