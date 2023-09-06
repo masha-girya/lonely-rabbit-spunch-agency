@@ -23,6 +23,10 @@
       flex-direction: column;
     }
 
+    &__logo {
+      cursor: pointer;
+    }
+
     &__rightCol {
       display: flex;
       flex-direction: column;

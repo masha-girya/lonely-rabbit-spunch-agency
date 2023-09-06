@@ -1,6 +1,8 @@
 import { NAV, NAV_FOOTER } from "src/constants";
 import styles from "./index.module.scss";
 import classNames from "classnames";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 interface INav {
   isFooter?: boolean;
@@ -10,6 +12,7 @@ interface INav {
 export const Nav: React.FC<INav> = (props) => {
   const { isFooter, isMobMenu } = props;
   const nav = isFooter ? NAV_FOOTER : NAV;
+  const router = useRouter();
 
   return (
     <nav
@@ -27,11 +30,12 @@ export const Nav: React.FC<INav> = (props) => {
         {nav.map((item) => (
           <li
             className={classNames(styles.nav__link, {
-              [styles.nav__link_mobMenu]: isMobMenu
+              [styles.nav__link_mobMenu]: isMobMenu,
+              [styles.nav__link_isActive]: !isFooter && router.asPath === item.link,
             })}
             key={item.title}
           >
-            <a href={item.link}>{item.title}</a>
+            <Link href={item.link}>{item.title}</Link>
           </li>
         ))}
       </ul>
