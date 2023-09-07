@@ -17,6 +17,7 @@ export const DesktopNews: React.FC<IDesktopNews> = (props) => {
   const { news, cardLength, circles } = props;
   const { isMobile } = useDevice();
   const ref = useRef<any | null>(null);
+  const cardRef = useRef<any | null>(null);
   const [prevOnHover, setPrevOnHover] = useState(false);
   const [nextOnHover, setNextOnHover] = useState(false);
   const [circleCounter, setCircleCounter] = useState(1);
@@ -65,8 +66,6 @@ export const DesktopNews: React.FC<IDesktopNews> = (props) => {
     };
   }, []);
 
-  const scrollAmount = ref.current?.offsetWidth + 14 || 0;
-
   const [touchStartX, setTouchStartX] = useState(0);
   const [touchEndX, setTouchEndX] = useState(0);
 
@@ -74,25 +73,41 @@ export const DesktopNews: React.FC<IDesktopNews> = (props) => {
     setTouchStartX(e.touches[0].clientX);
   };
 
-  const handleTouchEnd = (e: any) => {
+  const handleTouchEnd = (e: any, id: number) => {
     setTouchEndX(e.changedTouches[0].clientX);
+    console.log({touchEndX, touchStartX})
 
     const deltaX = touchEndX - touchStartX;
 
     const scrollDirection = deltaX < 0 ? 1 : -1;
 
     if (ref.current) {
-      if(scrollDirection === 1) {
-        ref.current.scrollTo({
-          left: scrollAmount * (circleCounter - 1) * scrollDirection
-        })
+      if(scrollDirection > 0) {
+        slideTo(id + 1)
       } else {
-        const lastScroll = ref.current.scrollLeft;
-        ref.current.scrollLeft = lastScroll - (lastScroll % scrollAmount)
-        console.log({diff: lastScroll % scrollAmount, scrollAmount, lastScroll})
+        slideTo(id - 1)
       }
+        // const scrollAmount = ref.current.offsetWidth - 7;
+        // console.log(scrollAmount * scrollDirection)
+
+        // ref.current.scrollBy(362 - 7, 0);
+  
+      // if(scrollDirection === 1) {
+      //   ref.current.scrollTo({
+      //     left: scrollAmount * (circleCounter - 1) * scrollDirection
+      //   })
+      // } else {
+      //   const lastScroll = ref.current.scrollLeft;
+      //   ref.current.scrollLeft = lastScroll - (lastScroll % scrollAmount)
+      // }
     }
   };
+
+  const handleMobScroll = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
+    if(isMobile && ref.current) {
+      ref.current.scrollBy(ref.current.offsetWidth - 7, 0);
+    }
+  }
 
   return (
     <div>
@@ -109,11 +124,20 @@ export const DesktopNews: React.FC<IDesktopNews> = (props) => {
         <div
           ref={ref}
           className={styles.cards__container}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
+          // onTouchStart={handleTouchStart}
+          // onTouchEnd={handleTouchEnd}
+          // onTouchEnd={handleMobScroll}
         >
           {news.map((item, i) => (
-            <NewsCard key={item.id} card={item} />
+            <div
+              onTouchEnd={(e) => handleTouchEnd(e, item.id)}
+              onTouchStart={handleTouchStart}
+              ref={cardRef}
+              key={item.id}
+              style={{minWidth: "100%", width: "100%", minHeight: "187px"}}
+            >
+              <NewsCard key={item.id} card={item} />
+            </div>
           ))}
         </div>
         <button
