@@ -30,15 +30,21 @@ $icon-diameter: 16px;
     transition: all .2s ease;
     overflow-x: scroll;
     scroll-behavior: smooth;
-    scrollbar-width: none;
 
+    scrollbar-width: none;
     &::-webkit-scrollbar {
       display: none;
     }
 
     @include devices(tablet) {
-      padding-bottom: 0;
+      padding: 0;
     }
+  }
+
+  @include devices(mobile) {
+    margin-top: 51px;
+    overflow: hidden;
+    padding-right: 0;
   }
 
   &__nextIcon {
@@ -57,4 +63,8 @@ $icon-diameter: 16px;
   display: flex;
   gap: 6px;
   justify-content: center;
+
+  @include devices(mobile) {
+    margin-top: 18px;
+  }
 }

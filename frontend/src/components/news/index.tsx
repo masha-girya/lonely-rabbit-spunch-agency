@@ -25,6 +25,9 @@ export const NewsList: React.FC<INews> = (props) => {
   const [news, setNews] = useState(NEWS_MOCK);
   const { isMobile } = useDevice();
 
+  const cardLength = isMobile ? (window.innerWidth - 18) : 614;
+  const circles = isMobile ? news : news.slice(0, -1);
+
   return (
     <article className={styles.news}>
       <div className={styles.news__container}>
@@ -37,7 +40,7 @@ export const NewsList: React.FC<INews> = (props) => {
             <Button name={buttonTitle ?? "All our news"} onClick={() => {}} />
           </div>
         </div>
-        {isMobile ? <MobNews news={news} /> : <DesktopNews news={news} />}
+        <DesktopNews cardLength={cardLength} circles={circles} news={news} />
         <div className={styles.news__header__buttonMob}>
           <Button
             name={buttonTitle ?? "All our news"}
