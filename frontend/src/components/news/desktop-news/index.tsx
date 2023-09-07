@@ -43,6 +43,7 @@ export const DesktopNews: React.FC<IDesktopNews> = (props) => {
   };
 
   const handleScroll = () => {
+    console.log("scroll")
     if (ref.current) {
       const currCircle = Math.ceil(ref.current.scrollLeft / cardLength);
 
@@ -81,10 +82,11 @@ export const DesktopNews: React.FC<IDesktopNews> = (props) => {
     const scrollDirection = deltaX < 0 ? 1 : -1;
 
     if (circleCounter !== news.length && ref.current) {
-      if (scrollDirection > 0) {
+      if (scrollDirection > 0 && circleCounter !== news.length) {
         slideTo(id + 1);
         setCircleCounter(id + 1);
-      } else {
+      } 
+      if(scrollDirection < 0 && circleCounter !== 1) {
         slideTo(id - 1);
         setCircleCounter(id);
       }
@@ -109,7 +111,7 @@ export const DesktopNews: React.FC<IDesktopNews> = (props) => {
               onTouchEnd={(e) => handleTouchEnd(e, item.id)}
               onTouchStart={handleTouchStart}
               key={item.id}
-              style={{ minWidth: "100%", width: "100%", minHeight: "187px" }}
+              className={styles.cardWrapper}
             >
               <NewsCard key={item.id} card={item} />
             </div>

@@ -68,3 +68,26 @@ $icon-diameter: 16px;
     margin-top: 18px;
   }
 }
+
+.cardWrapper {
+  width: 600px;
+  min-width: 600px;
+  height: 340px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 20px;
+
+  @include devices(tablet) {
+    min-width: 400px;
+    width: 400px;
+    min-height: 227px;
+    height: max-content;
+    border-radius: 10.765px;
+  }
+
+  @include devices(mobile) {
+    min-width: 100%;
+    width: 100%;
+    min-height: 187px;
+  }
+}
