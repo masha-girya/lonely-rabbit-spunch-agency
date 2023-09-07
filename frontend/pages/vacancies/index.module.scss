@@ -11,7 +11,7 @@
 
     @include devices(tablet) {
       padding-top: 95px;
-      height: 300px;
+      height: 500px;
     }
 
     &__img {
@@ -72,6 +72,32 @@
           }
         }
       }
+    }
+  }
+
+  &__listBox {
+    padding: 60px 64px 80px;
+
+    @include devices(tablet) {
+      padding: 40px 16px 60px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    max-width: 1312px;
+    margin: 0 auto;
+
+    @media only screen and (max-width: 1439px) {
+      justify-content: center;
+    }
+
+    @include devices(tablet) {
+      width: 100%;
+      gap: 28px;
+      flex-direction: column;
     }
   }
 }

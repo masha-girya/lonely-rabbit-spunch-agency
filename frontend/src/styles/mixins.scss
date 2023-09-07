@@ -75,6 +75,17 @@
   }
 }
 
+@mixin dateText {
+  color: #BEBEBE;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+
+  @include devices(mobile) {
+    font-size: 14px;
+  }
+}
+
 @mixin errorText($margin-top) {
   font-weight: 500;
   font-size: 12px;

@@ -1,0 +1,76 @@
+@import "src/styles/mixins.scss";
+
+.vacancyInner {
+  padding-top: 100px;
+
+  &__content {
+    max-width: 826px;
+    margin: 80px auto;
+    padding: 0 16px;
+
+    @include devices(mobile) {
+      margin: 40px auto 60px;
+    }
+
+    &__title {
+      @include blockTitle();
+      text-align: start;
+      margin-bottom: 12px;
+    }
+
+    &__date {
+      @include dateText();
+      margin-bottom: 40px;
+
+      @include devices(mobile) {
+        margin-bottom: 16px;
+      }
+    }
+
+    &__desc {
+      @include bodyText();
+      font-size: 20px;
+      margin-bottom: 40px;
+
+      @include devices(mobile) {
+        margin-bottom: 16px;
+      }
+    }
+
+    &__button {
+      width: 124px;
+      margin-bottom: 60px;
+
+      @include devices(mobile) {
+        width: 100%;
+        margin-bottom: 40px;
+      }
+    }
+
+    &__aboutTitle {
+      color: #333;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 40px;
+
+      @include devices(mobile) {
+        margin-bottom: 16px;
+      }
+    }
+
+    &__textBox {
+      display: flex;
+      flex-direction: column;
+      row-gap: 20px;
+
+      @include devices(mobile) {
+        row-gap: 16px;
+      }
+
+      p {
+        @include bodyText();
+        font-size: 20px;
+      }
+    }
+  }
+}
