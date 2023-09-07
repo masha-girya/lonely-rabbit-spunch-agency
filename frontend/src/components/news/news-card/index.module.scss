@@ -6,6 +6,7 @@
   height: 340px;
   overflow: hidden;
   position: relative;
+  border-radius: 20px;
 
   @include devices(tablet) {
     min-width: 400px;
@@ -27,6 +28,7 @@
     width: 100%;
     object-fit: cover;
     border-radius: 20px;
+    height: 100%;
 
     @include devices(tablet) {
       border-radius: 16px;
