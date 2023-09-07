@@ -40,10 +40,13 @@ export const DesktopNews: React.FC<IDesktopNews> = (props) => {
     ref.current.scrollTo({
       left: targetScrollX,
     });
+
+    if(isMobile) {
+      setCircleCounter(id);
+    }
   };
 
   const handleScroll = () => {
-    console.log("scroll")
     if (ref.current) {
       const currCircle = Math.ceil(ref.current.scrollLeft / cardLength);
 
@@ -56,12 +59,12 @@ export const DesktopNews: React.FC<IDesktopNews> = (props) => {
   };
 
   useEffect(() => {
-    if (ref.current) {
+    if (ref.current && !isMobile) {
       ref.current.addEventListener("scroll", handleScroll);
     }
 
     return () => {
-      if (ref.current) {
+      if (ref.current && !isMobile) {
         ref.current.removeEventListener("scroll", handleScroll);
       }
     };
@@ -81,11 +84,11 @@ export const DesktopNews: React.FC<IDesktopNews> = (props) => {
 
     const scrollDirection = deltaX < 0 ? 1 : -1;
 
-    if (circleCounter !== news.length && ref.current) {
+    if (ref.current) {
       if (scrollDirection > 0 && circleCounter !== news.length) {
         slideTo(id + 1);
         setCircleCounter(id + 1);
-      } 
+      }
       if(scrollDirection < 0 && circleCounter !== 1) {
         slideTo(id - 1);
         setCircleCounter(id);
