@@ -64,7 +64,7 @@ export const DesktopNews: React.FC<IDesktopNews> = (props) => {
         ref.current.removeEventListener("scroll", handleScroll);
       }
     };
-  }, []);
+  }, [ref, isMobile]);
 
   const [touchStartX, setTouchStartX] = useState(0);
   const [touchEndX, setTouchEndX] = useState(0);
@@ -75,39 +75,21 @@ export const DesktopNews: React.FC<IDesktopNews> = (props) => {
 
   const handleTouchEnd = (e: any, id: number) => {
     setTouchEndX(e.changedTouches[0].clientX);
-    console.log({touchEndX, touchStartX})
 
     const deltaX = touchEndX - touchStartX;
 
     const scrollDirection = deltaX < 0 ? 1 : -1;
 
-    if (ref.current) {
-      if(scrollDirection > 0) {
-        slideTo(id + 1)
+    if (circleCounter !== news.length && ref.current) {
+      if (scrollDirection > 0) {
+        slideTo(id + 1);
+        setCircleCounter(id + 1);
       } else {
-        slideTo(id - 1)
+        slideTo(id - 1);
+        setCircleCounter(id);
       }
-        // const scrollAmount = ref.current.offsetWidth - 7;
-        // console.log(scrollAmount * scrollDirection)
-
-        // ref.current.scrollBy(362 - 7, 0);
-  
-      // if(scrollDirection === 1) {
-      //   ref.current.scrollTo({
-      //     left: scrollAmount * (circleCounter - 1) * scrollDirection
-      //   })
-      // } else {
-      //   const lastScroll = ref.current.scrollLeft;
-      //   ref.current.scrollLeft = lastScroll - (lastScroll % scrollAmount)
-      // }
     }
   };
-
-  const handleMobScroll = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
-    if(isMobile && ref.current) {
-      ref.current.scrollBy(ref.current.offsetWidth - 7, 0);
-    }
-  }
 
   return (
     <div>
@@ -121,20 +103,13 @@ export const DesktopNews: React.FC<IDesktopNews> = (props) => {
         >
           <PrevIcon color={prevOnHover ? "#54A178" : "#98DDB8"} />
         </button>
-        <div
-          ref={ref}
-          className={styles.cards__container}
-          // onTouchStart={handleTouchStart}
-          // onTouchEnd={handleTouchEnd}
-          // onTouchEnd={handleMobScroll}
-        >
+        <div ref={ref} className={styles.cards__container}>
           {news.map((item, i) => (
             <div
               onTouchEnd={(e) => handleTouchEnd(e, item.id)}
               onTouchStart={handleTouchStart}
-              ref={cardRef}
               key={item.id}
-              style={{minWidth: "100%", width: "100%", minHeight: "187px"}}
+              style={{ minWidth: "100%", width: "100%", minHeight: "187px" }}
             >
               <NewsCard key={item.id} card={item} />
             </div>
