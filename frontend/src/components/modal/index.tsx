@@ -44,10 +44,11 @@ export const Modal: React.FC<IModal> = (props) => {
 
     if (isOpen) {
       document.body.style.overflow = "hidden";
+      document.getElementsByTagName("html")[0].style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
+      document.getElementsByTagName("html")[0].style.overflow = "visible";
     }
-
   }, [isOpen]);
 
   useEffect(() => {

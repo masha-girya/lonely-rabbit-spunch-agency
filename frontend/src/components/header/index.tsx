@@ -15,16 +15,19 @@ export const Header = () => {
 
     if (!menuOpen) {
       document.body.style.overflow = "hidden";
+      document.getElementsByTagName("html")[0].style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
+      document.getElementsByTagName("html")[0].style.overflow = "visible";
     }
   };
 
   useEffect(() => {
     return () => {
       document.body.style.overflow = "auto";
-    }
-  }, [])
+      document.getElementsByTagName("html")[0].style.overflow = "visible";
+    };
+  }, []);
 
   return (
     <header
