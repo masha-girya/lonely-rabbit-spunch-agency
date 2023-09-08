@@ -71,27 +71,27 @@ export const DesktopNews: React.FC<IDesktopNews> = (props) => {
   }, [ref, isMobile]);
 
   const [touchStartX, setTouchStartX] = useState(0);
-  const [touchEndX, setTouchEndX] = useState(0);
 
   const handleTouchStart = (e: any) => {
     setTouchStartX(e.touches[0].clientX);
   };
 
   const handleTouchEnd = (e: any, id: number) => {
-    setTouchEndX(e.changedTouches[0].clientX);
-
-    const deltaX = touchEndX - touchStartX;
+    const deltaX = e.changedTouches[0].clientX - touchStartX;
 
     const scrollDirection = deltaX < 0 ? 1 : -1;
+    console.log(scrollDirection, circleCounter )
 
     if (ref.current) {
       if (scrollDirection > 0 && circleCounter !== news.length) {
+        console.log('cond 1')
         slideTo(id + 1);
         setCircleCounter(id + 1);
       }
       if(scrollDirection < 0 && circleCounter !== 1) {
+        console.log('cond 2')
         slideTo(id - 1);
-        setCircleCounter(id);
+        setCircleCounter(id - 1);
       }
     }
   };
@@ -113,6 +113,8 @@ export const DesktopNews: React.FC<IDesktopNews> = (props) => {
             <div
               onTouchEnd={(e) => handleTouchEnd(e, item.id)}
               onTouchStart={handleTouchStart}
+              // onTouchMove={(e) => e.preventDefault()}
+              // onScroll={(e) => e.preventDefault()}
               key={item.id}
               className={styles.cardWrapper}
             >
