@@ -16,13 +16,15 @@ const VacancyInner = () => {
     VACANCY_MOCK
   );
 
-  useEffect(() => {
-    if (!isOpenModal) {
+  const handleOpen = (isOpen: boolean) => {
+    setIsOpenModal(isOpen);
+
+    if (isOpenModal) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "visible";
     }
-  }, [isOpenModal])
+  }
 
   return (
     <>
@@ -30,8 +32,8 @@ const VacancyInner = () => {
       <Modal
         isFullScreen
         isOpen={isOpenModal}
-        isOpenCallback={setIsOpenModal}
-        children={<VacancyApplyModal setIsModalOpen={setIsOpenModal} />}
+        isOpenCallback={handleOpen}
+        children={<VacancyApplyModal setIsModalOpen={handleOpen} />}
       />
       <main className={styles.vacancyInner}>
         {vacancy && (
@@ -40,7 +42,7 @@ const VacancyInner = () => {
             <p className={styles.vacancyInner__content__date}>{vacancy.date}</p>
             <p className={styles.vacancyInner__content__desc}>{vacancy.description}</p>
             <div className={styles.vacancyInner__content__button}>
-              <Button name="Apply" onClick={() => setIsOpenModal(true)} />
+              <Button name="Apply" onClick={() => handleOpen(true)} />
             </div>
             <h2 className={styles.vacancyInner__content__aboutTitle}>{vacancy.about.title}</h2>
             <div className={styles.vacancyInner__content__textBox}>
