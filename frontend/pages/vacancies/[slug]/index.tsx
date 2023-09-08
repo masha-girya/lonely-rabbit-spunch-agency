@@ -16,23 +16,13 @@ const VacancyInner = () => {
     VACANCY_MOCK
   );
 
-  const handleOpen = (isOpen: boolean) => {
-    setIsOpenModal(isOpen);
-
-    if (isOpenModal) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "visible";
-    }
-  }
-
   return (
     <>
       <Header />
       <Modal
         isOpen={isOpenModal}
-        isOpenCallback={handleOpen}
-        children={<VacancyApplyModal setIsModalOpen={handleOpen} />}
+        isOpenCallback={setIsOpenModal}
+        children={<VacancyApplyModal setIsModalOpen={setIsOpenModal} />}
       />
       <main className={styles.vacancyInner}>
         {vacancy && (
@@ -41,7 +31,7 @@ const VacancyInner = () => {
             <p className={styles.vacancyInner__content__date}>{vacancy.date}</p>
             <p className={styles.vacancyInner__content__desc}>{vacancy.description}</p>
             <div className={styles.vacancyInner__content__button}>
-              <Button name="Apply" onClick={() => handleOpen(true)} />
+              <Button name="Apply" onClick={() => setIsOpenModal(true)} />
             </div>
             <h2 className={styles.vacancyInner__content__aboutTitle}>{vacancy.about.title}</h2>
             <div className={styles.vacancyInner__content__textBox}>

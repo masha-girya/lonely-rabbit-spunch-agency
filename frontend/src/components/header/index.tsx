@@ -16,13 +16,13 @@ export const Header = () => {
     if (!menuOpen) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "visible";
+      document.body.style.overflow = "auto";
     }
   };
 
   useEffect(() => {
     return () => {
-      document.body.style.overflow = "visible";
+      document.body.style.overflow = "auto";
     }
   }, [])
 
