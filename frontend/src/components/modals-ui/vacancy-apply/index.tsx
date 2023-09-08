@@ -85,14 +85,14 @@ export const VacancyApplyModal: React.FC<IVacancyApplyModal> = (props) => {
               darkMode
               errorText={errors.name}
               value={name}
-              placeholder="Full Name"
+              placeholder="Full name"
               onChange={setName}
             />
             <Input
               darkMode
               errorText={errors.email}
               value={email}
-              placeholder="Email"
+              placeholder="E-mail"
               onChange={setEmail}
             />
             <Input
@@ -100,7 +100,7 @@ export const VacancyApplyModal: React.FC<IVacancyApplyModal> = (props) => {
               errorText={errors.coverLetter}
               type="textarea"
               value={coverLetter}
-              placeholder="Cover Letter"
+              placeholder="Cover letter"
               onChange={setCoverLetter}
             />
             <div className={styles.apply__rightCol__button}>
