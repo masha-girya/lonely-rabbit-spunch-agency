@@ -19,7 +19,7 @@ export const Banner = () => {
     withLoop: true,
     initialActiveItem: 0,
     initialStartingPosition: "start",
-    items: images.map((item, index) => ({
+    items: BANNER_IMGS.map((item, index) => ({
       id: index.toString(),
       renderItem: (
         <img className={styles.banner__images__img} src={item.src} ref={ref} />
