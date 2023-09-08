@@ -17,7 +17,7 @@
     justify-content: space-between;
 
     @include devices(tablet) {
-      padding: 0 16px;
+      padding: 0;
     }
 
     &__title {

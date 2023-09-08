@@ -70,7 +70,7 @@ export const useSwiper = (props: IUseSwiper) => {
     const deltaX = e.changedTouches[0].clientX - touchStartX;
     const scrollDirection = deltaX < 0 ? 1 : -1;
 
-    if (ref.current) {
+    if (ref.current && e.changedTouches[0].clientX !== touchStartX) {
       if (scrollDirection > 0 && circleCounter !== dataArray.length) {
         slideTo(id + 1);
         setCircleCounter(id + 1);
