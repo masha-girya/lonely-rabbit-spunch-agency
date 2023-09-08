@@ -54,13 +54,10 @@
   
       p {
         @include bodyText();
-        font-size: 20px;
         text-align: center;
         color: #FBFBFB;
-        line-height: 27px;
 
         @include devices(tablet) {
-          font-size: 16px;
           line-height: 28px;
         }
       }
@@ -121,11 +118,6 @@
 
         p {
           @include bodyText();
-          font-size: 20px;
-
-          @include devices(mobile) {
-            font-size: 16px;
-          }
         }
       }
     }

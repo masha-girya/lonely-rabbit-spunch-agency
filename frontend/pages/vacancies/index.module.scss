@@ -61,10 +61,8 @@
           position: relative;
           z-index: 2;
           @include bodyText();
-          font-size: 20px;
           text-align: center;
           color: #FBFBFB;
-          line-height: 27px;
   
           @include devices(tablet) {
             font-size: 16px;

@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./index.module.scss";
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { Transition } from "react-transition-group";
-import { useDevice } from "src/hooks/useDevice";
 import classNames from "classnames";
+import { useDevice } from "src/hooks/useDevice";
 
 interface IModal {
   children: any;
@@ -14,11 +14,11 @@ interface IModal {
 }
 
 export const Modal: React.FC<IModal> = (props) => {
-  const { isMobile } = useDevice();
   const { isOpen, isFullScreen, isOpenCallback, clickOutside } = props;
 
   const [open, setOpen] = useState(isOpen);
   const ref = useRef(null);
+  const { isMobile } = useDevice();
   const transRef = useRef(null);
   const duration = 200;
 
@@ -41,35 +41,26 @@ export const Modal: React.FC<IModal> = (props) => {
 
   useEffect(() => {
     setOpen(isOpen);
-    if (isOpen) {
-      if (isMobile) {
-        document.documentElement.style.overflow = "hidden";
-      } else {
-        document.body.classList.add(styles.modalOpen);
-      }
-    } else {
-      if (isMobile) {
-        document.documentElement.style.overflow = "auto";
-      } else {
-        document.documentElement.style.overflow = "visible";
-      }
-    }
-
-    return () => {
-      document.body.classList.remove(styles.modalOpen);
-      if (isMobile) {
-        document.documentElement.style.overflow = "auto";
-      } else {
-        document.documentElement.style.overflow = "visible";
-      }
-    };
-  }, [isOpen, isMobile]);
+  }, [isOpen]);
 
   useEffect(() => {
     isOpenCallback(open);
   }, [open]);
 
   useClickOutside(ref, () => handleClickOutside(), open);
+
+  useEffect(() => {
+    setOpen(isOpen);
+    if (isOpen) {
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.documentElement.style.overflow = "visible";
+    }
+
+    return () => {
+      document.documentElement.style.overflow = "visible";
+    };
+  }, [isOpen, isMobile]);
 
   return (
     <Transition

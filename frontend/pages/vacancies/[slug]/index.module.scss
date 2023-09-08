@@ -29,7 +29,6 @@
 
     &__desc {
       @include bodyText();
-      font-size: 20px;
       margin-bottom: 40px;
 
       @include devices(mobile) {
@@ -69,7 +68,6 @@
 
       p {
         @include bodyText();
-        font-size: 20px;
       }
     }
   }

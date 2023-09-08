@@ -31,24 +31,26 @@ export const PreOrderModal: React.FC<IPreOrderModal> = (props) => {
       >
         <CloseIcon />
       </button>
-      <div className={styles.preOrder__leftCol}>
-        <h1 className={styles.preOrder__title}>{title}</h1>
-        <div className={styles.preOrder__centerText}>
-          <p className={styles.preOrder__releaseDate}>{releaseDate}</p>
-          <p className={styles.preOrder__text}>{text}</p>
-        </div>
-        <div className={styles.preOrder__bottomText}>
-          <p className={styles.preOrder__price}>{`Starting at ${price}$`}</p>
-          <div className={styles.preOrder__button}>
-            <Button name={buttonName} onClick={() => {}} />
+      <div className={styles.preOrder__container}>
+        <div className={styles.preOrder__leftCol}>
+          <h1 className={styles.preOrder__title}>{title}</h1>
+          <div className={styles.preOrder__centerText}>
+            <p className={styles.preOrder__releaseDate}>{releaseDate}</p>
+            <p className={styles.preOrder__text}>{text}</p>
+          </div>
+          <div className={styles.preOrder__bottomText}>
+            <p className={styles.preOrder__price}>{`Starting at ${price}$`}</p>
+            <div className={styles.preOrder__button}>
+              <Button name={buttonName} onClick={() => {}} />
+            </div>
           </div>
         </div>
-      </div>
-      <div className={styles.preOrder__rightCol}>
-        <div className={styles.preOrder__rightCol__background}></div>
-        <img className={styles.preOrder__leftImg} src={LeftImg.src} />
-        <img className={styles.preOrder__centerImg} src={CenterImg.src} />
-        <img className={styles.preOrder__rightImg} src={RightImg.src} />
+        <div className={styles.preOrder__rightCol}>
+          <div className={styles.preOrder__rightCol__background}></div>
+          <img className={styles.preOrder__leftImg} src={LeftImg.src} />
+          <img className={styles.preOrder__centerImg} src={CenterImg.src} />
+          <img className={styles.preOrder__rightImg} src={RightImg.src} />
+        </div>
       </div>
     </div>
   );

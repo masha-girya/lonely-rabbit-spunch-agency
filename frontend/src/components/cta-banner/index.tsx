@@ -21,7 +21,6 @@ export const CtaBanner = () => {
   return (
     <article className={styles.ctaBanner}>
       <Modal
-        isFullScreen
         isOpen={isModalOpen}
         isOpenCallback={setIsModalOpen}
         children={<PreOrderModal setIsModalOpen={setIsModalOpen} />}

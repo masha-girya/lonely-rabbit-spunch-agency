@@ -20,6 +20,7 @@ const VacancyInner = () => {
     <>
       <Header />
       <Modal
+        isFullScreen
         isOpen={isOpenModal}
         isOpenCallback={setIsOpenModal}
         children={<VacancyApplyModal setIsModalOpen={setIsOpenModal} />}
@@ -35,8 +36,8 @@ const VacancyInner = () => {
             </div>
             <h2 className={styles.vacancyInner__content__aboutTitle}>{vacancy.about.title}</h2>
             <div className={styles.vacancyInner__content__textBox}>
-              {vacancy.about.text.map((text) => (
-                <p>{text}</p>
+              {vacancy.about.text.map((text, i) => (
+                <p key={i}>{text}</p>
               ))}
             </div>
           </article>
