@@ -1,12 +1,7 @@
 @import "src/styles/mixins.scss";
 
 .videoBlock {
-  height: 100vh;
   min-height: 580px;
-
-  @include devices(tablet) {
-    height: max-content;
-  }
 
   &__container {
     padding: 60px 64px;

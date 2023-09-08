@@ -52,4 +52,12 @@ export const NEWS_MOCK = [
     img: News2,
     link: ""
   },
+  {
+    id: 7,
+    title: "Lorum ipsum",
+    text: "Lorem ipsum dolor sit amet consectetur. Vulputate montes nullam consectetur leo condimentum.",
+    date: "18/08/2023",
+    img: News2,
+    link: ""
+  },
 ];

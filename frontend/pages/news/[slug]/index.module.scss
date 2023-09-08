@@ -1,0 +1,94 @@
+@import "src/styles/mixins.scss";
+
+.newsInner {
+  &__banner {
+    width: 100%;
+    height: 540px;
+    padding-top: 100px;
+
+    @include devices(tablet) {
+      padding-top: 95px;
+      height: 440px;
+    }
+
+    @include devices(mobile) {
+      height: 320px;
+    }
+
+    &__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__content {
+    max-width: 826px;
+    margin: 40px auto 80px;
+
+    @include devices(tablet) {
+      padding: 0 16px;
+      margin: 32px auto 0;
+    }
+
+    &__title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+
+      h1 {
+        @include blockTitle();
+        text-align: start;
+      }
+
+      p {
+        color: #BEBEBE;
+        font-size: 16px;
+        font-weight: 300;
+      }
+    }
+
+    &__textBox {
+      display: flex;
+      flex-direction: column;
+      row-gap: 27px;
+      margin-bottom: 30px;
+
+      @include devices(tablet) {
+        row-gap: 21px;
+        margin-bottom: 20px;
+      }
+
+      p {
+        @include bodyText();
+        line-height: 27px;
+      }
+    }
+
+    &__imgBox {
+      margin-bottom: 30px;
+      border-radius: 20px;
+      width: 100%;
+      overflow: hidden;
+      height: 440px;
+
+      @include devices(tablet) {
+        border-radius: 15px;
+        height: 240px;
+        margin-bottom: 20px;
+      }
+
+      @include devices(mobile) {
+        border-radius: 8px;
+        height: 175px;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}

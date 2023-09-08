@@ -1,0 +1,93 @@
+@import "src/styles/mixins.scss";
+
+$icon-diameter: 16px;
+
+@mixin swipeIcons() {
+  position: absolute;
+  z-index: 8;
+  top: calc(50% - $icon-diameter);
+  margin: auto;
+  cursor: pointer;
+
+  @include devices(tablet) {
+    display: none;
+  }
+
+  svg {
+    display: flex;
+  }
+}
+
+.cards {
+  margin-top: 66px;
+  position: relative;
+
+  &__container {
+    padding: 0 64px;
+    display: flex;
+    justify-content: space-between;
+    column-gap: 14px;
+    transition: all .2s ease;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    @include devices(tablet) {
+      padding: 0;
+    }
+  }
+
+  @include devices(mobile) {
+    margin-top: 51px;
+    overflow: hidden;
+    padding-right: 0;
+  }
+
+  &__nextIcon {
+    @include swipeIcons();
+    right: 44px;
+  }
+
+  &__prevIcon {
+    @include swipeIcons();
+    left: (64px - $icon-diameter);
+  }
+}
+
+.swiper {
+  margin: 60px auto 0;
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+
+  @include devices(mobile) {
+    margin-top: 18px;
+  }
+}
+
+.cardWrapper {
+  width: 600px;
+  min-width: 600px;
+  height: 340px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 20px;
+
+  @include devices(tablet) {
+    min-width: 400px;
+    width: 400px;
+    min-height: 227px;
+    height: max-content;
+    border-radius: 10.765px;
+  }
+
+  @include devices(mobile) {
+    min-width: 100%;
+    width: 100%;
+    min-height: 187px;
+  }
+}
