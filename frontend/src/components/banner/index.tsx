@@ -34,8 +34,11 @@ export const Banner = () => {
   });
 
   useEffect(() => {
-    console.log("here")
-    slideToItem(BANNER_IMGS[0].src);
+    console.log( getCurrentActiveItem())
+   
+    setTimeout(() => {
+      slideToItem(BANNER_IMGS[0].src)
+    }, 100)
   }, []);
 
   return (
