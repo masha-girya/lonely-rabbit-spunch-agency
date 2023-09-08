@@ -40,7 +40,6 @@ export const useSwiper = (props: IUseSwiper) => {
   const handleScroll = () => {
     if (ref.current) {
       const currCircle = Math.ceil(ref.current.scrollLeft / cardLength);
-      console.log(currCircle)
 
       if (currCircle === dataArray.length - 1 && isDesktop) {
         setCircleCounter(currCircle);
