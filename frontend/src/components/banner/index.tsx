@@ -17,7 +17,8 @@ export const Banner = () => {
 
   const { carouselFragment, slideToNextItem } = useSpringCarousel({
     withLoop: true,
-    initialStartingPosition: "start",
+    // initialStartingPosition: "start",
+    initialActiveItem: 0,
     items: images.map((item, index) => ({
       id: item.src,
       renderItem: (
