@@ -30,7 +30,6 @@ const VacancyInner = () => {
     <>
       <Header />
       <Modal
-        isFullScreen
         isOpen={isOpenModal}
         isOpenCallback={handleOpen}
         children={<VacancyApplyModal setIsModalOpen={handleOpen} />}

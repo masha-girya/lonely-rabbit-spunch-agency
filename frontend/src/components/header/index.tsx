@@ -1,7 +1,7 @@
 import styles from "./index.module.scss";
 import Logo from "@styles/assets/Logo.png";
 import { Nav } from "@components/nav";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Socials } from "@components/socials";
 import classNames from "classnames";
 import Link from "next/link";
@@ -19,6 +19,12 @@ export const Header = () => {
       document.body.style.overflow = "visible";
     }
   };
+
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = "visible";
+    }
+  }, [])
 
   return (
     <header

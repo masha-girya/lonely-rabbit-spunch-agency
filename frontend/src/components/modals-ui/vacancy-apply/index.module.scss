@@ -12,6 +12,7 @@
   @include devices(mobile) {
     border-radius: 0;
     width: 100%;
+    min-width: 360px;
   }
 
   &__closeBtn {
