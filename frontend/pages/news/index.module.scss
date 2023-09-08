@@ -60,15 +60,15 @@
   }
 
   &__newsList {
-    padding: 60px 0 40px;
+    padding: 60px 16px 40px;
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
-    max-width: 1832px;
+    max-width: calc(1832px + 32px);
     margin: 0 auto;
 
     @media only screen and (max-width: 1899px) {
-      max-width: 1216px;
+      max-width: calc(1216px + 32px);
     }
 
     @include devices(tablet) {
@@ -85,14 +85,18 @@
     &__item {
       display: flex;
       justify-content: center;
-      width: max-content;
+      position: relative;
+      overflow: hidden;
+      width: 600px;
+      min-width: 600px;
+      height: 340px;
+      border-radius: 20px;
 
       @include devices(tablet) {
+        min-width: 100%;
         width: 100%;
-      }
-
-      &:last-of-type {
-        // margin-right: auto;
+        height: 187px;
+        border-radius: 10.765px;
       }
     }
   }

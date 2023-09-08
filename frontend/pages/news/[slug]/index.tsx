@@ -29,6 +29,7 @@ const NewsInner = () => {
   const [news, setNews] = useState<null | INews>(null);
   const [newsTitle, setNewsTitle] = useState("Lorem ipsum");
   const [newsBtnTitle, setNewsBtnTitle] = useState("See more news");
+  const [slideAmount, setSlideAmount] = useState(650);
 
   useEffect(() => {
     if (typeof slug === "string") {

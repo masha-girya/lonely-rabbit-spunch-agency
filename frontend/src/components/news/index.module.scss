@@ -1,36 +1,24 @@
 @import "src/styles/mixins.scss";
 
-@mixin swipeIcons() {
-  position: absolute;
-  z-index: 8;
-  top: 310px;
-  margin: auto;
-  cursor: pointer;
-
-  @include devices(tablet) {
-    display: none;
-  }
-
-  svg {
-    display: flex;
-  }
-}
-
 .news {
   &__container {
-    padding: 60px 0 60px 64px;
-    overflow-x: hidden;
+    padding: 60px 0;
     position: relative;
 
     @include devices(tablet) {
       padding: 60px 16px 60px;
+      height: max-content;
     }
   }
 
   &__header {
-    padding-right: 64px;
+    padding: 0 64px;
     display: flex;
     justify-content: space-between;
+
+    @include devices(tablet) {
+      padding: 0;
+    }
 
     &__title {
       h1 {
@@ -69,43 +57,5 @@
         display: block;
       }
     }
-  }
-}
-
-.cards {
-  margin-top: 66px;
-  display: flex;
-  justify-content: space-between;
-  column-gap: 14px;
-
-  &_end {
-    margin-right: 64px;
-  }
-
-  @include devices(mobile) {
-    margin-top: 51px;
-    overflow: hidden;
-    padding-right: 0;
-  }
-
-  &__nextIcon {
-    @include swipeIcons();
-    right: 44px;
-  }
-
-  &__prevIcon {
-    @include swipeIcons();
-    left: 44px;
-  }
-}
-
-.swiper {
-  margin: 60px auto 0;
-  display: flex;
-  gap: 6px;
-  justify-content: center;
-
-  @include devices(mobile) {
-    margin-top: 18px;
   }
 }
