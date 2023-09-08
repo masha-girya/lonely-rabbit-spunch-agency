@@ -15,9 +15,11 @@ export const Header = () => {
 
     if (!menuOpen) {
       document.body.style.overflow = "hidden";
+      document.body.style.position = "relative";
       document.getElementsByTagName("html")[0].style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
+      document.body.style.position = "static";
       document.getElementsByTagName("html")[0].style.overflow = "visible";
     }
   };
@@ -25,6 +27,7 @@ export const Header = () => {
   useEffect(() => {
     return () => {
       document.body.style.overflow = "auto";
+      document.body.style.position = "static";
       document.getElementsByTagName("html")[0].style.overflow = "visible";
     };
   }, []);

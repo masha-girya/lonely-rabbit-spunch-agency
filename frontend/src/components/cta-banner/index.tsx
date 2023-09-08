@@ -10,28 +10,18 @@ export const CtaBanner = () => {
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleOpen = (isOpen: boolean) => {
-    setIsModalOpen(isOpen);
-
-    if (isModalOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "visible";
-    }
-  }
-
   return (
     <article className={styles.ctaBanner}>
       <Modal
         isOpen={isModalOpen}
-        isOpenCallback={handleOpen}
-        children={<PreOrderModal setIsModalOpen={handleOpen} />}
+        isOpenCallback={setIsModalOpen}
+        children={<PreOrderModal setIsModalOpen={setIsModalOpen} />}
       />
       <div className={styles.ctaBanner__container}>
         <h1 className={styles.ctaBanner__title}>{title}</h1>
         <div className={styles.ctaBanner__button}>
           <Button
-            onClick={() => handleOpen(true)}
+            onClick={() => setIsModalOpen(true)}
             name="Pre order the game"
           />
         </div>
