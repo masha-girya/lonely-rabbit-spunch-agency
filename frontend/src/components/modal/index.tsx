@@ -51,15 +51,8 @@ export const Modal: React.FC<IModal> = (props) => {
 
   useEffect(() => {
     setOpen(isOpen);
-    if (isOpen) {
-      document.documentElement.style.overflow = "hidden";
-    } else {
-      document.documentElement.style.overflow = "visible";
-    }
-
-    return () => {
-      document.documentElement.style.overflow = "visible";
-    };
+    if (!isOpen) document.getElementsByTagName("html")[0].style.overflow = "hidden";
+    else document.getElementsByTagName("html")[0].style.overflow = "auto";
   }, [isOpen, isMobile]);
 
   return (
