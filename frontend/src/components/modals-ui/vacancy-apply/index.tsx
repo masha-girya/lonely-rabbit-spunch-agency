@@ -45,16 +45,6 @@ export const VacancyApplyModal: React.FC<IVacancyApplyModal> = (props) => {
     }
   };
 
-  const setNoneErrors = () => {
-    console.log(errors)
-    for (let key in errors) {
-      console.log({key})
-      if (key.trim.length > 0) {
-        setErrors((prev) => ({ ...prev, [key]: "" }));
-      }
-    }
-  };
-
   useEffect(() => {
     if(errors.name.length > 0 && name.trim().length > 0) {
       setErrors(prev => ({...prev, name: ""}))

@@ -12,8 +12,12 @@ export const Header = () => {
 
   const handleMobileMenu = () => {
     setMenuOpen(!menuOpen);
-    if (!menuOpen) document.getElementsByTagName("html")[0].style.overflow = "hidden";
-    else document.getElementsByTagName("html")[0].style.overflow = "auto";
+
+    if (!menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "visible";
+    }
   };
 
   return (

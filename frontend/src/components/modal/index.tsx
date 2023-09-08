@@ -49,12 +49,6 @@ export const Modal: React.FC<IModal> = (props) => {
 
   useClickOutside(ref, () => handleClickOutside(), open);
 
-  useEffect(() => {
-    setOpen(isOpen);
-    if (!isOpen) document.getElementsByTagName("html")[0].style.overflow = "hidden";
-    else document.getElementsByTagName("html")[0].style.overflow = "auto";
-  }, [isOpen, isMobile]);
-
   return (
     <Transition
       in={open}

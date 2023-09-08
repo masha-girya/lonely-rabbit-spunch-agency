@@ -2,7 +2,7 @@ import { Header } from "@components/header";
 import styles from "./index.module.scss";
 import { Footer } from "@components/footer";
 import { VACANCY_MOCK } from "src/constants";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Button } from "@components/button";
 import { Modal } from "@components/modal";
@@ -15,6 +15,14 @@ const VacancyInner = () => {
   const [vacancy, setVacancy] = useState<null | typeof VACANCY_MOCK>(
     VACANCY_MOCK
   );
+
+  useEffect(() => {
+    if (!isOpenModal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "visible";
+    }
+  }, [isOpenModal])
 
   return (
     <>
