@@ -1,11 +1,11 @@
 import styles from "./index.module.scss";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { NEWS_MOCK } from "src/constants/news";
 import { NewsCard } from "../news-card";
 import { NextIcon } from "@components/icons/NextIcon";
 import { PrevIcon } from "@components/icons/PrevIcon";
 import { Circles } from "@components/circles";
-import { useDevice } from "src/hooks/useDevice";
+import { useSwiper } from "src/hooks/useSwiper";
 
 interface IDesktopNews {
   news: typeof NEWS_MOCK;
@@ -15,86 +15,19 @@ interface IDesktopNews {
 
 export const DesktopNews: React.FC<IDesktopNews> = (props) => {
   const { news, cardLength, circles } = props;
-  const { isMobile } = useDevice();
-  const ref = useRef<any | null>(null);
-  const cardRef = useRef<any | null>(null);
   const [prevOnHover, setPrevOnHover] = useState(false);
   const [nextOnHover, setNextOnHover] = useState(false);
-  const [circleCounter, setCircleCounter] = useState(1);
 
-  const slideNext = () => {
-    if (ref.current) {
-      ref.current.scrollTo(ref.current.scrollLeft + cardLength, 0);
-    }
-  };
+  const ref = useRef<any | null>(null);
 
-  const slidePrev = () => {
-    if (ref.current) {
-      ref.current.scrollTo(ref.current.scrollLeft - cardLength, 0);
-    }
-  };
-
-  const slideTo = (id: number) => {
-    const targetScrollX = (id - 1) * cardLength;
-
-    ref.current.scrollTo({
-      left: targetScrollX,
-    });
-
-    if(isMobile) {
-      setCircleCounter(id);
-    }
-  };
-
-  const handleScroll = () => {
-    if (ref.current) {
-      const currCircle = Math.ceil(ref.current.scrollLeft / cardLength);
-
-      if (currCircle === news.length - 1 && !isMobile) {
-        setCircleCounter(currCircle);
-      } else {
-        setCircleCounter(currCircle + 1);
-      }
-    }
-  };
-
-  useEffect(() => {
-    if (ref.current && !isMobile) {
-      ref.current.addEventListener("scroll", handleScroll);
-    }
-
-    return () => {
-      if (ref.current && !isMobile) {
-        ref.current.removeEventListener("scroll", handleScroll);
-      }
-    };
-  }, [ref, isMobile]);
-
-  const [touchStartX, setTouchStartX] = useState(0);
-
-  const handleTouchStart = (e: any) => {
-    setTouchStartX(e.touches[0].clientX);
-  };
-
-  const handleTouchEnd = (e: any, id: number) => {
-    const deltaX = e.changedTouches[0].clientX - touchStartX;
-
-    const scrollDirection = deltaX < 0 ? 1 : -1;
-    console.log(scrollDirection, circleCounter )
-
-    if (ref.current) {
-      if (scrollDirection > 0 && circleCounter !== news.length) {
-        console.log('cond 1')
-        slideTo(id + 1);
-        setCircleCounter(id + 1);
-      }
-      if(scrollDirection < 0 && circleCounter !== 1) {
-        console.log('cond 2')
-        slideTo(id - 1);
-        setCircleCounter(id - 1);
-      }
-    }
-  };
+  const {
+    circleCounter,
+    handleTouchEnd,
+    handleTouchStart,
+    slideNext,
+    slidePrev,
+    slideTo,
+  } = useSwiper({ cardLength, ref, dataArray: news });
 
   return (
     <div>
@@ -113,8 +46,6 @@ export const DesktopNews: React.FC<IDesktopNews> = (props) => {
             <div
               onTouchEnd={(e) => handleTouchEnd(e, item.id)}
               onTouchStart={handleTouchStart}
-              // onTouchMove={(e) => e.preventDefault()}
-              // onScroll={(e) => e.preventDefault()}
               key={item.id}
               className={styles.cardWrapper}
             >

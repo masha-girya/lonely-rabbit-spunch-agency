@@ -1,43 +1,26 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./index.module.scss";
 import Img1 from "./assets/Img1.png";
 import Img2 from "./assets/Img2.png";
 import Img3 from "./assets/Img3.png";
 import { GameIcon } from "@components/icons/GameIcon";
-import { useSpringCarousel } from "react-spring-carousel";
 import { Circles } from "@components/circles";
+import { useSwiper } from "src/hooks/useSwiper";
+import { useDevice } from "src/hooks/useDevice";
+import { PhotosMobile } from "./photos-mobile";
 
 export const PhotoBlock = () => {
   const [title, setTitle] = useState("Stunning Visuals");
-  const images = [Img1, Img2, Img3].map((img, i) => ({img, id: i}));
-  const [currentImg, setCurrentImg] = useState(images[0].id);
+  const images = [Img1, Img2, Img3].map((img, i) => ({ img, id: i + 1 }));
+  const [cardLength , setCardLength] = useState(0);
+  const { isMobile } = useDevice();
+  const ref = useRef<any | null>(null);
 
-  const { 
-    carouselFragment, 
-    thumbsFragment,
-    useListenToCustomEvent,
-    slideToItem
-  } = useSpringCarousel({
-    withLoop: false,
-    withThumbs: true, 
-    // initialStartingPosition: "start",
-    gutter: 20,
-    items: images.map((img, i) => ({
-      id: img.id.toString(),
-      renderItem: (
-        <img className={styles.photoBlock__photos__fullHeight} src={img.img.src}/>
-      ),
-      renderThumb: (
-        <Circles highlighted={img.id === currentImg} handleMove={() => slideToItem(img.id)} />
-      )
-    })),
-  });
-
-  useListenToCustomEvent((event) => {
-    if (event.eventName === "onSlideStartChange") {
-      setCurrentImg(+event?.nextItem?.id);
+  useEffect(() => {
+    if(window) {
+      setCardLength(!isMobile ? (window.innerWidth - 18) : 600);
     }
-  });
+  }, [isMobile])
 
   return (
     <article className={styles.photoBlock}>
@@ -48,17 +31,15 @@ export const PhotoBlock = () => {
         </div>
         <div className={styles.photoBlock__photos}>
           <div className={styles.photoBlock__photos__col}>
-            <img src={Img1.src}/>
-            <img src={Img2.src}/>
+            <img src={Img1.src} />
+            <img src={Img2.src} />
           </div>
-          <img className={styles.photoBlock__photos__fullHeight} src={Img3.src}/>
+          <img
+            className={styles.photoBlock__photos__fullHeight}
+            src={Img3.src}
+          />
         </div>
-        <div className={styles.photoBlock__photosMob}>
-          {carouselFragment}
-        </div>
-        <div className={styles.swiper}>
-          {thumbsFragment}
-        </div>
+        {isMobile && <PhotosMobile images={images} cardLength={cardLength} />}
       </div>
     </article>
   );
