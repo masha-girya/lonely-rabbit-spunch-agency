@@ -15,7 +15,7 @@ export const Banner = () => {
 
   const [images, setImages] = useState(BANNER_IMGS);
 
-  const { carouselFragment, slideToNextItem } = useSpringCarousel({
+  const { carouselFragment, slideToItem, slideToNextItem, getCurrentActiveItem } = useSpringCarousel({
     withLoop: true,
     // initialStartingPosition: "start",
     initialActiveItem: 0,
@@ -32,6 +32,11 @@ export const Banner = () => {
 
     return () => clearInterval(timer);
   });
+
+  useEffect(() => {
+    console.log("here")
+    slideToItem(BANNER_IMGS[0].src);
+  }, []);
 
   return (
     <div className={styles.banner}>
