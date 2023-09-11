@@ -65,8 +65,7 @@
     height: 90%;
 
     @include devices(tablet) {
-      // width: 130%;
-      width: 100%;
+      width: 130%;
       max-height: 414px;
     }
 
@@ -82,8 +81,6 @@
 
       @include devices(mobile) {
         filter: none;
-        width: 100%;
-        transform: scaleX(1.2);
       }
     }
 
