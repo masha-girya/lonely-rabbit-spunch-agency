@@ -10,7 +10,7 @@ from .serializers import RecruitmentBodySerializer
 
 class RecruitmentSinglePage(Page):
     date = models.DateField("Post date")
-    caption = models.CharField(null=True, blank=True)
+    caption = models.CharField(max_length=400, default='')
     body = StreamField([
         ('h1', blocks.CharBlock(null=True, blank=True)),
         ('h2', blocks.CharBlock(null=True, blank=True)),

@@ -58,7 +58,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'news',
     'recruitment',
-    'licensig'
+    'licensig',
+    'about_us'
 ]
 
 MIDDLEWARE = [
