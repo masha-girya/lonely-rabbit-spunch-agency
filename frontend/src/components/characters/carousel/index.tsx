@@ -32,7 +32,7 @@ export const Carousel: React.FC<ICarousel> = (props) => {
     initialStartingPosition: "center",
     itemsPerSlide: 5,
     withLoop: true,
-    initialActiveItem: Math.floor(chars.length / 2),
+    initialActiveItem: 3,
     withThumbs: true,
     items: chars.map((item) => ({
       id: item.charId.toString(),
@@ -53,6 +53,7 @@ export const Carousel: React.FC<ICarousel> = (props) => {
               src={item.img.src}
               alt={item.title}
               className={styles.charsList__item__image}
+              loading="eager"
             />
           </div>
         </div>
