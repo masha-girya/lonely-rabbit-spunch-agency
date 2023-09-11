@@ -47,4 +47,5 @@ class AboutUsPage(Page):
     api_fields = [
         APIField('banner_title'),
         APIField('banner_description'),
+        APIField('sections'),
     ]
