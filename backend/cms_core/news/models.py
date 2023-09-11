@@ -10,7 +10,7 @@ from .serializers import NewsBodySerializer
 
 class NewsSinglePage(Page):
     date = models.DateField("Post date")
-    caption = models.CharField(null=True, blank=True)
+    caption = models.CharField(max_length=400, default='')
     main_image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
