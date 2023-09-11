@@ -51,13 +51,15 @@
     }
 
     &__date {
-      margin-bottom: 13px;
-      color: #bebebe;
+      @include dateText();
       font-size: 14px;
-      font-weight: 300;
-      line-height: normal;
+      margin-bottom: 13px;
 
       @include devices(tablet) {
+        font-size: 12px;
+      }
+
+      @include devices(mobile) {
         font-size: 12px;
       }
     }

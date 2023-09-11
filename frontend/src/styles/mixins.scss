@@ -66,12 +66,24 @@
 }
 
 @mixin bodyText {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 400;
-  line-height: normal;
+  line-height: 27px;
 
   @include devices(mobile) {
     font-size: 16px;
+    line-height: 28px;
+  }
+}
+
+@mixin dateText {
+  color: #BEBEBE;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+
+  @include devices(mobile) {
+    font-size: 14px;
   }
 }
 
