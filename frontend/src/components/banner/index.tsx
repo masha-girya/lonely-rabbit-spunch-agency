@@ -31,12 +31,6 @@ export const Banner = () => {
     return () => clearInterval(timer);
   });
 
-  useEffect(() => {
-    setTimeout(() => {
-      slideToItem(BANNER_IMGS[0].src)
-    }, 100)
-  }, []);
-
   return (
     <div className={styles.banner}>
       <Header />
@@ -53,6 +47,7 @@ export const Banner = () => {
               {carouselFragment}
             </div>
           </div>
+
           <svg
             style={{ visibility: "hidden", position: "absolute" }}
             width="0"
