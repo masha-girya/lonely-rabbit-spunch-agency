@@ -3,10 +3,10 @@ import { InstaIcon } from "@components/icons/IntaIcon";
 import { TwitchIcon } from "@components/icons/TwitchIcon";
 import { YoutubeIcon } from "@components/icons/YoutubeIcon";
 import Banner1 from "@components/banner/assets/Banner1.png";
-import Opt2 from "@components/banner/assets/Opt2.png";
-import Opt3 from "@components/banner/assets/Opt3.png";
-import Opt4 from "@components/banner/assets/Opt4.png";
-import Opt5 from "@components/banner/assets/Opt5.png";
+import Banner2 from "@components/banner/assets/Banner2.png";
+import Banner3 from "@components/banner/assets/Banner3.png";
+import Banner4 from "@components/banner/assets/Banner4.png";
+import Banner5 from "@components/banner/assets/Banner5.png";
 import AboutUsImg1 from "pages/about-us/assets/Img1.png";
 import AboutUsImg2 from "pages/about-us/assets/Img2.png";
 import AboutUsImg3 from "pages/about-us/assets/Img3.png";
@@ -36,10 +36,10 @@ export const SOCIALS = [
 
 export const BANNER_IMGS = [
   Banner1,
-  Opt2,
-  Opt3,
-  // Opt4,
-  // Opt5,
+  Banner2,
+  Banner3,
+  Banner4,
+  Banner5,
 ];
 
 export const ABOUT_US_MOCK = [
