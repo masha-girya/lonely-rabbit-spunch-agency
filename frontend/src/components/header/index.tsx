@@ -1,7 +1,7 @@
 import styles from "./index.module.scss";
 import Logo from "@styles/assets/Logo.png";
 import { Nav } from "@components/nav";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Socials } from "@components/socials";
 import classNames from "classnames";
 import Link from "next/link";
@@ -12,9 +12,25 @@ export const Header = () => {
 
   const handleMobileMenu = () => {
     setMenuOpen(!menuOpen);
-    if (!menuOpen) document.getElementsByTagName("html")[0].style.overflow = "hidden";
-    else document.getElementsByTagName("html")[0].style.overflow = "auto";
+
+    if (!menuOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.style.position = "relative";
+      document.getElementsByTagName("html")[0].style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+      document.body.style.position = "static";
+      document.getElementsByTagName("html")[0].style.overflow = "visible";
+    }
   };
+
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = "auto";
+      document.body.style.position = "static";
+      document.getElementsByTagName("html")[0].style.overflow = "visible";
+    };
+  }, []);
 
   return (
     <header

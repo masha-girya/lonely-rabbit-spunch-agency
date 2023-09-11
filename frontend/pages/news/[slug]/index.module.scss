@@ -43,9 +43,7 @@
       }
 
       p {
-        color: #BEBEBE;
-        font-size: 16px;
-        font-weight: 300;
+        @include dateText();
       }
     }
 
@@ -62,7 +60,6 @@
 
       p {
         @include bodyText();
-        line-height: 27px;
       }
     }
 

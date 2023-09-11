@@ -10,18 +10,9 @@ export const CtaBanner = () => {
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "visible";
-    }
-  }, [isModalOpen]);
-
   return (
     <article className={styles.ctaBanner}>
       <Modal
-        isFullScreen
         isOpen={isModalOpen}
         isOpenCallback={setIsModalOpen}
         children={<PreOrderModal setIsModalOpen={setIsModalOpen} />}

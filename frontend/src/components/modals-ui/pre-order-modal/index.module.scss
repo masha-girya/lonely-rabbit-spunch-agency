@@ -2,30 +2,25 @@
 
 .preOrder {
   position: relative;
-  border-radius: 20px;
-  height: 100vh;
-  width: 90%;
-  display: flex;
-  padding: 95px 80px;
-  background-color: #333333;
-  border-radius: 20px;
+  max-height: 100vh;
   overflow: auto;
+  max-width: 1180px;
+  width: max-content;
+  border-radius: 20px;
   @include scrollBar();
 
-  width: max-content;
-  max-width: 1180px;
-  height: 600px;
+  &__container {
+    display: flex;
+    padding: 95px 80px;
+    min-height: 600px;
 
-  @media only screen and (max-width: 1180px) {
-    width: 100%;
-    height: 100%;
-  }
-
-  @include devices(tablet) {
-    flex-direction: column;
-    padding: 0;
-    height: 80%;
-    width: 360px;
+    @include devices(tablet) {
+      flex-direction: column;
+      padding: 0;
+      height: 80%;
+      min-height: 80%;
+      width: 360px;
+    }
   }
 
   &__closeBtn {
@@ -65,7 +60,6 @@
     z-index: 10;
     display: flex;
     flex-direction: column;
-    height: 100%;
     justify-content: space-between;
     width: 35%;
 
@@ -76,6 +70,7 @@
       padding: 30px 20px;
       margin: auto;
       max-height: 400px;
+      gap: 32px;
     }
   }
 

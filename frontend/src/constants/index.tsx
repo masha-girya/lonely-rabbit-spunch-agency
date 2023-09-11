@@ -16,7 +16,7 @@ export const NAV = [
   { title: "Midnight Strikes", link: "/" },
   { title: "News", link: "/news" },
   { title: "About Us", link: "/about-us" },
-  { title: "Recruitment", link: "/recruitment" },
+  { title: "Recruitment", link: "/vacancies" },
 ];
 
 export const NAV_FOOTER = [
@@ -89,6 +89,25 @@ export const NEWS_INNER_MOCK = {
     "Dictum vitae posuere integer purus sit orci sed habitant. Pretium nulla convallis sed et turpis nunc massa porta adipiscing.",
     "Sed pellentesque lacus iaculis in non tellus massa imperdiet viverra. Amet suscipit tortor sodales cursus diam.",
   ],
+};
+
+export const VACANCY_MOCK = {
+  slug: "vacancy",
+  title: "Lorum ipsum",
+  shortText:
+    "Lorem ipsum dolor sit amet consectetur. Vulputate montes nullam consectetur leo condimentum.",
+  date: "18/08/2023",
+  description:
+    "Lorem ipsum dolor sit amet consectetur. Mi sagittis pellentesque diam at pretium dignissim pharetra in. Odio nec facilisi tincidunt diam justo sed facilisi. In euismod porttitor maecenas pharetra at feugiat feugiat vestibulum tellus.",
+  about: {
+    title: "Lorem ipsum dolor sit",
+    text: [
+      "Lorem ipsum dolor sit amet consectetur. Mi sagittis pellentesque diam at pretium dignissim pharetra in. Odio nec facilisi tincidunt diam justo sed facilisi. In euismod porttitor maecenas pharetra at feugiat feugiat vestibulum tellus.",
+      "Sed pellentesque lacus iaculis in non tellus massa imperdiet viverra. Amet suscipit tortor sodales cursus diam. Eget blandit erat turpis netus mauris penatibus in vitae. Pharetra viverra sem praesent pellentesque gravida ut.",
+      "Dictum vitae posuere integer purus sit orci sed habitant. Pretium nulla convallis sed et turpis nunc massa porta adipiscing.",
+      "Sed pellentesque lacus iaculis in non tellus massa imperdiet viverra. Amet suscipit tortor sodales cursus diam.",
+    ],
+  },
 };
 
 export const PRIVACY_POLICY = [

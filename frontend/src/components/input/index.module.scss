@@ -7,6 +7,10 @@
   overflow: hidden;
   height: 51px;
 
+  &_textarea {
+    overflow: visible;
+  }
+
   &__placeholder {
     position: absolute;
     bottom: 5px;
@@ -22,6 +26,10 @@
 
     &_onFocus {
       transform: translateY(-26px);
+    }
+
+    &_darkMode {
+      color: #B0B0B0;
     }
   }
 
@@ -43,9 +51,37 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    letter-spacing: 1px;
+
+    &_darkMode {
+      border-bottom-color: #B0B0B0;
+      color: #FBFBFB;
+    }
+  }
+
+  &__textarea {
+    resize: none;
+    max-height: 33px;
+    line-height: 20px;
+    position: relative;
+    top: 0;
+    @include scrollBar();
+    transition: all .2s ease;
+
+    &_rows {
+    max-height: 60px;
+    top: 33px;
+    }
   }
 }
 
+.inputContainer {
+  position: relative;
+}
+
 .error {
-  @include errorText(7px);
+  position: absolute;
+  left: 0;
+  bottom: -16px;
+  @include errorText(1px);
 }

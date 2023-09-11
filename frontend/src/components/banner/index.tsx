@@ -1,5 +1,4 @@
 import { Button } from "@components/button";
-import { animated, useTransition, config } from "@react-spring/web";
 import styles from "./index.module.scss";
 import { Header } from "@components/header";
 import { useEffect, useRef, useState } from "react";
@@ -15,11 +14,11 @@ export const Banner = () => {
 
   const [images, setImages] = useState(BANNER_IMGS);
 
-  const { carouselFragment, slideToNextItem } = useSpringCarousel({
+  const { carouselFragment, slideToItem, slideToNextItem, getCurrentActiveItem } = useSpringCarousel({
     withLoop: true,
-    initialStartingPosition: "start",
+    initialActiveItem: 0,
     items: images.map((item, index) => ({
-      id: index.toString(),
+      id: item.src,
       renderItem: (
         <img className={styles.banner__images__img} src={item.src} ref={ref} />
       ),
@@ -31,6 +30,12 @@ export const Banner = () => {
 
     return () => clearInterval(timer);
   });
+
+  useEffect(() => {
+    setTimeout(() => {
+      slideToItem(BANNER_IMGS[0].src)
+    }, 100)
+  }, []);
 
   return (
     <div className={styles.banner}>
