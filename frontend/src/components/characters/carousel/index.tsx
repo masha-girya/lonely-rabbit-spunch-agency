@@ -84,6 +84,19 @@ export const Carousel: React.FC<ICarousel> = (props) => {
     }
   });
 
+  useEffect(() => {
+    setMainCharOnChange(true);
+
+      setTimeout(() => {
+        setMainCharOnChange(false);
+      }, DURATION);
+
+      setCurrentSlide(currentSlide);
+      setTimeout(() => {
+          setCurrentChar(currentChar)
+      }, 1);
+  }, [])
+
   return (
     <div className={styles.charListBox}>
       <div className={styles.charsList}>
