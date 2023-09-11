@@ -48,6 +48,7 @@
     &::before {
       content: "";
       display: block;
+      opacity: 1;
       position: absolute;
       bottom: 12%;
       left: 50%;
@@ -57,7 +58,7 @@
       border-radius: 20px;
       background: rgba(217, 217, 217, 0.05);
       filter: blur(2.5px);
-      transition: all .2s ease;
+      transition: opacity .5s ease;
 
       @include devices(mobile) {
         width: 200px;
