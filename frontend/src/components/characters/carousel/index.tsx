@@ -32,7 +32,7 @@ export const Carousel: React.FC<ICarousel> = (props) => {
     initialStartingPosition: "center",
     itemsPerSlide: 5,
     withLoop: true,
-    initialActiveItem: Math.floor(chars.length / 2),
+    initialActiveItem: currentSlide - 1,
     withThumbs: true,
     items: chars.map((item) => ({
       id: item.charId.toString(),
