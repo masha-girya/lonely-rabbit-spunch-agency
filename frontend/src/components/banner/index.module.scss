@@ -82,9 +82,8 @@
 
       @include devices(mobile) {
         filter: none;
-        width: 130%;
-        position: relative;
-        right: 15%;
+        width: 100%;
+        transform: scaleX(1.2);
       }
     }
 
