@@ -34,7 +34,13 @@ export const SOCIALS = [
   { title: "Youtube", Icon: <YoutubeIcon />, link: "" },
 ];
 
-export const BANNER_IMGS = [Banner1, Opt2, Opt3, Opt4, Opt5];
+export const BANNER_IMGS = [
+  Banner1,
+  Opt2,
+  Opt3,
+  // Opt4,
+  // Opt5,
+];
 
 export const ABOUT_US_MOCK = [
   {

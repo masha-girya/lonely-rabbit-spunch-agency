@@ -11,20 +11,31 @@ export const Banner = () => {
     "Lonely Rabbit: Into the Realm of Darkness and Fear"
   );
   const ref = useRef<any | null>(null);
+  const refBox = useRef<any | null>(null);
 
-  const [images, setImages] = useState(BANNER_IMGS);
+  const [images, setImages] = useState([...BANNER_IMGS]);
+  const [currImgIndex, setCurrImgIndex] = useState(0);
+  const [translate, setTranslate] = useState(0);
 
-  const { carouselFragment, slideToItem, slideToNextItem, getCurrentActiveItem } = useSpringCarousel({
-    withLoop: true,
-    initialActiveItem: 0,
-    initialStartingPosition: "start",
-    items: images.map((item, index) => ({
-      id: item.src,
-      renderItem: (
-        <img className={styles.banner__images__img} src={item.src} ref={ref} />
-      ),
-    })),
-  });
+  // const { carouselFragment, slideToItem, slideToNextItem, getCurrentActiveItem } = useSpringCarousel({
+  //   withLoop: true,
+  //   initialActiveItem: 0,
+  //   initialStartingPosition: "start",
+  //   items: images.map((item, index) => ({
+  //     id: item.src,
+  //     renderItem: (
+  //       <img className={styles.banner__images__img} src={item.src} ref={ref} />
+  //     ),
+  //   })),
+  // });
+
+  const slideToNextItem = () => {
+    if(refBox.current && ref.current) {
+      const translateAmount = ref.current.offsetWidth;
+      setTranslate(prev => prev - translateAmount);
+      setCurrImgIndex(prev => prev + 1); // 1
+    }
+  }
 
   useEffect(() => {
     const timer = setInterval(slideToNextItem, 5000);
@@ -45,7 +56,11 @@ export const Banner = () => {
         <div className={styles.banner__images}>
           <div className={styles.banner__images__box}>
             <div className={styles.banner__images__boxItem}>
-              {carouselFragment}
+              <div ref={refBox} style={{transform: `translateX(${translate}px)`, width: "max-content", display: "flex", transition: "all .3s linear"}}>
+                {images.map((img, i) => (
+                  <img key={img.src + i} className={styles.banner__images__img} src={img.src} ref={ref} />
+                ))}
+              </div>
             </div>
           </div>
 
