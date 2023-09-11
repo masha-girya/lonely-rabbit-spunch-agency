@@ -67,7 +67,6 @@ export const Banner = () => {
           <div className={styles.banner__images__box}>
             <div className={styles.banner__images__boxItem}>
               <Swiper
-                spaceBetween={0}
                 centeredSlides={true}
                 autoplay={{
                   delay: 5000,
