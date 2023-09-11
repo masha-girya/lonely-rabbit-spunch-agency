@@ -11,7 +11,11 @@ export const Footer = () => {
       <div className={styles.footer__container}>
         <div className={styles.footer__mainBlock}>
           <Link href="/">
-            <img className={styles.footer__mainBlock__logo} src={Logo.src} alt="logo"/>
+            <img
+              className={styles.footer__mainBlock__logo}
+              src={Logo.src}
+              alt="logo"
+            />
           </Link>
           <div className={styles.footer__mainBlock__rightCol}>
             <Nav isFooter />
@@ -20,11 +24,14 @@ export const Footer = () => {
         </div>
         <div className={styles.footer__rights}>
           <p className={styles.footer__rights__text}>
-            <RightsIcon/>
-            Lonely Rabbit. All rights reserved
+            <RightsIcon />
+            Lonely Rabbit.
           </p>
+          <a className={styles.footer__rights__link} href="/privacy-policy">
+            All rights reserved
+          </a>
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
