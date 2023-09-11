@@ -1,41 +1,18 @@
 import { Button } from "@components/button";
 import styles from "./index.module.scss";
 import { Header } from "@components/header";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { BANNER_IMGS } from "src/constants";
-import { useSpringCarousel } from "react-spring-carousel";
 import classNames from "classnames";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper";
+import "swiper/css";
 
 export const Banner = () => {
   const [title, setTitle] = useState(
     "Lonely Rabbit: Into the Realm of Darkness and Fear"
   );
-  const ref = useRef<any | null>(null);
-
-  const [images, setImages] = useState(BANNER_IMGS);
-
-  const { carouselFragment, slideToItem, slideToNextItem, getCurrentActiveItem } = useSpringCarousel({
-    withLoop: true,
-    initialActiveItem: 0,
-    items: images.map((item, index) => ({
-      id: item.src,
-      renderItem: (
-        <img className={styles.banner__images__img} src={item.src} ref={ref} />
-      ),
-    })),
-  });
-
-  useEffect(() => {
-    const timer = setInterval(slideToNextItem, 5000);
-
-    return () => clearInterval(timer);
-  });
-
-  useEffect(() => {
-    setTimeout(() => {
-      slideToItem(BANNER_IMGS[0].src)
-    }, 100)
-  }, []);
+  const [images, setImages] = useState([...BANNER_IMGS]);
 
   return (
     <div className={styles.banner}>
@@ -49,10 +26,26 @@ export const Banner = () => {
         </div>
         <div className={styles.banner__images}>
           <div className={styles.banner__images__box}>
-            <div className={styles.banner__images__boxItem}>
-              {carouselFragment}
-            </div>
+            <Swiper
+              spaceBetween={0}
+              centeredSlides={true}
+              autoplay={{
+                delay: 5000,
+                disableOnInteraction: false,
+              }}
+              navigation={false}
+              modules={[Autoplay]}
+              loop={true}
+              className={styles.banner__images__boxItem}
+            >
+              {images.map((img, i) => (
+                <SwiperSlide key={img.src + i}>
+                  <img className={styles.banner__images__img} src={img.src} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
+
           <svg
             style={{ visibility: "hidden", position: "absolute" }}
             width="0"
@@ -78,7 +71,12 @@ export const Banner = () => {
             </defs>
           </svg>
         </div>
-        <div className={classNames(styles.banner__content__button, styles.banner__content__button_mob)}>
+        <div
+          className={classNames(
+            styles.banner__content__button,
+            styles.banner__content__button_mob
+          )}
+        >
           <Button onClick={() => {}} name="Play Now" />
         </div>
       </div>
