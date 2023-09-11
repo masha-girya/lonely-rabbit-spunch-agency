@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import classNames from "classnames";
 import styles from "./index.module.scss";
 import { CHARACTERS_MOCK } from "src/constants/characters";
@@ -10,13 +10,13 @@ import { CarouselThumbs } from "../carousel-thumbs";
 interface ICarousel {
   chars: typeof CHARACTERS_MOCK;
   currentChar: (typeof CHARACTERS_MOCK)[0];
+  setCurrentChar: (currentChar: (typeof CHARACTERS_MOCK)[0]) => void;
   currentSlide: number;
   setCurrentSlide: (currentSlide: number) => void;
-  setCurrentChar: (currentChar: (typeof CHARACTERS_MOCK)[0]) => void;
 }
 
 export const Carousel: React.FC<ICarousel> = (props) => {
-  const { chars, currentChar, currentSlide, setCurrentChar, setCurrentSlide } =
+  const { chars, currentChar, setCurrentChar, currentSlide, setCurrentSlide } =
     props;
   const [mainCharOnChange, setMainCharOnChange] = useState(false);
 
@@ -32,7 +32,7 @@ export const Carousel: React.FC<ICarousel> = (props) => {
     initialStartingPosition: "center",
     itemsPerSlide: 5,
     withLoop: true,
-    initialActiveItem: currentSlide - 1,
+    initialActiveItem: Math.floor(chars.length / 2),
     withThumbs: true,
     items: chars.map((item) => ({
       id: item.charId.toString(),
@@ -83,19 +83,6 @@ export const Carousel: React.FC<ICarousel> = (props) => {
       }, 100);
     }
   });
-
-  useEffect(() => {
-    setMainCharOnChange(true);
-
-      setTimeout(() => {
-        setMainCharOnChange(false);
-      }, DURATION);
-
-      setCurrentSlide(currentSlide);
-      setTimeout(() => {
-          setCurrentChar(currentChar)
-      }, 1);
-  }, [])
 
   return (
     <div className={styles.charListBox}>
