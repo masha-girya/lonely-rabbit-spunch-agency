@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import classNames from "classnames";
 import styles from "./index.module.scss";
 import { CHARACTERS_MOCK } from "src/constants/characters";
@@ -9,18 +9,16 @@ import { CarouselThumbs } from "../carousel-thumbs";
 
 interface ICarousel {
   chars: typeof CHARACTERS_MOCK;
+  currentChar: (typeof CHARACTERS_MOCK)[0];
+  currentSlide: number;
+  setCurrentSlide: (currentSlide: number) => void;
+  setCurrentChar: (currentChar: (typeof CHARACTERS_MOCK)[0]) => void;
 }
 
 export const Carousel: React.FC<ICarousel> = (props) => {
-  const { chars } = props;
-
-  const [currentSlide, setCurrentSlide] = useState(
-    chars[Math.floor(chars.length / 2)].charId
-  );
+  const { chars, currentChar, currentSlide, setCurrentChar, setCurrentSlide } =
+    props;
   const [mainCharOnChange, setMainCharOnChange] = useState(false);
-  const [currentChar, setCurrentChar] = useState<undefined | (typeof chars)[0]>(
-    chars[Math.floor(chars.length / 2)]
-  );
 
   const {
     carouselFragment,
@@ -77,10 +75,12 @@ export const Carousel: React.FC<ICarousel> = (props) => {
       }, DURATION);
 
       setCurrentSlide(+event?.nextItem?.id);
-      setTimeout(() =>
-        setCurrentChar(
-          chars.find((item) => +event?.nextItem?.id === item.charId)
-      ),100);
+      setTimeout(() => {
+        const char = chars.find((item) => +event?.nextItem?.id === item.charId);
+        if (char) {
+          setCurrentChar(char);
+        }
+      }, 100);
     }
   });
 

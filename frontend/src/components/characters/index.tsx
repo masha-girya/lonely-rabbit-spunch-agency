@@ -6,16 +6,32 @@ import { Carousel } from "./carousel";
 export const Characters = () => {
   const [title, setTitle] = useState("Meet the Characters");
   const [charsOnShow, setCharsOnShow] = useState<typeof CHARACTERS_MOCK>([]);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentChar, setCurrentChar] = useState<
+    undefined | (typeof CHARACTERS_MOCK)[0]
+  >(undefined);
 
   useEffect(() => {
     setCharsOnShow(CHARACTERS_MOCK);
-  }, [CHARACTERS_MOCK])
+    setCurrentChar(CHARACTERS_MOCK[Math.floor(CHARACTERS_MOCK.length / 2)]);
+    setCurrentSlide(
+      CHARACTERS_MOCK[Math.floor(CHARACTERS_MOCK.length / 2)].charId
+    );
+  }, [CHARACTERS_MOCK]);
 
   return (
     <article className={styles.chars}>
       <div className={styles.chars__container}>
         <h1>{title}</h1>
-        {charsOnShow.length > 0 && <Carousel chars={charsOnShow} />}
+        {charsOnShow.length > 0 && currentChar !== undefined && (
+          <Carousel
+            currentChar={currentChar}
+            setCurrentChar={setCurrentChar}
+            currentSlide={currentSlide}
+            setCurrentSlide={setCurrentSlide}
+            chars={charsOnShow}
+          />
+        )}
       </div>
     </article>
   );
