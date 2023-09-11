@@ -3,11 +3,11 @@ import styles from "./index.module.scss";
 import { Header } from "@components/header";
 import { useEffect, useRef, useState } from "react";
 import { BANNER_IMGS } from "src/constants";
-import { useSpringCarousel } from "react-spring-carousel";
+// import { useSpringCarousel } from "react-spring-carousel";
 import classNames from "classnames";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import { Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper';
+import 'swiper/css';
 
 export const Banner = () => {
   const [title, setTitle] = useState(
@@ -67,6 +67,7 @@ export const Banner = () => {
           <div className={styles.banner__images__box}>
             <div className={styles.banner__images__boxItem}>
               <Swiper
+                spaceBetween={30}
                 centeredSlides={true}
                 autoplay={{
                   delay: 5000,
@@ -75,6 +76,7 @@ export const Banner = () => {
                 navigation={false}
                 modules={[Autoplay]}
                 loop={true}
+                className="mySwiper"
               >
                 {images.map((img, i) => (
                   <SwiperSlide key={img.src + i}>
