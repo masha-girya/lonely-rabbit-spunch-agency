@@ -5,6 +5,9 @@ import { useEffect, useRef, useState } from "react";
 import { BANNER_IMGS } from "src/constants";
 import { useSpringCarousel } from "react-spring-carousel";
 import classNames from "classnames";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { Autoplay } from "swiper/modules";
 
 export const Banner = () => {
   const [title, setTitle] = useState(
@@ -29,19 +32,26 @@ export const Banner = () => {
   //   })),
   // });
 
-  const slideToNextItem = () => {
-    if(refBox.current && ref.current) {
-      const translateAmount = ref.current.offsetWidth;
-      setTranslate(prev => prev - translateAmount);
-      setCurrImgIndex(prev => prev + 1); // 1
-    }
-  }
+  // const slideToNextItem = () => {
+  //   if (refBox.current && ref.current) {
+  //     const translateAmount = ref.current.offsetWidth;
+  //     setTranslate(-translateAmount * currImgIndex);
+  //     setCurrImgIndex((prev) => prev + 1);
+  //     if (currImgIndex === BANNER_IMGS.length - 1) {
+  //       setImages((prev) => [
+  //         ...BANNER_IMGS.slice(BANNER_IMGS.length),
+  //         ...BANNER_IMGS,
+  //       ]);
+  //       setCurrImgIndex(0);
+  //     }
+  //   }
+  // };
 
-  useEffect(() => {
-    const timer = setInterval(slideToNextItem, 5000);
+  // useEffect(() => {
+  //   const timer = setInterval(slideToNextItem, 5000);
 
-    return () => clearInterval(timer);
-  });
+  //   return () => clearInterval(timer);
+  // });
 
   return (
     <div className={styles.banner}>
@@ -56,11 +66,27 @@ export const Banner = () => {
         <div className={styles.banner__images}>
           <div className={styles.banner__images__box}>
             <div className={styles.banner__images__boxItem}>
-              <div ref={refBox} style={{transform: `translateX(${translate}px)`, width: "max-content", display: "flex", transition: "all .3s linear"}}>
+              <Swiper
+                spaceBetween={0}
+                centeredSlides={true}
+                autoplay={{
+                  delay: 5000,
+                  disableOnInteraction: false,
+                }}
+                navigation={false}
+                modules={[Autoplay]}
+                loop={true}
+              >
                 {images.map((img, i) => (
-                  <img key={img.src + i} className={styles.banner__images__img} src={img.src} ref={ref} />
+                  <SwiperSlide key={img.src + i}>
+                    <img
+                      className={styles.banner__images__img}
+                      src={img.src}
+                      ref={ref}
+                    />
+                  </SwiperSlide>
                 ))}
-              </div>
+              </Swiper>
             </div>
           </div>
 
@@ -89,7 +115,12 @@ export const Banner = () => {
             </defs>
           </svg>
         </div>
-        <div className={classNames(styles.banner__content__button, styles.banner__content__button_mob)}>
+        <div
+          className={classNames(
+            styles.banner__content__button,
+            styles.banner__content__button_mob
+          )}
+        >
           <Button onClick={() => {}} name="Play Now" />
         </div>
       </div>

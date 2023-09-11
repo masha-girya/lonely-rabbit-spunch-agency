@@ -21,7 +21,8 @@
     "react-spring": "^9.7.2",
     "react-spring-carousel": "^2.0.19",
     "react-transition-group": "^4.4.5",
-    "sass": "^1.32.5"
+    "sass": "^1.32.5",
+    "swiper": "^10.2.0"
   },
   "devDependencies": {
     "@types/node": "^14.14.13",
