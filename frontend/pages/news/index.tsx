@@ -5,6 +5,7 @@ import { Button } from "@components/button";
 import { Footer } from "@components/footer";
 import { NEWS_MOCK } from "src/constants/news";
 import { NewsCard } from "@components/news/news-card";
+import { Page, getDataPages } from "src/services/api";
 
 const News = () => {
   const [newsData, setNewsData] = useState(NEWS_MOCK);
@@ -17,6 +18,17 @@ const News = () => {
       setNewsLength((prev) => prev + 4);
     }
   }, [newsLength, newsData]);
+
+  // const loadData = async () => {
+  //   const res = await getDataPages(Page.news, [HomePage.second_block_title]);
+  //   if (res) {
+  //     setTitle(res[HomePage.second_block_title]);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   loadData();
+  // }, []);
 
   return (
     <>

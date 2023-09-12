@@ -3,6 +3,8 @@ import { API_ENDPOINT } from "src/constants";
 
 export enum Page {
   home = "home.HomePage",
+  news = "news.NewsPage",
+  newsSingle = "news.NewsSinglePage",
 }
 
 export enum HomePage {
@@ -13,12 +15,46 @@ export enum HomePage {
   characters_carousel = "characters_carousel",
 }
 
+export enum NewsPage {
+  title = "title",
+}
+
+export enum NewsSinglePage {
+  title = "title",
+  date = "date",
+  main_image = "main_image",
+  thumbnail_image = "thumbnail_image",
+  caption = "caption",
+  body = "body",
+}
+
 export interface ICharacters {
   id: number;
   meta: { type: string };
   description: string;
   name: string;
   carousel_image: ICharactersImage;
+}
+
+export interface INewsSingle {
+  id: number;
+  meta: any;
+  title: string;
+  date: string;
+  caption: string;
+  main_image: ICharactersImage;
+  thumbnail_image: ICharactersImage;
+  body: {
+    type: "h1" | "h2" | "h3" | "h4" | "h5" | "paragraph" | "image";
+    value: string | IImage;
+  };
+}
+
+interface IImage {
+  url: string;
+  width: number;
+  height: number;
+  title: string;
 }
 
 export interface ICharactersImage {
@@ -28,7 +64,7 @@ export interface ICharactersImage {
     detail_url: string;
     download_url: string;
   };
-  title: string,
+  title: string;
 }
 
 export const getDataPages = async (page: Page, fields: string[]) => {
