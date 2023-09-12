@@ -14,7 +14,7 @@ export const Characters = () => {
   const { isDesktop, isSmallNote, isTablet } = useDevice();
 
   useEffect(() => {
-    setCharsOnShow([...CHARACTERS_MOCK]);
+    setCharsOnShow(CHARACTERS_MOCK);
     setTimeout(() => {
       setCurrentChar(CHARACTERS_MOCK[Math.floor(CHARACTERS_MOCK.length / 2)]);
       setCurrentSlide(
@@ -24,7 +24,7 @@ export const Characters = () => {
   }, [CHARACTERS_MOCK]);
 
   useEffect(() => {
-    if(isDesktop || isSmallNote || isTablet) {
+      if(isDesktop || isSmallNote || isTablet) {
       setCurrentChar(CHARACTERS_MOCK[Math.floor(CHARACTERS_MOCK.length / 2)]);
       setCurrentSlide(
         CHARACTERS_MOCK[Math.floor(CHARACTERS_MOCK.length / 2)].charId
