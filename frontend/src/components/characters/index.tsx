@@ -14,10 +14,12 @@ export const Characters = () => {
 
   useEffect(() => {
     setCharsOnShow([...CHARACTERS_MOCK]);
-    setCurrentChar(CHARACTERS_MOCK[Math.floor(CHARACTERS_MOCK.length / 2)]);
-    setCurrentSlide(
-      CHARACTERS_MOCK[Math.floor(CHARACTERS_MOCK.length / 2)].charId
-    );
+    setTimeout(() => {
+      setCurrentChar(CHARACTERS_MOCK[Math.floor(CHARACTERS_MOCK.length / 2)]);
+      setCurrentSlide(
+        CHARACTERS_MOCK[Math.floor(CHARACTERS_MOCK.length / 2)].charId
+      );
+    }, 10)
   }, [CHARACTERS_MOCK]);
 
   return (
