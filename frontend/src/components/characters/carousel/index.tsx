@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import styles from "./index.module.scss";
-import { CHARACTERS_MOCK } from "src/constants/characters";
 import { useSpringCarousel } from "react-spring-carousel";
 import { DURATION } from "src/constants/transition";
 import { Circles } from "@components/circles";
 import { CarouselThumbs } from "../carousel-thumbs";
 import { useDevice } from "src/hooks/useDevice";
 import { ICharacters } from "src/services/api";
+import { API_MEDIA_ENDPOINT } from "src/constants";
 
 interface ICarousel {
   chars: ICharacters[];
@@ -33,9 +33,9 @@ export const Carousel: React.FC<ICarousel> = (props) => {
   } = useSpringCarousel({
     gutter: 0,
     initialStartingPosition: "center",
-    itemsPerSlide: isMobile ? 3 : 5,
+    itemsPerSlide: chars.length - 1,
     withLoop: true,
-    initialActiveItem: 2,
+    initialActiveItem: Math.floor(chars.length - 1),
     withThumbs: true,
     items: chars.map((item) => ({
       id: item.id.toString(),
@@ -53,7 +53,7 @@ export const Carousel: React.FC<ICarousel> = (props) => {
             })}
           >
             <img
-              src={item.carousel_image.meta.detail_url}
+              src={`${API_MEDIA_ENDPOINT}${item.carousel_image.meta.download_url}`}
               alt={item.carousel_image.title}
               className={styles.charsList__item__image}
               loading="eager"

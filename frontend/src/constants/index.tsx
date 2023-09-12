@@ -13,6 +13,7 @@ import AboutUsImg3 from "pages/about-us/assets/Img3.png";
 import MockImg from "pages/news/assets/MockImg.png";
 
 export const API_ENDPOINT = "http://api-lonely-rabbit.spunch.agency/api/v2";
+export const API_MEDIA_ENDPOINT = "http://api-lonely-rabbit.spunch.agency";
 
 export const NAV = [
   { title: "Midnight Strikes", link: "/" },

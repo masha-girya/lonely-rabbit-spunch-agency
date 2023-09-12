@@ -1,7 +1,6 @@
 import axios from "axios";
 import { API_ENDPOINT } from "src/constants";
 
-export type Data = "pages" | "images";
 export enum Page {
   home = "home.HomePage",
 }
@@ -32,29 +31,16 @@ export interface ICharactersImage {
   title: string,
 }
 
-export const getData = async (dataType: Data, page: Page, fields: string[]) => {
+export const getDataPages = async (page: Page, fields: string[]) => {
   const formattedFields = fields.join(",");
 
   try {
     const response = await axios.get(
-      `${API_ENDPOINT}/${dataType}/?type=${page}&fields=${formattedFields}`
+      `${API_ENDPOINT}/pages/?type=${page}&fields=${formattedFields}`
     );
 
-    console.log(response);
-
-    return response.data.items;
+    return response.data.items[0];
   } catch (err) {
     console.error(err);
-  }
-};
-
-export const getTestData = async () => {
-  try {
-    const res = await axios.get(
-      "http://api-lonely-rabbit.spunch.agency/api/v2/pages/?type=home.HomePage&fields=characters_carousel"
-    );
-    console.log(res);
-  } catch (err) {
-    console.log(err);
   }
 };

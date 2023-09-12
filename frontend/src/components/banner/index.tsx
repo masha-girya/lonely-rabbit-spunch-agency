@@ -1,22 +1,20 @@
-import { Button } from "@components/button";
-import styles from "./index.module.scss";
-import { Header } from "@components/header";
 import { useEffect, useState } from "react";
-import { BANNER_IMGS } from "src/constants";
 import classNames from "classnames";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import "swiper/css";
-import { HomePage, Page, getData } from "src/services/api";
+import { Button } from "@components/button";
+import { Header } from "@components/header";
+import { BANNER_IMGS } from "src/constants";
+import { HomePage, Page, getDataPages } from "src/services/api";
+import styles from "./index.module.scss";
 
 export const Banner = () => {
-  const [title, setTitle] = useState(
-    "Lonely Rabbit: Into the Realm of Darkness and Fear"
-  );
-  const [images, setImages] = useState([...BANNER_IMGS]);
+  const [title, setTitle] = useState("");
+  const [images, setImages] = useState(BANNER_IMGS);
 
   const loadData = async () => {
-    const res = await getData("pages", Page.home, [HomePage.first_block_title]);
+    const res = await getDataPages(Page.home, [HomePage.first_block_title]);
     if (res) {
       setTitle(res[HomePage.first_block_title]);
     }

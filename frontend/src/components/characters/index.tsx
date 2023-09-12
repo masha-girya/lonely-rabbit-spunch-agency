@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import styles from "./index.module.scss";
-import { CHARACTERS_MOCK } from "src/constants/characters";
 import { Carousel } from "./carousel";
-import { useDevice } from "src/hooks/useDevice";
-import { HomePage, ICharacters, Page, getData } from "src/services/api";
+import { HomePage, ICharacters, Page, getDataPages } from "src/services/api";
+import styles from "./index.module.scss";
 
 export const Characters = () => {
   const [title, setTitle] = useState("Meet the Characters");
@@ -27,7 +25,7 @@ export const Characters = () => {
   const [isOnShow, setIsOnShow] = useState(false);
 
   const loadData = async () => {
-    const res = await getData("pages", Page.home, [
+    const res = await getDataPages(Page.home, [
       HomePage.characters_carousel,
     ]);
 
@@ -36,21 +34,22 @@ export const Characters = () => {
       setCharsOnShow(chars);
       setCurrentChar(chars[Math.floor(chars.length / 2)]);
       setCurrentSlide(chars[Math.floor(chars.length / 2)].id);
+
+      setTimeout(() => {
+        setIsOnShow(true);
+      }, 100)
     }
   };
 
   useEffect(() => {
     loadData();
-    setTimeout(() => {
-      setIsOnShow(true);
-    }, 100);
   }, []);
 
   return (
     <article className={styles.chars}>
       <div className={styles.chars__container}>
         <h1>{title}</h1>
-        {charsOnShow.length > 0 && isOnShow && (
+        {(charsOnShow.length > 0 && isOnShow) && (
           <Carousel
             currentChar={currentChar}
             setCurrentChar={setCurrentChar}
