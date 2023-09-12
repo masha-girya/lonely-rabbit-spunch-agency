@@ -30,12 +30,13 @@ export const Carousel: React.FC<ICarousel> = (props) => {
     slideToPrevItem,
     slideToNextItem,
     slideToItem,
+    getCurrentActiveItem,
   } = useSpringCarousel({
     gutter: 0,
     initialStartingPosition: "center",
-    itemsPerSlide: chars.length - 1,
+    itemsPerSlide: chars.length % 2 === 0 ? chars.length - 1 : chars.length,
     withLoop: true,
-    initialActiveItem: Math.floor(chars.length - 1),
+    initialActiveItem: chars.length % 2 === 0 ? Math.floor((chars.length - 1) / 2) : Math.floor(chars.length / 2),
     withThumbs: true,
     items: chars.map((item) => ({
       id: item.id.toString(),
@@ -55,7 +56,9 @@ export const Carousel: React.FC<ICarousel> = (props) => {
             <img
               src={`${API_MEDIA_ENDPOINT}${item.carousel_image.meta.download_url}`}
               alt={item.carousel_image.title}
-              className={styles.charsList__item__image}
+              className={classNames(styles.charsList__item__image, {
+                [styles.charsList__item__image_main]: currentSlide === item.id
+              })}
               loading="eager"
             />
           </div>
