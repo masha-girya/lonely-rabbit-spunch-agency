@@ -15,20 +15,13 @@ export const Characters = () => {
 
   useEffect(() => {
     setCharsOnShow([...CHARACTERS_MOCK]);
-    if (isMobile) {
-      setTimeout(() => {
-        setCurrentChar(CHARACTERS_MOCK[Math.floor(CHARACTERS_MOCK.length / 2)]);
-        setCurrentSlide(
-          CHARACTERS_MOCK[Math.floor(CHARACTERS_MOCK.length / 2)].charId
-        );
-      }, 100);
-    } else {
+    setTimeout(() => {
       setCurrentChar(CHARACTERS_MOCK[Math.floor(CHARACTERS_MOCK.length / 2)]);
       setCurrentSlide(
         CHARACTERS_MOCK[Math.floor(CHARACTERS_MOCK.length / 2)].charId
       );
-    }
-  }, [CHARACTERS_MOCK, isMobile]);
+    }, 100);
+  }, [CHARACTERS_MOCK]);
 
   return (
     <article className={styles.chars}>
