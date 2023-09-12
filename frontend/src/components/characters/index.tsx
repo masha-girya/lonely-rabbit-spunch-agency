@@ -11,7 +11,7 @@ export const Characters = () => {
   const [currentChar, setCurrentChar] = useState<
     undefined | (typeof CHARACTERS_MOCK)[0]
   >(undefined);
-  const { isMobile } = useDevice();
+  const { isDesktop, isSmallNote, isTablet } = useDevice();
 
   useEffect(() => {
     setCharsOnShow([...CHARACTERS_MOCK]);
@@ -22,6 +22,15 @@ export const Characters = () => {
       );
     }, 100);
   }, [CHARACTERS_MOCK]);
+
+  useEffect(() => {
+    if(isDesktop || isSmallNote || isTablet) {
+      setCurrentChar(CHARACTERS_MOCK[Math.floor(CHARACTERS_MOCK.length / 2)]);
+      setCurrentSlide(
+        CHARACTERS_MOCK[Math.floor(CHARACTERS_MOCK.length / 2)].charId
+      );
+    }
+  }, [isDesktop, isSmallNote, isTablet])
 
   return (
     <article className={styles.chars}>
