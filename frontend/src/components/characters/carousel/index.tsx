@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import classNames from "classnames";
 import styles from "./index.module.scss";
 import { CHARACTERS_MOCK } from "src/constants/characters";
@@ -84,6 +84,13 @@ export const Carousel: React.FC<ICarousel> = (props) => {
       }, 100);
     }
   });
+
+  useEffect(() => {
+    setTimeout(() => {
+      setCurrentSlide(currentSlide);
+      setCurrentChar(currentChar);
+    }, 1)
+  }, []);
 
   return (
     <div className={styles.charListBox}>
