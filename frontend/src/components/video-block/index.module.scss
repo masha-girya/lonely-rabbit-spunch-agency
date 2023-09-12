@@ -35,10 +35,7 @@
 
       p {
         @include bodyText();
-
-        &:first-of-type {
-          margin-bottom: 20px;
-        }
+        margin-bottom: 20px;
 
         @include devices(tablet) {
           &:last-of-type {
