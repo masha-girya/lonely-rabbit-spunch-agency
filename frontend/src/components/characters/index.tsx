@@ -19,7 +19,7 @@ export const Characters = () => {
       setCurrentSlide(
         CHARACTERS_MOCK[Math.floor(CHARACTERS_MOCK.length / 2)].charId
       );
-    }, 10)
+    }, 1)
   }, [CHARACTERS_MOCK]);
 
   return (
