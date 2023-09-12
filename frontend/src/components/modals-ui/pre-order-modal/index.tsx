@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Button } from "@components/button";
 import { CloseIcon } from "@components/icons/CloseIcon";
 import CenterImg from "./assets/Center.png";
-import RightImg from "./assets/Right.png";
 import LeftImg from "./assets/Left.png";
 
 interface IPreOrderModal {
@@ -49,7 +48,6 @@ export const PreOrderModal: React.FC<IPreOrderModal> = (props) => {
           <div className={styles.preOrder__rightCol__background}></div>
           <img className={styles.preOrder__leftImg} src={LeftImg.src} />
           <img className={styles.preOrder__centerImg} src={CenterImg.src} />
-          <img className={styles.preOrder__rightImg} src={RightImg.src} />
         </div>
       </div>
     </div>

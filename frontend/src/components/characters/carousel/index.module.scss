@@ -48,15 +48,21 @@
     &::before {
       content: "";
       display: block;
+      opacity: 1;
       position: absolute;
       bottom: 12%;
       left: 50%;
       transform: translateX(-50%);
-      width: 100%;
+      width: 240px;
       height: 70%;
       border-radius: 20px;
       background: rgba(217, 217, 217, 0.05);
       filter: blur(2.5px);
+      transition: opacity .5s ease;
+
+      @include devices(mobile) {
+        width: 200px;
+      }
     }
 
     @include devices(mobile) {
@@ -72,7 +78,7 @@
       }
 
       &::before {
-        display: none;
+        opacity: 0;
       }
     }
 

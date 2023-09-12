@@ -25,6 +25,10 @@
       background-position: bottom 0 left 65%;
       background-size: cover;
 
+      @include devices(mobile) {
+        background-position: bottom 0 left 70%;
+      }
+
       &::after {
         content: "";
         position: absolute;
