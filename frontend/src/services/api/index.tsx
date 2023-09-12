@@ -47,7 +47,7 @@ export interface INewsSingle {
   body: {
     type: "h1" | "h2" | "paragraph" | "image";
     value: string | IImage;
-  };
+  }[];
 }
 
 interface IImage {
@@ -67,15 +67,42 @@ export interface ICharactersImage {
   title: string;
 }
 
-export const getDataPages = async (page: Page, fields: string[]) => {
+export enum ApiFields {
+  pageType = "?type=",
+  pageSlug = "?slug=",
+  fields = "&fields=",
+  limit = "&limit=",
+}
+
+export const getDataPages = async (
+  page: Page,
+  fields: string[],
+  addField?: string
+) => {
   const formattedFields = fields.join(",");
+  const link = addField
+    ? `${API_ENDPOINT}/pages/?type=${page}&fields=${formattedFields}&${addField}`
+    : `${API_ENDPOINT}/pages/?type=${page}&fields=${formattedFields}`;
 
   try {
-    const response = await axios.get(
-      `${API_ENDPOINT}/pages/?type=${page}&fields=${formattedFields}`
-    );
+    const response = await axios.get(link);
 
     return response.data.items;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const getPageBySlug = async (slug: string) => {
+  const link = `${API_ENDPOINT}/pages/?slug=${slug}`;
+  const link2 = `${API_ENDPOINT}/pages`;
+
+  try {
+    const response = await axios.get(link);
+
+    const data = await axios.get(`${link2}/${response.data.items[0].id}`);
+
+    return data.data;
   } catch (err) {
     console.error(err);
   }

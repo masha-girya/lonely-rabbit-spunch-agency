@@ -1,11 +1,12 @@
 import { GameIcon } from "@components/icons/GameIcon";
 import styles from "./index.module.scss";
 import { Button } from "@components/button";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { NEWS_MOCK } from "src/constants/news";
 import { useDevice } from "src/hooks/useDevice";
 import { useRouter } from "next/router";
 import { DesktopNews } from "./desktop-news";
+import { INewsSingle, Page, getDataPages } from "src/services/api";
 
 interface INews {
   title?: string;
@@ -15,11 +16,24 @@ interface INews {
 export const NewsList: React.FC<INews> = (props) => {
   const { title, buttonTitle } = props;
   const router = useRouter();
-  const [news, setNews] = useState(NEWS_MOCK);
+  const [news, setNews] = useState<INewsSingle[]>([]);
   const { isMobile, isDesktop } = useDevice();
+  const [circles, setCircles] = useState<INewsSingle[]>([]);
 
   const cardLength = isMobile ? (window.innerWidth - 18) : 614;
-  const circles = isDesktop ? news.slice(0, -1) : news;
+
+  const loadNewsData = useCallback(async () => {
+    const res = await getDataPages(Page.newsSingle, ["*"]);
+
+    if (res) {
+      setCircles(isDesktop ? res.slice(0, -1) : res);
+      setNews(res);
+    }
+  }, [isDesktop, isMobile]);
+
+  useEffect(() => {
+    loadNewsData();
+  }, []);
 
   const button = (
       <Button name={buttonTitle ?? "All our news"} onClick={() => router.push("/news")} />

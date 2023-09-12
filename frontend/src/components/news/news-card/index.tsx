@@ -15,7 +15,6 @@ export const NewsCard: React.FC<INewsCard> = (props) => {
   const { id, main_image, title, caption, date, meta } = card;
   const { isMobile } = useDevice();
   const router = useRouter();
-  console.log(card)
 
   const formatDesc = useMemo(() => {
     return isMobile ? caption.split(" ").slice(0, 5).join(" ") : caption;
@@ -35,7 +34,7 @@ export const NewsCard: React.FC<INewsCard> = (props) => {
         <div className={styles.card__button}>
           <Button
             name="Read more"
-            onClick={() => router.push(`/news/news-${meta.slug}`)}
+            onClick={() => router.push(`/news/${meta.slug}`)}
             variant="secondary"
           />
         </div>

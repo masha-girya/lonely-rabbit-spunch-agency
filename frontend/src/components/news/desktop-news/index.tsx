@@ -6,11 +6,12 @@ import { NextIcon } from "@components/icons/NextIcon";
 import { PrevIcon } from "@components/icons/PrevIcon";
 import { Circles } from "@components/circles";
 import { useSwiper } from "src/hooks/useSwiper";
+import { INewsSingle } from "src/services/api";
 
 interface IDesktopNews {
-  news: typeof NEWS_MOCK;
+  news: INewsSingle[];
   cardLength: number;
-  circles: typeof NEWS_MOCK;
+  circles: INewsSingle[];
 }
 
 export const DesktopNews: React.FC<IDesktopNews> = (props) => {
@@ -67,8 +68,8 @@ export const DesktopNews: React.FC<IDesktopNews> = (props) => {
         {circles.map((item, i) => (
           <Circles
             key={item.id}
-            highlighted={item.id === circleCounter}
-            handleMove={() => slideTo(item.id)}
+            highlighted={i + 1 === circleCounter}
+            handleMove={() => slideTo(i + 1)}
           />
         ))}
       </div>

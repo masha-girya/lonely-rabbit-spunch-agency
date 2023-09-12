@@ -5,48 +5,52 @@ import { Button } from "@components/button";
 import { Footer } from "@components/footer";
 import { NEWS_MOCK } from "src/constants/news";
 import { NewsCard } from "@components/news/news-card";
-import {
-  INewsSingle,
-  NewsPage,
-  NewsSinglePage,
-  Page,
-  getDataPages,
-} from "src/services/api";
+import { INewsSingle, NewsPage, Page, getDataPages } from "src/services/api";
 
 const News = () => {
   const [title, setTitle] = useState("");
   const [newsData, setNewsData] = useState<INewsSingle[]>([]);
-  const [newsLength, setNewsLength] = useState(0);
-  const [visibleNews, setVisibleNews] = useState<INewsSingle[]>([]);
+  const [newsAmount, setNewsAmount] = useState(4);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleShowMore = useCallback(() => {
-    if (newsLength - 4 < newsData.length) {
-      setVisibleNews(newsData.slice(0, newsLength));
-      setNewsLength((prev) => prev + 4);
-    }
-  }, [newsLength, newsData]);
+    setNewsAmount((prev) => prev + 4);
+  }, []);
 
   const loadData = useCallback(async () => {
-    const res = await getDataPages(Page.news, [NewsPage.title]);
-    if (res) {
-      setTitle(res[NewsPage.title]);
+    setIsLoading(true);
+
+    try {
+      const res = await getDataPages(Page.news, [NewsPage.title]);
+      if (res) {
+        setTitle(res[NewsPage.title]);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
     }
   }, []);
 
   const loadNewsData = useCallback(async () => {
-    const res = await getDataPages(Page.newsSingle, ["*"]);
+    const res = await getDataPages(
+      Page.newsSingle,
+      ["*"],
+      `limit=${newsAmount}`
+    );
 
     if (res) {
-      setNewsLength(res.length);
       setNewsData(res);
-      setVisibleNews(res.length > 4 ? res.slice(0, 4) : res);
     }
-  }, []);
+  }, [newsAmount]);
 
   useEffect(() => {
     loadData();
-    loadNewsData();
   }, []);
+
+  useEffect(() => {
+    loadNewsData();
+  }, [newsAmount]);
 
   return (
     <>
@@ -58,14 +62,14 @@ const News = () => {
           </div>
         </div>
         <div className={styles.news__newsList}>
-          {visibleNews.map((item) => (
+          {newsData.map((item) => (
             <div key={item.id} className={styles.news__newsList__item}>
               <NewsCard key={item.id} card={item} />
             </div>
           ))}
         </div>
         <div className={styles.news__button}>
-          <Button name="Show More" onClick={handleShowMore} />
+          <Button name="Show More" onClick={handleShowMore} isOnLoad={isLoading} />
         </div>
       </main>
       <Footer />
