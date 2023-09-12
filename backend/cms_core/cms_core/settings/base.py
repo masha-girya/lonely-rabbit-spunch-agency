@@ -27,6 +27,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 if env("DEBUG") == 'True':
     ALLOWED_HOSTS = ['*']
+    CORS_ALLOW_ALL_ORIGINS = True
 else:
     ALLOWED_HOSTS = env("ALLOWED_HOST").split(",")
 
