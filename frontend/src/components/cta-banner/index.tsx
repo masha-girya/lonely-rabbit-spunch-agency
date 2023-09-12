@@ -12,7 +12,7 @@ export const CtaBanner = () => {
   const loadData = async () => {
     const res = await getDataPages(Page.home, [HomePage.second_block_title]);
     if (res) {
-      setTitle(res[HomePage.second_block_title]);
+      setTitle(res[0][HomePage.second_block_title]);
     }
   };
 

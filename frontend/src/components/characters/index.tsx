@@ -30,7 +30,7 @@ export const Characters = () => {
     ]);
 
     if (res) {
-      const chars = res[HomePage.characters_carousel];
+      const chars = res[0][HomePage.characters_carousel];
       setCharsOnShow(chars);
       setCurrentChar(chars[Math.floor(chars.length / 2)]);
       setCurrentSlide(chars[Math.floor(chars.length / 2)].id);

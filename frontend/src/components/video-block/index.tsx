@@ -11,8 +11,8 @@ export const VideoBlock = () => {
   const loadData = async () => {
     const res = await getDataPages(Page.home, [HomePage.video_block_title, HomePage.video_block_description]);
     if (res) {
-      setTitle(res[HomePage.video_block_title]);
-      setDescription(res[HomePage.video_block_description])
+      setTitle(res[0][HomePage.video_block_title]);
+      setDescription(res[0][HomePage.video_block_description])
     }
   };
 

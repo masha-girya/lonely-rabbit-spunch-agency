@@ -45,7 +45,7 @@ export interface INewsSingle {
   main_image: ICharactersImage;
   thumbnail_image: ICharactersImage;
   body: {
-    type: "h1" | "h2" | "h3" | "h4" | "h5" | "paragraph" | "image";
+    type: "h1" | "h2" | "paragraph" | "image";
     value: string | IImage;
   };
 }
@@ -75,7 +75,7 @@ export const getDataPages = async (page: Page, fields: string[]) => {
       `${API_ENDPOINT}/pages/?type=${page}&fields=${formattedFields}`
     );
 
-    return response.data.items[0];
+    return response.data.items;
   } catch (err) {
     console.error(err);
   }

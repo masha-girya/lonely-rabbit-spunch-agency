@@ -16,7 +16,7 @@ export const Banner = () => {
   const loadData = async () => {
     const res = await getDataPages(Page.home, [HomePage.first_block_title]);
     if (res) {
-      setTitle(res[HomePage.first_block_title]);
+      setTitle(res[0][HomePage.first_block_title]);
     }
   };
 

@@ -1,16 +1,23 @@
 import { Header } from "@components/header";
 import styles from "./index.module.scss";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Button } from "@components/button";
 import { Footer } from "@components/footer";
 import { NEWS_MOCK } from "src/constants/news";
 import { NewsCard } from "@components/news/news-card";
-import { Page, getDataPages } from "src/services/api";
+import {
+  INewsSingle,
+  NewsPage,
+  NewsSinglePage,
+  Page,
+  getDataPages,
+} from "src/services/api";
 
 const News = () => {
-  const [newsData, setNewsData] = useState(NEWS_MOCK);
-  const [newsLength, setNewsLength] = useState(8);
-  const [visibleNews, setVisibleNews] = useState(newsData.slice(0, 4));
+  const [title, setTitle] = useState("");
+  const [newsData, setNewsData] = useState<INewsSingle[]>([]);
+  const [newsLength, setNewsLength] = useState(0);
+  const [visibleNews, setVisibleNews] = useState<INewsSingle[]>([]);
 
   const handleShowMore = useCallback(() => {
     if (newsLength - 4 < newsData.length) {
@@ -19,16 +26,27 @@ const News = () => {
     }
   }, [newsLength, newsData]);
 
-  // const loadData = async () => {
-  //   const res = await getDataPages(Page.news, [HomePage.second_block_title]);
-  //   if (res) {
-  //     setTitle(res[HomePage.second_block_title]);
-  //   }
-  // };
+  const loadData = useCallback(async () => {
+    const res = await getDataPages(Page.news, [NewsPage.title]);
+    if (res) {
+      setTitle(res[NewsPage.title]);
+    }
+  }, []);
 
-  // useEffect(() => {
-  //   loadData();
-  // }, []);
+  const loadNewsData = useCallback(async () => {
+    const res = await getDataPages(Page.newsSingle, ["*"]);
+
+    if (res) {
+      setNewsLength(res.length);
+      setNewsData(res);
+      setVisibleNews(res.length > 4 ? res.slice(0, 4) : res);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadData();
+    loadNewsData();
+  }, []);
 
   return (
     <>
@@ -36,7 +54,7 @@ const News = () => {
       <main className={styles.news}>
         <div className={styles.news__banner}>
           <div className={styles.news__banner__img}>
-            <h1>Latest News</h1>
+            <h1>{title}</h1>
           </div>
         </div>
         <div className={styles.news__newsList}>
