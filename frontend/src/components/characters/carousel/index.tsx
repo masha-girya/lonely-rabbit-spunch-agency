@@ -7,11 +7,12 @@ import { DURATION } from "src/constants/transition";
 import { Circles } from "@components/circles";
 import { CarouselThumbs } from "../carousel-thumbs";
 import { useDevice } from "src/hooks/useDevice";
+import { ICharacters } from "src/services/api";
 
 interface ICarousel {
-  chars: typeof CHARACTERS_MOCK;
-  currentChar: (typeof CHARACTERS_MOCK)[0];
-  setCurrentChar: (currentChar: (typeof CHARACTERS_MOCK)[0]) => void;
+  chars: ICharacters[];
+  currentChar: ICharacters;
+  setCurrentChar: (currentChar: ICharacters) => void;
   currentSlide: number;
   setCurrentSlide: (currentSlide: number) => void;
 }
@@ -37,23 +38,23 @@ export const Carousel: React.FC<ICarousel> = (props) => {
     initialActiveItem: 2,
     withThumbs: true,
     items: chars.map((item) => ({
-      id: item.charId.toString(),
+      id: item.id.toString(),
       renderItem: (
         <div
           // onClick={() => slideToItem(item.charId.toString())}
-          key={item.charId}
+          key={item.id}
           className={classNames(styles.charsList__charBox, {
-            [styles.charsList__charBox_main]: currentSlide === item.charId,
+            [styles.charsList__charBox_main]: currentSlide === item.id,
           })}
         >
           <div
             className={classNames(styles.charsList__item, {
-              [styles.charsList__item_main]: currentSlide === item.charId,
+              [styles.charsList__item_main]: currentSlide === item.id,
             })}
           >
             <img
-              src={item.img.src}
-              alt={item.title}
+              src={item.carousel_image.meta.detail_url}
+              alt={item.carousel_image.title}
               className={styles.charsList__item__image}
               loading="eager"
             />
@@ -62,8 +63,8 @@ export const Carousel: React.FC<ICarousel> = (props) => {
       ),
       renderThumb: (
         <Circles
-          highlighted={item.charId === currentChar?.charId}
-          handleMove={() => slideToItem(item.charId.toString())}
+          highlighted={item.id === currentChar.id}
+          handleMove={() => slideToItem(item.id.toString())}
         />
       ),
     })),
@@ -79,7 +80,7 @@ export const Carousel: React.FC<ICarousel> = (props) => {
 
       setCurrentSlide(+event?.nextItem?.id);
       setTimeout(() => {
-        const char = chars.find((item) => +event?.nextItem?.id === item.charId);
+        const char = chars.find((item) => +event?.nextItem?.id === item.id);
         if (char) {
           setCurrentChar(char);
         }

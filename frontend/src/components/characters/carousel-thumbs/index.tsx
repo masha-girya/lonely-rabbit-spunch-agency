@@ -9,13 +9,14 @@ import {
 import { LeftIcon } from "@components/icons/LeftIcon";
 import { RightIcon } from "@components/icons/RightIcon";
 import { Transition } from "react-transition-group";
+import { ICharacters } from "src/services/api";
 
 interface ICarouselThumbs {
   moveRight: () => void,
   moveLeft: () => void,
   thumbsFragment: React.ReactNode,
   mainCharOnChange: boolean,
-  currentChar: typeof CHARACTERS_MOCK[0] | undefined,
+  currentChar: ICharacters,
 }
 
 export const CarouselThumbs: React.FC<ICarouselThumbs> = (props) => {
@@ -43,7 +44,7 @@ export const CarouselThumbs: React.FC<ICarouselThumbs> = (props) => {
               ref={refText}
               style={{ ...DEFAULT_STYLE_TEXT, ...TRANS_STYLES_TEXT[state] }}
             >
-              <h2>{currentChar?.title}</h2>
+              <h2>{currentChar?.name}</h2>
               <p>{currentChar?.description}</p>
             </div>
           )}
