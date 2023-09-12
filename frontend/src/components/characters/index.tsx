@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import { CHARACTERS_MOCK } from "src/constants/characters";
 import { Carousel } from "./carousel";
+import { useDevice } from "src/hooks/useDevice";
 
 export const Characters = () => {
   const [title, setTitle] = useState("Meet the Characters");
@@ -10,17 +11,24 @@ export const Characters = () => {
   const [currentChar, setCurrentChar] = useState<
     undefined | (typeof CHARACTERS_MOCK)[0]
   >(undefined);
-  const [showChars, setShowChars] = useState(false);
+  const { isMobile } = useDevice();
 
   useEffect(() => {
     setCharsOnShow([...CHARACTERS_MOCK]);
-    setTimeout(() => {
+    if (isMobile) {
+      setTimeout(() => {
+        setCurrentChar(CHARACTERS_MOCK[Math.floor(CHARACTERS_MOCK.length / 2)]);
+        setCurrentSlide(
+          CHARACTERS_MOCK[Math.floor(CHARACTERS_MOCK.length / 2)].charId
+        );
+      }, 100);
+    } else {
       setCurrentChar(CHARACTERS_MOCK[Math.floor(CHARACTERS_MOCK.length / 2)]);
       setCurrentSlide(
         CHARACTERS_MOCK[Math.floor(CHARACTERS_MOCK.length / 2)].charId
       );
-    }, 100)
-  }, [CHARACTERS_MOCK]);
+    }
+  }, [CHARACTERS_MOCK, isMobile]);
 
   return (
     <article className={styles.chars}>
