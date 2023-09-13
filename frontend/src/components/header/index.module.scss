@@ -7,13 +7,13 @@
   width: 100%;
   background-color: #333333;
   height: 100px;
+  transition: all 0.4s ease;
 
   @include devices(tablet) {
     height: 95px;
 
     &_open {
-      height: 101%;
-      top: -2px;
+      height: 100%;
     }
   }
 
@@ -91,7 +91,8 @@
     margin-top: 9px;
     transition: all 0.1s;
 
-    &:before, &:after {
+    &:before,
+    &:after {
       content: "";
       position: absolute;
       width: 100%;
@@ -108,22 +109,28 @@
 }
 
 .mobMenu {
-  overflow: auto;
   @include scrollBar();
-  min-height: 400px;
-  height: calc(100% - 95px);
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+
+  height: 0;
+  overflow: hidden;
   background-color: #333333;
   position: relative;
   z-index: 9;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-bottom: 43px;
-  transform: translateY(-150%);
-  transition: transform .4s ease;
+  padding-bottom: 0;
+  transition: all .6s ease;
 
   &_open {
-    transform: translateY(0);
+    height: calc(100% - 95px);
+    overflow: auto;
+    padding-bottom: 43px;
   }
 
   &__nav {

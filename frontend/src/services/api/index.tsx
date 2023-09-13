@@ -5,6 +5,7 @@ export enum Page {
   home = "home.HomePage",
   news = "news.NewsPage",
   newsSingle = "news.NewsSinglePage",
+  about_us = "about_us.AboutUsPage",
 }
 
 export enum HomePage {
@@ -28,6 +29,12 @@ export enum NewsSinglePage {
   body = "body",
 }
 
+export enum AboutUsPage {
+  banner_title = "banner_title",
+  banner_description = "banner_description",
+  sections = "sections",
+}
+
 export interface ICharacters {
   id: number;
   meta: { type: string };
@@ -39,15 +46,27 @@ export interface ICharacters {
 export interface INewsSingle {
   id: number;
   meta: any;
-  title: string;
-  date: string;
-  caption: string;
-  main_image: IImage;
-  thumbnail_image: IImage;
-  body: {
+  [NewsSinglePage.title]: string;
+  [NewsSinglePage.date]: string;
+  [NewsSinglePage.caption]: string;
+  [NewsSinglePage.main_image]: IImage;
+  [NewsSinglePage.thumbnail_image]: IImage;
+  [NewsSinglePage.body]: {
     type: "h1" | "h2" | "paragraph" | "image";
     value: string | IBodyImage;
   }[];
+}
+
+export interface IAboutUs {
+  [AboutUsPage.banner_description]: string;
+  [AboutUsPage.banner_title]: string;
+  [AboutUsPage.sections]: IAboutUsSection;
+}
+
+export interface IAboutUsSection {
+  image: IImage;
+  text: string;
+  image_position: "RIGHT" | "LEFT";
 }
 
 export interface IBodyImage {
