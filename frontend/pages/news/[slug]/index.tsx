@@ -72,7 +72,7 @@ const NewsInner = () => {
           <article className={styles.newsInner__content}>
             <div className={styles.newsInner__content__title}>
               <h1>{news.title}</h1>
-              <p>{news.date.replaceAll("-", ".")}</p>
+              <p>{news.date.split("-").reverse().join(".")}</p>
             </div>
             <section className={styles.newsInner__content__textBox}>
               {createContent(news.body)}

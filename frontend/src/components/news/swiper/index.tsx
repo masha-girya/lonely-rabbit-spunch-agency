@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Mousewheel, Pagination, Navigation } from "swiper";
+import { FreeMode, Pagination, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -45,9 +45,8 @@ export const SwiperNews: React.FC<ISwiperNews> = (props) => {
           prevEl: "styles.prevIcon",
           nextEl: "styles.nextIcon",
         }}
-        modules={[FreeMode, Mousewheel, Pagination, Navigation]}
+        modules={[FreeMode, Pagination, Navigation]}
         pagination={{ clickable: true }}
-        mousewheel={isMobile ? false : true}
         className={classNames(styles["newsList"])}
         onSwiper={(swiper)=> setSwiper(swiper)}
       >

@@ -37,7 +37,7 @@ export const NewsCard: React.FC<INewsCard> = (props) => {
       <div className={styles.card__text}>
         <h1 className={styles.card__text__title}>{title}</h1>
         <p className={styles.card__text__desc}>{formatDesc}</p>
-        <p className={styles.card__text__date}>{date.replaceAll("-", ".")}</p>
+        <p className={styles.card__text__date}>{date.split("-").reverse().join("/")}</p>
         <div className={styles.card__button}>
           <Button
             name="Read more"

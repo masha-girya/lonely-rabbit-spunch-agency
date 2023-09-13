@@ -97,8 +97,8 @@ export const Carousel: React.FC<ICarousel> = (props) => {
         <div>{carouselFragment}</div>
       </div>
       <CarouselThumbs
-        moveLeft={slideToPrevItem}
-        moveRight={slideToNextItem}
+        moveNext={slideToNextItem}
+        movePrev={slideToPrevItem}
         thumbsFragment={thumbsFragment}
         mainCharOnChange={mainCharOnChange}
         currentChar={currentChar}

@@ -12,21 +12,21 @@ import { Transition } from "react-transition-group";
 import { ICharacters } from "src/services/api";
 
 interface ICarouselThumbs {
-  moveRight: () => void,
-  moveLeft: () => void,
+  movePrev: () => void,
+  moveNext: () => void,
   thumbsFragment: React.ReactNode,
   mainCharOnChange: boolean,
   currentChar: ICharacters,
 }
 
 export const CarouselThumbs: React.FC<ICarouselThumbs> = (props) => {
-  const { moveRight, moveLeft, thumbsFragment, mainCharOnChange, currentChar } = props;
+  const { movePrev, moveNext, thumbsFragment, mainCharOnChange, currentChar } = props;
   const refText = useRef<null | any>(null);
 
   return (
     <div className={styles.thumbs}>
       <button
-        onClick={moveRight}
+        onClick={movePrev}
         type="button"
         className={styles.thumbs__button}
         title="Move Right"
@@ -51,7 +51,7 @@ export const CarouselThumbs: React.FC<ICarouselThumbs> = (props) => {
         </Transition>
       </div>
       <button
-        onClick={moveLeft}
+        onClick={moveNext}
         title="Move Left"
         type="button"
         className={styles.thumbs__button}
