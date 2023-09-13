@@ -12,7 +12,7 @@ interface INewsCard {
 
 export const NewsCard: React.FC<INewsCard> = (props) => {
   const { card } = props;
-  const { id, main_image, title, caption, date, meta } = card;
+  const { id, thumbnail_image, title, caption, date, meta } = card;
   const { isMobile } = useDevice();
   const router = useRouter();
 
@@ -30,14 +30,14 @@ export const NewsCard: React.FC<INewsCard> = (props) => {
   return (
     <div className={styles.card} key={id}>
       <img
-        src={`${API_MEDIA_ENDPOINT}${main_image.meta.download_url}`}
-        alt={main_image.title}
+        src={`${API_MEDIA_ENDPOINT}${thumbnail_image.meta.download_url}`}
+        alt={thumbnail_image.title}
         className={styles.card__img}
       />
       <div className={styles.card__text}>
         <h1 className={styles.card__text__title}>{title}</h1>
         <p className={styles.card__text__desc}>{formatDesc}</p>
-        <p className={styles.card__text__date}>{date}</p>
+        <p className={styles.card__text__date}>{date.replaceAll("-", ".")}</p>
         <div className={styles.card__button}>
           <Button
             name="Read more"

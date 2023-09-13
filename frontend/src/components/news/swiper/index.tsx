@@ -10,7 +10,7 @@ import styles from "./index.module.scss";
 import { useDevice } from "src/hooks/useDevice";
 import { NextIcon } from "@components/icons/NextIcon";
 import { PrevIcon } from "@components/icons/PrevIcon";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 
 interface ISwiperNews {
   news: INewsSingle[];
@@ -27,13 +27,13 @@ export const SwiperNews: React.FC<ISwiperNews> = (props) => {
     if(swiper) {
       swiper.slidePrev();
     }
-  }, []);
+  }, [swiper]);
 
   const handleNext = useCallback(() => {
     if(swiper) {
       swiper.slideNext();
     }
-  }, []);
+  }, [swiper]);
 
   return (
     <div className={styles.sliderWrapper}>
@@ -49,7 +49,7 @@ export const SwiperNews: React.FC<ISwiperNews> = (props) => {
         pagination={{ clickable: true }}
         mousewheel={isMobile ? false : true}
         className={classNames(styles["newsList"])}
-        onSwiper={(swiper)=> {setSwiper(swiper)}}
+        onSwiper={(swiper)=> setSwiper(swiper)}
       >
         {news.map((item, i) => (
           <SwiperSlide className={styles["newsList__item"]} key={item.id + i}>

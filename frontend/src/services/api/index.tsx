@@ -16,7 +16,7 @@ export enum HomePage {
 }
 
 export enum NewsPage {
-  title = "title",
+  banner_title = "banner_title",
 }
 
 export enum NewsSinglePage {

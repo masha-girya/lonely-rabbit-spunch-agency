@@ -20,9 +20,9 @@ const News = () => {
     setIsLoading(true);
 
     try {
-      const res = await getDataPages(Page.news, [NewsPage.title]);
+      const res = await getDataPages(Page.news, [NewsPage.banner_title]);
       if (res) {
-        setTitle(res[NewsPage.title]);
+        setTitle(res[0][NewsPage.banner_title]);
       }
     } catch (err) {
       console.error(err);

@@ -40,7 +40,7 @@ const NewsInner = () => {
         case "h2":
           return <h2 key={i}>{item.value}</h2>;
         case "paragraph":
-          return <p>{item.value}</p>;
+          return <p key={i}>{item.value}</p>;
         case "image":
           const imageValue = item.value as IBodyImage;
           return (
@@ -52,7 +52,7 @@ const NewsInner = () => {
             </div>
           );
         default:
-          return <p></p>;
+          return <p key={i}></p>;
       }
     });
   };
@@ -72,7 +72,7 @@ const NewsInner = () => {
           <article className={styles.newsInner__content}>
             <div className={styles.newsInner__content__title}>
               <h1>{news.title}</h1>
-              <p>{news.date}</p>
+              <p>{news.date.replaceAll("-", ".")}</p>
             </div>
             <section className={styles.newsInner__content__textBox}>
               {createContent(news.body)}
