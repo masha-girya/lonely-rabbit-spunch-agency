@@ -3,7 +3,6 @@ import styles from "./index.module.scss";
 import { useCallback, useEffect, useState } from "react";
 import { Button } from "@components/button";
 import { Footer } from "@components/footer";
-import { NEWS_MOCK } from "src/constants/news";
 import { NewsCard } from "@components/news/news-card";
 import { INewsSingle, NewsPage, Page, getDataPages } from "src/services/api";
 

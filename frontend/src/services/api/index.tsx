@@ -33,7 +33,7 @@ export interface ICharacters {
   meta: { type: string };
   description: string;
   name: string;
-  carousel_image: ICharactersImage;
+  carousel_image: IImage;
 }
 
 export interface INewsSingle {
@@ -42,22 +42,22 @@ export interface INewsSingle {
   title: string;
   date: string;
   caption: string;
-  main_image: ICharactersImage;
-  thumbnail_image: ICharactersImage;
+  main_image: IImage;
+  thumbnail_image: IImage;
   body: {
     type: "h1" | "h2" | "paragraph" | "image";
-    value: string | IImage;
+    value: string | IBodyImage;
   }[];
 }
 
-interface IImage {
+export interface IBodyImage {
   url: string;
   width: number;
   height: number;
   title: string;
 }
 
-export interface ICharactersImage {
+export interface IImage {
   id: number;
   meta: {
     type: string;
@@ -65,13 +65,6 @@ export interface ICharactersImage {
     download_url: string;
   };
   title: string;
-}
-
-export enum ApiFields {
-  pageType = "?type=",
-  pageSlug = "?slug=",
-  fields = "&fields=",
-  limit = "&limit=",
 }
 
 export const getDataPages = async (

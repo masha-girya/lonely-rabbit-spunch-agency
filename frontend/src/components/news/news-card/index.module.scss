@@ -1,8 +1,26 @@
 @import "src/styles/mixins.scss";
 
 .card {
-  width: 100%;
-  animation: fade-in .3s ease;
+  width: 600px;
+  max-width: 600px;
+  min-width: 600px;
+  height: 340px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  animation: fade-in 0.3s ease;
+
+  @include devices(tablet) {
+    min-height: 227px;
+    height: max-content;
+    border-radius: 10.765px;
+  }
+
+  @include devices(mobile) {
+    min-width: 100%;
+    width: 100%;
+    min-height: 187px;
+  }
 
   &__img {
     position: absolute;
@@ -43,11 +61,14 @@
       color: #fbfbfb;
       font-size: 18px;
       font-weight: 400;
-      line-height: normal;
+      line-height: 24px;
+      min-height: 50px;
 
       @include devices(tablet) {
         margin-bottom: 5px;
         font-size: 14px;
+        line-height: 19px;
+        min-height: 20px;
       }
     }
 
@@ -70,7 +91,6 @@
     width: max-content;
   }
 }
-
 
 @keyframes fade-in {
   0% {

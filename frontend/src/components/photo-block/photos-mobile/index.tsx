@@ -1,11 +1,13 @@
 import { useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 import styles from "./index.module.scss";
-import { Circles } from "@components/circles";
-import { useSwiper } from "src/hooks/useSwiper";
 import { StaticImageData } from "next/image";
 
 interface IPhotosMobile {
-  cardLength: number;
   images: {
     img: StaticImageData;
     id: number;
@@ -13,38 +15,26 @@ interface IPhotosMobile {
 }
 
 export const PhotosMobile: React.FC<IPhotosMobile> = (props) => {
-  const { cardLength, images } = props;
-  const ref = useRef<any | null>(null);
-
-  const { slideTo, handleTouchEnd, handleTouchStart, circleCounter } =
-    useSwiper({
-      ref,
-      dataArray: images,
-      cardLength,
-    });
+  const { images } = props;
 
   return (
-    <>
-      <div className={styles.photosMob} ref={ref}>
+    <div className={styles.sliderWrapper}>
+      <Swiper
+        spaceBetween={14}
+        slidesPerView={1}
+        modules={[Pagination]}
+        pagination={{ clickable: true }}
+        className={styles["photosMob"]}
+      >
         {images.map((img) => (
-          <img
-            key={img.id}
-            className={styles.photosMob__img}
-            src={img.img.src}
-            onTouchEnd={(e) => handleTouchEnd(e, img.id)}
-            onTouchStart={handleTouchStart}
-          />
+          <SwiperSlide className={styles["photosMob__img"]} key={img.id}>
+            <img
+              className={styles.photosMob__img}
+              src={img.img.src}
+            />
+          </SwiperSlide>
         ))}
-      </div>
-      <div className={styles.swiper}>
-        {images.map((img) => (
-          <Circles
-            key={img.id}
-            highlighted={img.id === circleCounter}
-            handleMove={() => slideTo(img.id)}
-          />
-        ))}
-      </div>
-    </>
+      </Swiper>
+    </div>
   );
 };

@@ -2,17 +2,13 @@ import { Header } from "@components/header";
 import styles from "./index.module.scss";
 import { useCallback, useEffect, useState } from "react";
 import classNames from "classnames";
-import { Button } from "@components/button";
 import { Footer } from "@components/footer";
-import { NEWS_MOCK } from "src/constants/news";
 import { useRouter } from "next/router";
-import { API_MEDIA_ENDPOINT, NEWS_INNER_MOCK } from "src/constants";
-import { StaticImageData } from "next/image";
+import { API_MEDIA_ENDPOINT } from "src/constants";
 import { NewsList } from "@components/news";
 import {
+  IBodyImage,
   INewsSingle,
-  Page,
-  getDataPages,
   getPageBySlug,
 } from "src/services/api";
 
@@ -36,13 +32,30 @@ const NewsInner = () => {
     loadData();
   }, [slug]);
 
-  const textContent = (
-    <section className={styles.newsInner__content__textBox}>
-      {news?.body.map((item, i) => (
-        <p key={i}>{item}</p>
-      ))}
-    </section>
-  );
+  const createContent = (body: INewsSingle["body"]) => {
+    return body.map((item, i) => {
+      switch (item.type) {
+        case "h1":
+          return <h1 key={i}>{item.value}</h1>;
+        case "h2":
+          return <h2 key={i}>{item.value}</h2>;
+        case "paragraph":
+          return <p>{item.value}</p>;
+        case "image":
+          const imageValue = item.value as IBodyImage;
+          return (
+            <div key={i} className={styles.newsInner__content__imgBox}>
+              <img
+                src={`${API_MEDIA_ENDPOINT}${imageValue.url}`}
+                alt={imageValue.title}
+              />
+            </div>
+          );
+        default:
+          return <p></p>;
+      }
+    });
+  };
 
   return (
     <>
@@ -61,20 +74,14 @@ const NewsInner = () => {
               <h1>{news.title}</h1>
               <p>{news.date}</p>
             </div>
-            {/* {textContent} */}
-            <section className={styles.newsInner__content__imgBox}>
-              {/* <img
-                src={}
-                
-              /> */}
+            <section className={styles.newsInner__content__textBox}>
+              {createContent(news.body)}
             </section>
-            {/* {textContent} */}
           </article>
           <NewsList title={newsTitle} buttonTitle="See more news" />
         </main>
       ) : (
         <div className={styles.newsInner__banner}>
-          {/* <h1>There are no news under this route</h1> */}
         </div>
       )}
       <Footer />

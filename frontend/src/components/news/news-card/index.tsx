@@ -17,7 +17,14 @@ export const NewsCard: React.FC<INewsCard> = (props) => {
   const router = useRouter();
 
   const formatDesc = useMemo(() => {
-    return isMobile ? caption.split(" ").slice(0, 5).join(" ") : caption;
+    const splitCaption = caption.split(" ");
+    if (splitCaption.length > 5 && isMobile) {
+      return splitCaption.slice(0, 5).join(" ");
+    }
+    if (splitCaption.length > 12 && !isMobile) {
+      return splitCaption.slice(0, 12).join(" ") + "...";
+    }
+    return caption;
   }, [isMobile]);
 
   return (
