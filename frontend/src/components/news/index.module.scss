@@ -21,6 +21,11 @@
     }
 
     &__title {
+
+      @include devices(mobile) {
+        margin-bottom: 51px;
+      }
+
       h1 {
         @include blockTitle();
       }
@@ -51,7 +56,7 @@
     &__buttonMob {
       display: none;
       width: 188px;
-      margin: 32px auto 0;
+      margin: 18px auto 0;
 
       @include devices(tablet) {
         display: block;

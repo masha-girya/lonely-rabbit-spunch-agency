@@ -50,12 +50,23 @@
     &__textBox {
       display: flex;
       flex-direction: column;
-      row-gap: 27px;
+      row-gap: 32px;
       margin-bottom: 30px;
 
       @include devices(tablet) {
         row-gap: 21px;
         margin-bottom: 20px;
+      }
+
+      h1 {
+        @include blockTitle();
+        text-align: start;
+      }
+
+      h2 {
+        font-size: 22px;
+        font-weight: 800;
+        line-height: 30px;
       }
 
       p {
@@ -64,7 +75,6 @@
     }
 
     &__imgBox {
-      margin-bottom: 30px;
       border-radius: 20px;
       width: 100%;
       overflow: hidden;
@@ -73,7 +83,6 @@
       @include devices(tablet) {
         border-radius: 15px;
         height: 240px;
-        margin-bottom: 20px;
       }
 
       @include devices(mobile) {

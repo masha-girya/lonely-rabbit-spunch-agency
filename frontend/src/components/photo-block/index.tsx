@@ -36,7 +36,7 @@ export const PhotoBlock = () => {
             src={Img3.src}
           />
         </div>
-        {isMobile && <PhotosMobile images={images} cardLength={cardLength} />}
+        {isMobile && <PhotosMobile images={images} />}
       </div>
     </article>
   );

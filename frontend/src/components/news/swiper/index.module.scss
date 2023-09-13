@@ -1,0 +1,67 @@
+@import "src/styles/mixins.scss";
+
+$icon-diameter: 16px;
+
+@mixin swipeIcons() {
+  position: absolute;
+  z-index: 8;
+  top: calc(50% - $icon-diameter);
+  margin: auto;
+  cursor: pointer;
+
+  @include devices(mobile) {
+    display: none;
+  }
+
+  svg {
+    display: flex;
+  }
+}
+
+.newsList {
+  &__item {
+    width: 600px;
+    max-width: 600px;
+    height: 340px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+
+    @include devices(tablet) {
+      width: 600px;
+      min-width: 600px;
+      min-height: 227px;
+      height: max-content;
+      border-radius: 10.765px;
+    }
+  
+    @include devices(mobile) {
+      min-width: 100%;
+      width: 100%;
+      min-height: 187px;
+    }
+  }
+}
+
+.sliderWrapper {
+  :global(.swiper) {
+    padding: 64px;
+
+    @include devices(mobile) {
+      padding: 0;
+      padding-bottom: 44px;
+    }
+  }
+
+  @include swiperBullet();
+}
+
+.nextIcon {
+  @include swipeIcons();
+  right: 44px;
+}
+
+.prevIcon {
+  @include swipeIcons();
+  left: (64px - $icon-diameter);
+}

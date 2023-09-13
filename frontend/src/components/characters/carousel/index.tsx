@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import styles from "./index.module.scss";
-import { CHARACTERS_MOCK } from "src/constants/characters";
 import { useSpringCarousel } from "react-spring-carousel";
 import { DURATION } from "src/constants/transition";
 import { Circles } from "@components/circles";
 import { CarouselThumbs } from "../carousel-thumbs";
 import { useDevice } from "src/hooks/useDevice";
+import { ICharacters } from "src/services/api";
+import { API_MEDIA_ENDPOINT } from "src/constants";
 
 interface ICarousel {
-  chars: typeof CHARACTERS_MOCK;
-  currentChar: (typeof CHARACTERS_MOCK)[0];
-  setCurrentChar: (currentChar: (typeof CHARACTERS_MOCK)[0]) => void;
+  chars: ICharacters[];
+  currentChar: ICharacters;
+  setCurrentChar: (currentChar: ICharacters) => void;
   currentSlide: number;
   setCurrentSlide: (currentSlide: number) => void;
 }
@@ -29,32 +30,35 @@ export const Carousel: React.FC<ICarousel> = (props) => {
     slideToPrevItem,
     slideToNextItem,
     slideToItem,
+    getCurrentActiveItem,
   } = useSpringCarousel({
     gutter: 0,
     initialStartingPosition: "center",
-    itemsPerSlide: isMobile ? 3 : 5,
+    itemsPerSlide: chars.length % 2 === 0 ? chars.length - 1 : chars.length,
     withLoop: true,
-    initialActiveItem: 2,
+    initialActiveItem: chars.length % 2 === 0 ? Math.floor((chars.length - 1) / 2) : Math.floor(chars.length / 2),
     withThumbs: true,
     items: chars.map((item) => ({
-      id: item.charId.toString(),
+      id: item.id.toString(),
       renderItem: (
         <div
           // onClick={() => slideToItem(item.charId.toString())}
-          key={item.charId}
+          key={item.id}
           className={classNames(styles.charsList__charBox, {
-            [styles.charsList__charBox_main]: currentSlide === item.charId,
+            [styles.charsList__charBox_main]: currentSlide === item.id,
           })}
         >
           <div
             className={classNames(styles.charsList__item, {
-              [styles.charsList__item_main]: currentSlide === item.charId,
+              [styles.charsList__item_main]: currentSlide === item.id,
             })}
           >
             <img
-              src={item.img.src}
-              alt={item.title}
-              className={styles.charsList__item__image}
+              src={`${API_MEDIA_ENDPOINT}${item.carousel_image.meta.download_url}`}
+              alt={item.carousel_image.title}
+              className={classNames(styles.charsList__item__image, {
+                [styles.charsList__item__image_main]: currentSlide === item.id
+              })}
               loading="eager"
             />
           </div>
@@ -62,8 +66,8 @@ export const Carousel: React.FC<ICarousel> = (props) => {
       ),
       renderThumb: (
         <Circles
-          highlighted={item.charId === currentChar?.charId}
-          handleMove={() => slideToItem(item.charId.toString())}
+          highlighted={item.id === currentChar.id}
+          handleMove={() => slideToItem(item.id.toString())}
         />
       ),
     })),
@@ -79,7 +83,7 @@ export const Carousel: React.FC<ICarousel> = (props) => {
 
       setCurrentSlide(+event?.nextItem?.id);
       setTimeout(() => {
-        const char = chars.find((item) => +event?.nextItem?.id === item.charId);
+        const char = chars.find((item) => +event?.nextItem?.id === item.id);
         if (char) {
           setCurrentChar(char);
         }
@@ -93,8 +97,8 @@ export const Carousel: React.FC<ICarousel> = (props) => {
         <div>{carouselFragment}</div>
       </div>
       <CarouselThumbs
-        moveLeft={slideToPrevItem}
-        moveRight={slideToNextItem}
+        moveNext={slideToNextItem}
+        movePrev={slideToPrevItem}
         thumbsFragment={thumbsFragment}
         mainCharOnChange={mainCharOnChange}
         currentChar={currentChar}

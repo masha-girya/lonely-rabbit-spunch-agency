@@ -1,54 +1,61 @@
 import { Header } from "@components/header";
 import styles from "./index.module.scss";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import classNames from "classnames";
-import { Button } from "@components/button";
 import { Footer } from "@components/footer";
-import { NEWS_MOCK } from "src/constants/news";
 import { useRouter } from "next/router";
-import { NEWS_INNER_MOCK } from "src/constants";
-import { StaticImageData } from "next/image";
+import { API_MEDIA_ENDPOINT } from "src/constants";
 import { NewsList } from "@components/news";
-
-interface INews {
-  id: number,
-  title: string,
-  text: string,
-  date: string,
-  link: string,
-  img: StaticImageData,
-  imgContent: StaticImageData,
-  text1: string[],
-  text2: string[],
-}
+import {
+  IBodyImage,
+  INewsSingle,
+  getPageBySlug,
+} from "src/services/api";
 
 const NewsInner = () => {
-  const [newsData, setNewsData] = useState(NEWS_MOCK);
   const router = useRouter();
   const { slug } = router.query;
-  const [news, setNews] = useState<null | INews>(null);
+  const [news, setNews] = useState<null | INewsSingle>(null);
   const [newsTitle, setNewsTitle] = useState("Lorem ipsum");
-  const [newsBtnTitle, setNewsBtnTitle] = useState("See more news");
-  const [slideAmount, setSlideAmount] = useState(650);
 
-  useEffect(() => {
+  const loadData = useCallback(async () => {
     if (typeof slug === "string") {
-      const data = newsData.find(
-        (item) => item.id.toString() === slug.replace("news-", "")
-      );
-      if (data) {
-        setNews({ ...data, ...NEWS_INNER_MOCK });
+      const res = await getPageBySlug(slug);
+
+      if (res) {
+        setNews(res);
       }
     }
-  }, [newsData, router]);
+  }, [slug]);
 
-  const textContent = (
-    <section className={styles.newsInner__content__textBox}>
-      {news?.text1.map((item, i) => (
-        <p key={i}>{item}</p>
-      ))}
-    </section>
-  )
+  useEffect(() => {
+    loadData();
+  }, [slug]);
+
+  const createContent = (body: INewsSingle["body"]) => {
+    return body.map((item, i) => {
+      switch (item.type) {
+        case "h1":
+          return <h1 key={i}>{item.value}</h1>;
+        case "h2":
+          return <h2 key={i}>{item.value}</h2>;
+        case "paragraph":
+          return <p key={i}>{item.value}</p>;
+        case "image":
+          const imageValue = item.value as IBodyImage;
+          return (
+            <div key={i} className={styles.newsInner__content__imgBox}>
+              <img
+                src={`${API_MEDIA_ENDPOINT}${imageValue.url}`}
+                alt={imageValue.title}
+              />
+            </div>
+          );
+        default:
+          return <p key={i}></p>;
+      }
+    });
+  };
 
   return (
     <>
@@ -56,24 +63,25 @@ const NewsInner = () => {
       {news ? (
         <main className={styles.newsInner}>
           <div className={styles.newsInner__banner}>
-            <img src={news.img.src} className={styles.newsInner__banner__img} />
+            <img
+              alt={news.main_image.title}
+              src={`${API_MEDIA_ENDPOINT}${news.main_image.meta.download_url}`}
+              className={styles.newsInner__banner__img}
+            />
           </div>
           <article className={styles.newsInner__content}>
             <div className={styles.newsInner__content__title}>
               <h1>{news.title}</h1>
-              <p>{news.date}</p>
+              <p>{news.date.split("-").reverse().join(".")}</p>
             </div>
-            {textContent}
-            <section className={styles.newsInner__content__imgBox}>
-              <img src={news.imgContent.src} />
+            <section className={styles.newsInner__content__textBox}>
+              {createContent(news.body)}
             </section>
-            {textContent}
           </article>
           <NewsList title={newsTitle} buttonTitle="See more news" />
         </main>
       ) : (
         <div className={styles.newsInner__banner}>
-          {/* <h1>There are no news under this route</h1> */}
         </div>
       )}
       <Footer />

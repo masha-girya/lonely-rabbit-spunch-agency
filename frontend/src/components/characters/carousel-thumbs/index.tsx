@@ -9,23 +9,24 @@ import {
 import { LeftIcon } from "@components/icons/LeftIcon";
 import { RightIcon } from "@components/icons/RightIcon";
 import { Transition } from "react-transition-group";
+import { ICharacters } from "src/services/api";
 
 interface ICarouselThumbs {
-  moveRight: () => void,
-  moveLeft: () => void,
+  movePrev: () => void,
+  moveNext: () => void,
   thumbsFragment: React.ReactNode,
   mainCharOnChange: boolean,
-  currentChar: typeof CHARACTERS_MOCK[0] | undefined,
+  currentChar: ICharacters,
 }
 
 export const CarouselThumbs: React.FC<ICarouselThumbs> = (props) => {
-  const { moveRight, moveLeft, thumbsFragment, mainCharOnChange, currentChar } = props;
+  const { movePrev, moveNext, thumbsFragment, mainCharOnChange, currentChar } = props;
   const refText = useRef<null | any>(null);
 
   return (
     <div className={styles.thumbs}>
       <button
-        onClick={moveRight}
+        onClick={movePrev}
         type="button"
         className={styles.thumbs__button}
         title="Move Right"
@@ -43,14 +44,14 @@ export const CarouselThumbs: React.FC<ICarouselThumbs> = (props) => {
               ref={refText}
               style={{ ...DEFAULT_STYLE_TEXT, ...TRANS_STYLES_TEXT[state] }}
             >
-              <h2>{currentChar?.title}</h2>
+              <h2>{currentChar?.name}</h2>
               <p>{currentChar?.description}</p>
             </div>
           )}
         </Transition>
       </div>
       <button
-        onClick={moveLeft}
+        onClick={moveNext}
         title="Move Left"
         type="button"
         className={styles.thumbs__button}
