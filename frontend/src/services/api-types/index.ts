@@ -32,6 +32,7 @@ export enum NewsSinglePage {
 export enum AboutUsPage {
   banner_title = "banner_title",
   banner_description = "banner_description",
+  footer_banner_title = "footer_banner_title",
   sections = "sections",
 }
 
@@ -81,6 +82,7 @@ export interface IAboutUs {
 export interface IAboutUsSection {
   image: IImage;
   text: string;
+  title: string;
   image_position: "RIGHT" | "LEFT";
 }
 
@@ -95,6 +97,7 @@ export interface IPolicy {
 export interface IVacancySinglePage {
   id: number;
   meta: any;
+  title: string;
   [VacanciesSinglePage.date]: string;
   [VacanciesSinglePage.caption]: string;
   [VacanciesSinglePage.body]: {
