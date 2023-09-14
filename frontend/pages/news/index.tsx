@@ -1,10 +1,11 @@
-import { Header } from "@components/header";
-import styles from "./index.module.scss";
 import { useCallback, useEffect, useState } from "react";
+import { Header } from "@components/header";
 import { Button } from "@components/button";
 import { Footer } from "@components/footer";
 import { NewsCard } from "@components/news/news-card";
-import { INewsSingle, NewsPage, Page, getDataPages } from "src/services/api";
+import { getDataPages } from "src/services/api";
+import { INewsSingle, NewsPage, Page } from "src/services/api-types";
+import styles from "./index.module.scss";
 
 const News = () => {
   const [title, setTitle] = useState("");

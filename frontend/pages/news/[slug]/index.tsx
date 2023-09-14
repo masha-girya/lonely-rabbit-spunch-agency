@@ -1,16 +1,12 @@
-import { Header } from "@components/header";
-import styles from "./index.module.scss";
 import { useCallback, useEffect, useState } from "react";
-import classNames from "classnames";
-import { Footer } from "@components/footer";
 import { useRouter } from "next/router";
-import { API_MEDIA_ENDPOINT } from "src/constants";
+import { Header } from "@components/header";
+import { Footer } from "@components/footer";
 import { NewsList } from "@components/news";
-import {
-  IBodyImage,
-  INewsSingle,
-  getPageBySlug,
-} from "src/services/api";
+import { getPageBySlug } from "src/services/api";
+import { IBodyImage, INewsSingle } from "src/services/api-types";
+import { API_MEDIA_ENDPOINT } from "src/constants";
+import styles from "./index.module.scss";
 
 const NewsInner = () => {
   const router = useRouter();
@@ -81,8 +77,7 @@ const NewsInner = () => {
           <NewsList title={newsTitle} buttonTitle="See more news" />
         </main>
       ) : (
-        <div className={styles.newsInner__banner}>
-        </div>
+        <div className={styles.newsInner__banner}></div>
       )}
       <Footer />
     </>

@@ -6,7 +6,8 @@ import "swiper/css";
 import { Button } from "@components/button";
 import { Header } from "@components/header";
 import { BANNER_IMGS } from "src/constants";
-import { HomePage, Page, getDataPages } from "src/services/api";
+import { getDataPages } from "src/services/api";
+import { HomePage, Page } from "src/services/api-types";
 import styles from "./index.module.scss";
 
 export const Banner = () => {

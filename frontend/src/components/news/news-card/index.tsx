@@ -1,10 +1,10 @@
-import { Button } from "@components/button";
-import styles from "./index.module.scss";
 import { useDevice } from "src/hooks/useDevice";
 import { useMemo } from "react";
 import { useRouter } from "next/router";
-import { INewsSingle } from "src/services/api";
+import { Button } from "@components/button";
+import { INewsSingle } from "src/services/api-types";
 import { API_MEDIA_ENDPOINT } from "src/constants";
+import styles from "./index.module.scss";
 
 interface INewsCard {
   card: INewsSingle;

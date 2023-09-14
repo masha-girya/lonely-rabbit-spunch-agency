@@ -1,9 +1,9 @@
-import styles from "./index.module.scss";
+import Link from "next/link";
 import { Nav } from "@components/nav";
 import { RightsIcon } from "@components/icons/RightsIcon";
-import Logo from "@styles/assets/Logo.png";
 import { Socials } from "@components/socials";
-import Link from "next/link";
+import Logo from "@styles/assets/Logo.png";
+import styles from "./index.module.scss";
 
 export const Footer = () => {
   return (

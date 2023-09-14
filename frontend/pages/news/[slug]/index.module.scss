@@ -64,9 +64,7 @@
       }
 
       h2 {
-        font-size: 22px;
-        font-weight: 800;
-        line-height: 30px;
+        @include middleTitle();
       }
 
       p {

@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { Button } from "@components/button";
 import { Modal } from "@components/modal";
 import { PreOrderModal } from "@components/modals-ui/pre-order-modal";
-import { HomePage, Page, getDataPages } from "src/services/api";
+import { getDataPages } from "src/services/api";
+import { HomePage, Page } from "src/services/api-types";
 import styles from "./index.module.scss";
 
 export const CtaBanner = () => {

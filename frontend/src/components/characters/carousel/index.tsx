@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import classNames from "classnames";
-import styles from "./index.module.scss";
 import { useSpringCarousel } from "react-spring-carousel";
-import { DURATION } from "src/constants/transition";
 import { Circles } from "@components/circles";
 import { CarouselThumbs } from "../carousel-thumbs";
-import { useDevice } from "src/hooks/useDevice";
-import { ICharacters } from "src/services/api";
+import { ICharacters } from "src/services/api-types";
 import { API_MEDIA_ENDPOINT } from "src/constants";
+import { DURATION } from "src/constants/transition";
+import styles from "./index.module.scss";
 
 interface ICarousel {
   chars: ICharacters[];
@@ -18,7 +17,6 @@ interface ICarousel {
 }
 
 export const Carousel: React.FC<ICarousel> = (props) => {
-  const { isMobile } = useDevice();
   const { chars, currentChar, setCurrentChar, currentSlide, setCurrentSlide } =
     props;
   const [mainCharOnChange, setMainCharOnChange] = useState(false);
@@ -30,7 +28,6 @@ export const Carousel: React.FC<ICarousel> = (props) => {
     slideToPrevItem,
     slideToNextItem,
     slideToItem,
-    getCurrentActiveItem,
   } = useSpringCarousel({
     gutter: 0,
     initialStartingPosition: "center",
@@ -42,7 +39,6 @@ export const Carousel: React.FC<ICarousel> = (props) => {
       id: item.id.toString(),
       renderItem: (
         <div
-          // onClick={() => slideToItem(item.charId.toString())}
           key={item.id}
           className={classNames(styles.charsList__charBox, {
             [styles.charsList__charBox_main]: currentSlide === item.id,

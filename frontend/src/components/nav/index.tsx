@@ -1,8 +1,8 @@
-import { NAV, NAV_FOOTER } from "src/constants";
-import styles from "./index.module.scss";
 import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { NAV, NAV_FOOTER } from "src/constants";
+import styles from "./index.module.scss";
 
 interface INav {
   isFooter?: boolean;

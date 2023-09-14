@@ -1,10 +1,9 @@
+import { useState } from "react";
 import { Header } from "@components/header";
-import styles from "./index.module.scss";
-import { useCallback, useState } from "react";
-import { Button } from "@components/button";
 import { Footer } from "@components/footer";
-import { VACANCY_MOCK } from "src/constants";
 import { VacancyCard } from "@components/vacancy-card";
+import { VACANCY_MOCK } from "src/constants";
+import styles from "./index.module.scss";
 
 const Vacancies = () => {
   const [text, setText] = useState(

@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
+import { Button } from "@components/button";
 import { VACANCY_MOCK } from "src/constants";
 import styles from "./index.module.scss";
-import { Button } from "@components/button";
 
 interface IVacancyCard {
   vacancy: typeof VACANCY_MOCK;

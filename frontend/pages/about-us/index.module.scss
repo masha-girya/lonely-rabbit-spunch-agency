@@ -157,7 +157,9 @@
       &__img {
         width: 100%;
         object-fit: cover;
+        object-position: top center;
         border-radius: 20px;
+        max-height: 530px;
       }
     }
   }

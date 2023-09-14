@@ -1,8 +1,8 @@
-import styles from "./index.module.scss";
-import ContactUsImg from "./assets/ContactUs.png";
+import { useState } from "react";
 import { Input } from "@components/input";
 import { Button } from "@components/button";
-import { useState } from "react";
+import ContactUsImg from "./assets/ContactUs.png";
+import styles from "./index.module.scss";
 
 export const ContactUs = () => {
   const [email, setEmail] = useState('');

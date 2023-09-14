@@ -1,7 +1,7 @@
-import classNames from "classnames";
 import { useCallback, useEffect, useRef, useState } from "react";
-import styles from "./index.module.scss";
+import classNames from "classnames";
 import { Transition } from "react-transition-group";
+import styles from "./index.module.scss";
 
 interface IInput {
   value: string;
