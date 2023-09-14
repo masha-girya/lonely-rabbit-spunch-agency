@@ -15,7 +15,7 @@ class HomePageCharactersCarousel(Orderable):
         related_name="+",
     )
     name = models.CharField(max_length=100, default='')
-    description = models.CharField(max_length=100, default='')
+    description = models.CharField(max_length=1000, default='')
 
     panels = [
         FieldPanel("carousel_image"),
@@ -32,9 +32,9 @@ class HomePageCharactersCarousel(Orderable):
 
 class HomePage(Page):
     first_block_title = models.CharField(max_length=100, default='')
-    second_block_title = models.CharField(max_length=100, default='')
+    second_block_title = models.CharField(max_length=1000, default='')
     video_block_title = models.CharField(max_length=100, default='')
-    video_block_description = models.CharField(max_length=100, default='')
+    video_block_description = models.CharField(max_length=1000, default='')
 
     content_panels = Page.content_panels + [
         FieldPanel('first_block_title'),

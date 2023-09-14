@@ -18,34 +18,40 @@ class AboutUsSection(Orderable):
         on_delete=models.SET_NULL,
         related_name="+",
     )
+    title = models.CharField(max_length=1000, default='')
     text = models.CharField(max_length=1000, default='')
     image_position = models.CharField(choices=IMAGE_POSITION_OPTIONS, default="LEFT")
 
     panels = [
         FieldPanel("image"),
         FieldPanel("text"),
+        FieldPanel('title'),
         FieldPanel('image_position'),
     ]
 
     api_fields = [
         APIField('image'),
         APIField('text'),
+        FieldPanel('title'),
         APIField('image_position'),
     ]
 
 
 class AboutUsPage(Page):
     banner_title = models.CharField(max_length=100, default='')
+    footer_banner_title = models.CharField(max_length=100, default='')
     banner_description = models.CharField(max_length=200, default='')
 
     content_panels = Page.content_panels + [
         FieldPanel('banner_title'),
         FieldPanel('banner_description'),
+        FieldPanel('footer_banner_title'),
         InlinePanel('sections', label='About Us Body'),
     ]
 
     api_fields = [
         APIField('banner_title'),
         APIField('banner_description'),
+        APIField('footer_banner_title'),
         APIField('sections'),
     ]
