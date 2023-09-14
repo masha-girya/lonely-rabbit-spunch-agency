@@ -41,7 +41,7 @@ export enum PolicyPage {
 
 export enum VacanciesPage {
   banner_title = "banner_title",
-  banner_description = "banner_title",
+  banner_description = "banner_description",
 }
 
 export enum VacanciesSinglePage {
