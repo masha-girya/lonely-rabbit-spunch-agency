@@ -52,9 +52,7 @@ export const Carousel: React.FC<ICarousel> = (props) => {
             <img
               src={`${API_MEDIA_ENDPOINT}${item.carousel_image.meta.download_url}`}
               alt={item.carousel_image.title}
-              className={classNames(styles.charsList__item__image, {
-                [styles.charsList__item__image_main]: currentSlide === item.id
-              })}
+              className={styles.charsList__item__image}
               loading="eager"
             />
           </div>

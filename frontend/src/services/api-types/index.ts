@@ -4,6 +4,8 @@ export enum Page {
   newsSingle = "news.NewsSinglePage",
   about_us = "about_us.AboutUsPage",
   licensig = "licensig.LicensigPage",
+  recruitment = "recruitment.RecruitmentPage",
+  recruitmentSingle = "recruitment.RecruitmentSinglePage",
 }
 
 export enum HomePage {
@@ -34,6 +36,17 @@ export enum AboutUsPage {
 }
 
 export enum PolicyPage {
+  body = "body",
+}
+
+export enum VacanciesPage {
+  banner_title = "banner_title",
+  banner_description = "banner_description",
+}
+
+export enum VacanciesSinglePage {
+  date = "date",
+  caption = "caption",
   body = "body",
 }
 
@@ -76,6 +89,17 @@ export interface IPolicy {
     type: "h1" | "h2" | "paragraph";
     value: string;
     id: string;
+  }[];
+}
+
+export interface IVacancySinglePage {
+  id: number;
+  meta: any;
+  [VacanciesSinglePage.date]: string;
+  [VacanciesSinglePage.caption]: string;
+  [VacanciesSinglePage.body]: {
+    type: "h1" | "h2" | "paragraph" | "image";
+    value: string | IBodyImage;
   }[];
 }
 

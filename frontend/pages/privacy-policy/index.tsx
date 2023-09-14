@@ -12,7 +12,6 @@ const PrivacyPolicy = () => {
     const res = await getDataPages(Page.licensig, ["*"]);
     if (res) {
       setPolicyText(res[0][PolicyPage.body]);
-      console.log(res[0][PolicyPage.body])
     }
   }, []);
 

@@ -30,8 +30,7 @@
 
     &_main {
       justify-content: center;
-      // width: 345px;
-      transform: scale(1.005);
+      width: 345px;
       transition: all 1s ease;
 
       @include devices(mobile) {
@@ -87,12 +86,6 @@
       object-fit: contain;
       height: 100%;
       width: 100%;
-      max-width: 250px;
-      transition: all 1s ease;
-
-      &_main {
-        max-width: 345px;
-      }
     }
   }
 }
@@ -111,7 +104,6 @@
     flex: 1;
   }
 }
-
 
 @keyframes slideAnimation{
   0% {

@@ -33,7 +33,7 @@ export const Characters = () => {
     if (res) {
       const chars = res[0][HomePage.characters_carousel];
       setCharsOnShow(chars);
-      const currentPosition = chars.length % 2 === 0 ? chars.length - 1 : chars.length
+      const currentPosition = chars.length % 2 === 0 ? chars.length - 1 : chars.length;
       setCurrentChar(chars[Math.floor(currentPosition / 2)]);
       setCurrentSlide(chars[Math.floor(currentPosition / 2)].id);
 
