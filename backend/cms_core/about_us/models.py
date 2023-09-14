@@ -32,7 +32,7 @@ class AboutUsSection(Orderable):
     api_fields = [
         APIField('image'),
         APIField('text'),
-        FieldPanel('title'),
+        APIField('title'),
         APIField('image_position'),
     ]
 
