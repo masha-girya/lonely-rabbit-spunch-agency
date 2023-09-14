@@ -21,6 +21,11 @@ export const Carousel: React.FC<ICarousel> = (props) => {
     props;
   const [mainCharOnChange, setMainCharOnChange] = useState(false);
 
+  console.log({
+    itemsPerSlide: chars.length % 2 === 0 ? chars.length - 1 : chars.length,
+    initialActiveItem: chars.length % 2 === 0 ? Math.floor((chars.length - 1) / 2) : Math.floor(chars.length / 2)
+  })
+
   const {
     carouselFragment,
     thumbsFragment,
@@ -52,9 +57,7 @@ export const Carousel: React.FC<ICarousel> = (props) => {
             <img
               src={`${API_MEDIA_ENDPOINT}${item.carousel_image.meta.download_url}`}
               alt={item.carousel_image.title}
-              className={classNames(styles.charsList__item__image, {
-                [styles.charsList__item__image_main]: currentSlide === item.id
-              })}
+              className={styles.charsList__item__image}
               loading="eager"
             />
           </div>
