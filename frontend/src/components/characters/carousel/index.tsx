@@ -21,11 +21,6 @@ export const Carousel: React.FC<ICarousel> = (props) => {
     props;
   const [mainCharOnChange, setMainCharOnChange] = useState(false);
 
-  console.log({
-    itemsPerSlide: chars.length % 2 === 0 ? chars.length - 1 : chars.length,
-    initialActiveItem: chars.length % 2 === 0 ? Math.floor((chars.length - 1) / 2) : Math.floor(chars.length / 2)
-  })
-
   const {
     carouselFragment,
     thumbsFragment,
