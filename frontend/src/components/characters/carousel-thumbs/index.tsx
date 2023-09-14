@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import styles from "./index.module.scss";
-import { CHARACTERS_MOCK } from "src/constants/characters";
 import {
   DEFAULT_STYLE_TEXT,
   DURATION,
