@@ -46,28 +46,36 @@
       }
     }
 
-    &__aboutTitle {
-      color: #333;
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 40px;
-
-      @include devices(mobile) {
-        margin-bottom: 16px;
-      }
-    }
-
     &__textBox {
       display: flex;
       flex-direction: column;
-      row-gap: 20px;
-
-      @include devices(mobile) {
-        row-gap: 16px;
-      }
+      row-gap: 40px;
 
       p {
         @include bodyText();
+      }
+
+      h1 {
+        @include blockTitle();
+        text-align: start;
+      }
+
+      h2 {
+        @include middleTitle();
+
+        @include devices(mobile) {
+          margin-bottom: 16px;
+          font-size: 22px;
+        }
+      }
+
+      &__imgBox {
+        width: 100%;
+
+        img {
+          max-width: 100%;
+          object-fit: contain;
+        }
       }
     }
   }

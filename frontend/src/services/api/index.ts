@@ -21,8 +21,8 @@ export const getDataPages = async (
   }
 };
 
-export const getPageBySlug = async (slug: string) => {
-  const link = `${API_ENDPOINT}/pages/?slug=${slug}`;
+export const getPageBySlug = async (slug: string, addField?: string) => {
+  const link = addField ? `${API_ENDPOINT}/pages/?slug=${slug}&${addField}` : `${API_ENDPOINT}/pages/?slug=${slug}`;
   const link2 = `${API_ENDPOINT}/pages`;
 
   try {
