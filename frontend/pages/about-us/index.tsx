@@ -1,16 +1,12 @@
-import { Header } from "@components/header";
-import styles from "./index.module.scss";
 import { useCallback, useEffect, useState } from "react";
-import { ABOUT_US_MOCK, API_MEDIA_ENDPOINT } from "src/constants";
 import classNames from "classnames";
+import { Header } from "@components/header";
 import { Button } from "@components/button";
 import { Footer } from "@components/footer";
-import {
-  AboutUsPage,
-  IAboutUsSection,
-  Page,
-  getDataPages,
-} from "src/services/api";
+import { getDataPages } from "src/services/api";
+import { AboutUsPage, IAboutUsSection, Page } from "src/services/api-types";
+import { API_MEDIA_ENDPOINT } from "src/constants";
+import styles from "./index.module.scss";
 
 const AboutUs = () => {
   const [text, setText] = useState("");
@@ -46,34 +42,37 @@ const AboutUs = () => {
           </div>
         </div>
         <div className={styles.aboutUs__list}>
-          {aboutUsData.length > 0 && aboutUsData.map((item, i) => (
-            <section key={i} className={styles.aboutUs__item}>
-              <div
-                className={classNames(styles.aboutUs__item__text, {
-                  [styles.aboutUs__item__text_even]: item.image_position === "LEFT",
-                })}
-              >
-                <h1>Title required from back</h1>
-                <div className={styles.aboutUs__item__text__textBox}>
-                  <p>{item.text}</p>
+          {aboutUsData.length > 0 &&
+            aboutUsData.map((item, i) => (
+              <section key={i} className={styles.aboutUs__item}>
+                <div
+                  className={classNames(styles.aboutUs__item__text, {
+                    [styles.aboutUs__item__text_even]:
+                      item.image_position === "LEFT",
+                  })}
+                >
+                  <h1>Title required from back</h1>
+                  <div className={styles.aboutUs__item__text__textBox}>
+                    <p>{item.text}</p>
+                  </div>
                 </div>
-              </div>
-              <div
-                className={classNames(styles.aboutUs__item__imgBox, {
-                  [styles.aboutUs__item__imgBox]: item.image_position === "LEFT",
-                })}
-              >
-                <h1 className={styles.aboutUs__item__imgBox__title}>
-                  Title required from back
-                </h1>
-                <img
-                  src={`${API_MEDIA_ENDPOINT}${item.image.meta.download_url}`}
-                  alt={item.image.title}
-                  className={styles.aboutUs__item__imgBox__img}
-                />
-              </div>
-            </section>
-          ))}
+                <div
+                  className={classNames(styles.aboutUs__item__imgBox, {
+                    [styles.aboutUs__item__imgBox]:
+                      item.image_position === "LEFT",
+                  })}
+                >
+                  <h1 className={styles.aboutUs__item__imgBox__title}>
+                    Title required from back
+                  </h1>
+                  <img
+                    src={`${API_MEDIA_ENDPOINT}${item.image.meta.download_url}`}
+                    alt={item.image.title}
+                    className={styles.aboutUs__item__imgBox__img}
+                  />
+                </div>
+              </section>
+            ))}
         </div>
         <section className={styles.aboutUs__ctaSection}>
           <h1>{ctaText}</h1>

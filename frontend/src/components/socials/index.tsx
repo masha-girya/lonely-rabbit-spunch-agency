@@ -1,5 +1,5 @@
-import styles from "./index.module.scss";
 import { SOCIALS } from "src/constants";
+import styles from "./index.module.scss";
 
 export const Socials = () => {
   return (

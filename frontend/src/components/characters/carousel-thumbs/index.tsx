@@ -1,14 +1,14 @@
 import React, { useRef } from "react";
-import styles from "./index.module.scss";
+import { Transition } from "react-transition-group";
+import { LeftIcon } from "@components/icons/LeftIcon";
+import { RightIcon } from "@components/icons/RightIcon";
+import { ICharacters } from "src/services/api-types";
 import {
   DEFAULT_STYLE_TEXT,
   DURATION,
   TRANS_STYLES_TEXT,
 } from "src/constants/transition";
-import { LeftIcon } from "@components/icons/LeftIcon";
-import { RightIcon } from "@components/icons/RightIcon";
-import { Transition } from "react-transition-group";
-import { ICharacters } from "src/services/api";
+import styles from "./index.module.scss";
 
 interface ICarouselThumbs {
   movePrev: () => void,

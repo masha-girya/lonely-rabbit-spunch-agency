@@ -1,11 +1,10 @@
-import { useRef } from "react";
+import { StaticImageData } from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import styles from "./index.module.scss";
-import { StaticImageData } from "next/image";
 
 interface IPhotosMobile {
   images: {

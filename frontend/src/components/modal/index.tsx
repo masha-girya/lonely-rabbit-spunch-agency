@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import styles from "./index.module.scss";
-import { useClickOutside } from "../../hooks/useClickOutside";
-import { Transition } from "react-transition-group";
 import classNames from "classnames";
+import { Transition } from "react-transition-group";
+import { useClickOutside } from "../../hooks/useClickOutside";
 import { useDevice } from "src/hooks/useDevice";
+import styles from "./index.module.scss";
 
 interface IModal {
   children: any;

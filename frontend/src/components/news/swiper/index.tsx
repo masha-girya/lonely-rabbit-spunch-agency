@@ -1,16 +1,16 @@
+import { useCallback, useState } from "react";
+import { useDevice } from "src/hooks/useDevice";
+import classNames from "classnames";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { INewsSingle } from "src/services/api";
-import classNames from "classnames";
 import { NewsCard } from "../news-card";
-import styles from "./index.module.scss";
-import { useDevice } from "src/hooks/useDevice";
 import { NextIcon } from "@components/icons/NextIcon";
 import { PrevIcon } from "@components/icons/PrevIcon";
-import { useCallback, useState } from "react";
+import { INewsSingle } from "src/services/api-types";
+import styles from "./index.module.scss";
 
 interface ISwiperNews {
   news: INewsSingle[];

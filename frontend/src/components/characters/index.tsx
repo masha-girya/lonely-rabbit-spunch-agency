@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Carousel } from "./carousel";
-import { HomePage, ICharacters, Page, getDataPages } from "src/services/api";
+import { getDataPages } from "src/services/api";
+import { HomePage, ICharacters, Page } from "src/services/api-types";
 import styles from "./index.module.scss";
 
 export const Characters = () => {

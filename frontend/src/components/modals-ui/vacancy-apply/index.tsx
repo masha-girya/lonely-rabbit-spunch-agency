@@ -1,10 +1,10 @@
-import styles from "./index.module.scss";
 import { useEffect, useState } from "react";
 import { Button } from "@components/button";
 import { CloseIcon } from "@components/icons/CloseIcon";
+import { Input } from "@components/input";
 import ContactUsImg from "./assets/ContactUsImage.png";
 import LogoImg from "./assets/Logo.png";
-import { Input } from "@components/input";
+import styles from "./index.module.scss";
 
 interface IVacancyApplyModal {
   setIsModalOpen: (isOpen: boolean) => void;

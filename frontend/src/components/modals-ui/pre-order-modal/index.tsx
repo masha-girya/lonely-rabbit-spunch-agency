@@ -1,9 +1,9 @@
-import styles from "./index.module.scss";
 import { useState } from "react";
 import { Button } from "@components/button";
 import { CloseIcon } from "@components/icons/CloseIcon";
 import CenterImg from "./assets/Center.png";
 import LeftImg from "./assets/Left.png";
+import styles from "./index.module.scss";
 
 interface IPreOrderModal {
   setIsModalOpen: (isOpen: boolean) => void;

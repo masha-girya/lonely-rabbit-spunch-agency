@@ -1,11 +1,12 @@
-import { GameIcon } from "@components/icons/GameIcon";
-import { Button } from "@components/button";
 import { useCallback, useEffect, useState } from "react";
 import { useDevice } from "src/hooks/useDevice";
 import { useRouter } from "next/router";
-import { INewsSingle, Page, getDataPages } from "src/services/api";
-import styles from "./index.module.scss";
 import { SwiperNews } from "./swiper";
+import { GameIcon } from "@components/icons/GameIcon";
+import { Button } from "@components/button";
+import { getDataPages } from "src/services/api";
+import { INewsSingle, Page } from "src/services/api-types";
+import styles from "./index.module.scss";
 
 interface INews {
   title?: string;

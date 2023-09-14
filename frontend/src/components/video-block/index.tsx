@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { PlayIcon } from "@components/icons/PlayIcon";
-import { HomePage, Page, getDataPages } from "src/services/api";
+import { getDataPages } from "src/services/api";
+import { HomePage, Page } from "src/services/api-types";
 import VideoImg from "./assets/VideoImg.png";
 import styles from "./index.module.scss";
 

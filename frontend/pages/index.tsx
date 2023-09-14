@@ -1,3 +1,4 @@
+import React from "react";
 import { Banner } from "@components/banner";
 import { Characters } from "@components/characters";
 import { ContactUs } from "@components/contact-us";
@@ -6,7 +7,6 @@ import { Footer } from "@components/footer";
 import { NewsList } from "@components/news";
 import { PhotoBlock } from "@components/photo-block";
 import { VideoBlock } from "@components/video-block";
-import React from "react";
 
 const Home: React.FC = () => {
   return (

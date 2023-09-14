@@ -1,12 +1,12 @@
-import { Header } from "@components/header";
-import styles from "./index.module.scss";
-import { Footer } from "@components/footer";
-import { VACANCY_MOCK } from "src/constants";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { Header } from "@components/header";
+import { Footer } from "@components/footer";
 import { Button } from "@components/button";
 import { Modal } from "@components/modal";
 import { VacancyApplyModal } from "@components/modals-ui/vacancy-apply";
+import { VACANCY_MOCK } from "src/constants";
+import styles from "./index.module.scss";
 
 const VacancyInner = () => {
   const router = useRouter();

@@ -1,10 +1,10 @@
-import styles from "./index.module.scss";
-import Logo from "@styles/assets/Logo.png";
-import { Nav } from "@components/nav";
 import { useEffect, useRef, useState } from "react";
-import { Socials } from "@components/socials";
-import classNames from "classnames";
 import Link from "next/link";
+import classNames from "classnames";
+import { Nav } from "@components/nav";
+import { Socials } from "@components/socials";
+import Logo from "@styles/assets/Logo.png";
+import styles from "./index.module.scss";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
