@@ -2,7 +2,6 @@ import classNames from "classnames";
 import { useRouter } from "next/router";
 import { NAV } from "src/constants";
 import styles from "./index.module.scss";
-import { useDevice } from "src/hooks/useDevice";
 
 interface INav {
   isFooter?: boolean;
@@ -11,7 +10,6 @@ interface INav {
 
 export const Nav: React.FC<INav> = (props) => {
   const { isFooter, isMobMenu } = props;
-  const { isTablet, isMobile } = useDevice();
   const nav = NAV;
   const router = useRouter();
 
@@ -43,9 +41,7 @@ export const Nav: React.FC<INav> = (props) => {
             })}
             key={item.title}
           >
-            {(isActive(item.link) && !isMobMenu) && <p>{item.title}</p>}
-            {(!isActive(item.link) && !isMobMenu) && <a href={item.link}>{item.title}</a>}
-            {isMobMenu && <a href={item.link}>{item.title}</a>}
+            <a href={item.link}>{item.title}</a>
           </li>
         ))}
       </ul>
