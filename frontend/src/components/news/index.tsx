@@ -32,10 +32,12 @@ export const NewsList: React.FC<INews> = (props) => {
   }, []);
 
   const button = (
-    <Button
-      name={buttonTitle ?? "All our news"}
-      onClick={() => router.push("/news")}
-    />
+    <a href="/news" className={styles.news__header__buttonMob}>
+      <Button
+        name={buttonTitle ?? "All our news"}
+        onClick={() => {}}
+      />
+    </a>
   );
 
   return (

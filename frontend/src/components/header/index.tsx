@@ -5,6 +5,7 @@ import { Nav } from "@components/nav";
 import { Socials } from "@components/socials";
 import Logo from "@styles/assets/Logo.png";
 import styles from "./index.module.scss";
+import { LogoLinkWrapper } from "@components/logo-link-wrapper";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -56,7 +57,7 @@ export const Header = () => {
       })}
     >
       <div className={styles.header__container}>
-        <Link href="/">
+        <LogoLinkWrapper>
           <img
             src={Logo.src}
             alt="logo"
@@ -64,7 +65,7 @@ export const Header = () => {
               [styles.header__logo_scroll]: onScroll,
             })}
           />
-        </Link>
+        </LogoLinkWrapper>
         <div className={styles.burger}>
           <input onClick={handleMobileMenu} type="checkbox" />
           <span></span>

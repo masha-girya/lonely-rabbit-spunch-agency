@@ -4,19 +4,20 @@ import { RightsIcon } from "@components/icons/RightsIcon";
 import { Socials } from "@components/socials";
 import Logo from "@styles/assets/Logo.png";
 import styles from "./index.module.scss";
+import { LogoLinkWrapper } from "@components/logo-link-wrapper";
 
 export const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.footer__container}>
         <div className={styles.footer__mainBlock}>
-          <Link href="/">
+          <LogoLinkWrapper>
             <img
               className={styles.footer__mainBlock__logo}
               src={Logo.src}
               alt="logo"
             />
-          </Link>
+          </LogoLinkWrapper>
           <div className={styles.footer__mainBlock__rightCol}>
             <Nav isFooter />
             <Socials />

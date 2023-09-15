@@ -49,6 +49,11 @@
   &__link {
     position: relative;
 
+    p {
+      color: #FBFBFB;
+      cursor: pointer;
+    }
+
     &_mobMenu {
       font-size: 24px;
     }
