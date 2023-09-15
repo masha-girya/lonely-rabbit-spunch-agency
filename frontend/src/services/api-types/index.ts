@@ -32,6 +32,7 @@ export enum NewsSinglePage {
 export enum AboutUsPage {
   banner_title = "banner_title",
   banner_description = "banner_description",
+  footer_banner_title = "footer_banner_title",
   sections = "sections",
 }
 
@@ -66,10 +67,7 @@ export interface INewsSingle {
   [NewsSinglePage.caption]: string;
   [NewsSinglePage.main_image]: IImage;
   [NewsSinglePage.thumbnail_image]: IImage;
-  [NewsSinglePage.body]: {
-    type: "h1" | "h2" | "paragraph" | "image";
-    value: string | IBodyImage;
-  }[];
+  [NewsSinglePage.body]: IBody[];
 }
 
 export interface IAboutUs {
@@ -81,26 +79,27 @@ export interface IAboutUs {
 export interface IAboutUsSection {
   image: IImage;
   text: string;
+  title: string;
   image_position: "RIGHT" | "LEFT";
 }
 
 export interface IPolicy {
-  body: {
-    type: "h1" | "h2" | "paragraph";
-    value: string;
-    id: string;
-  }[];
+  body: IBody[];
 }
 
 export interface IVacancySinglePage {
   id: number;
   meta: any;
+  title: string;
   [VacanciesSinglePage.date]: string;
   [VacanciesSinglePage.caption]: string;
-  [VacanciesSinglePage.body]: {
-    type: "h1" | "h2" | "paragraph" | "image";
-    value: string | IBodyImage;
-  }[];
+  [VacanciesSinglePage.body]: IBody[];
+}
+
+export interface IBody {
+  id?: string;
+  type: "h1" | "h2" | "paragraph" | "image";
+  value: string | IBodyImage;
 }
 
 export interface IBodyImage {

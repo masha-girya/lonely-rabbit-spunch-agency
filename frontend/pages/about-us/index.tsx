@@ -11,9 +11,7 @@ import styles from "./index.module.scss";
 const AboutUs = () => {
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
-  const [ctaText, setCtaText] = useState(
-    "Lorem ipsum dolor sit amet consectetur.."
-  );
+  const [ctaText, setCtaText] = useState("");
   const [aboutUsData, setAboutUsData] = useState<IAboutUsSection[]>([]);
 
   const loadData = useCallback(async () => {
@@ -22,6 +20,7 @@ const AboutUs = () => {
       setText(res[0][AboutUsPage.banner_description]);
       setTitle(res[0][AboutUsPage.banner_title]);
       setAboutUsData(res[0][AboutUsPage.sections]);
+      setCtaText(res[0][AboutUsPage.footer_banner_title]);
     }
   }, []);
 
@@ -51,19 +50,14 @@ const AboutUs = () => {
                       item.image_position === "LEFT",
                   })}
                 >
-                  <h1>Title required from back</h1>
+                  <h1>{item.title}</h1>
                   <div className={styles.aboutUs__item__text__textBox}>
                     <p>{item.text}</p>
                   </div>
                 </div>
-                <div
-                  className={classNames(styles.aboutUs__item__imgBox, {
-                    [styles.aboutUs__item__imgBox]:
-                      item.image_position === "LEFT",
-                  })}
-                >
+                <div className={styles.aboutUs__item__imgBox}>
                   <h1 className={styles.aboutUs__item__imgBox__title}>
-                    Title required from back
+                    {item.title}
                   </h1>
                   <img
                     src={`${API_MEDIA_ENDPOINT}${item.image.meta.download_url}`}

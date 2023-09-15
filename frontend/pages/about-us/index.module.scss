@@ -136,14 +136,6 @@
         min-width: 100%;
       }
 
-      &_even {
-        order: 2;
-
-        @include devices(tablet) {
-          order: 1;
-        }
-      }
-
       &__title {
         display: none;
         @include blockTitle();
@@ -160,6 +152,10 @@
         object-position: top center;
         border-radius: 20px;
         max-height: 530px;
+
+        @include devices(mobile) {
+          border-radius: 10px;
+        }
       }
     }
   }

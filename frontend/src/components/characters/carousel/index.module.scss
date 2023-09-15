@@ -12,10 +12,7 @@
   }
 
   &__charBox {
-    user-select: none; // Chrome, Opera
-    -moz-user-select: none; // Firefox
-    -webkit-text-select: none; // IOS Safari
-    -webkit-user-select: none; // Safari
+    @include nonSelect();
     display: flex;
     justify-content: space-between;
     align-items: center;
