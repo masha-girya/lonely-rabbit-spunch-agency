@@ -8,7 +8,7 @@ import styles from "./index.module.scss";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const ref = useRef<null | any>(null);
+  const [onScroll, setOnScroll] = useState(false);
 
   const handleMobileMenu = () => {
     setMenuOpen(!menuOpen);
@@ -32,15 +32,38 @@ export const Header = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setOnScroll(true);
+      } else {
+        setOnScroll(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <header
       className={classNames(styles.header, {
         [styles.header_open]: menuOpen,
+        [styles.header_scroll]: onScroll,
       })}
     >
       <div className={styles.header__container}>
         <Link href="/">
-          <img src={Logo.src} alt="logo" className={styles.header__logo} />
+          <img
+            src={Logo.src}
+            alt="logo"
+            className={classNames(styles.header__logo, {
+              [styles.header__logo_scroll]: onScroll,
+            })}
+          />
         </Link>
         <div className={styles.burger}>
           <input onClick={handleMobileMenu} type="checkbox" />
@@ -52,7 +75,6 @@ export const Header = () => {
         className={classNames(styles.mobMenu, {
           [styles.mobMenu_open]: menuOpen,
         })}
-        ref={ref}
       >
         <div className={styles.mobMenu__nav}>
           <Nav isMobMenu />

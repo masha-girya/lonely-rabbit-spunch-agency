@@ -3,7 +3,7 @@ import { Button } from "@components/button";
 import { CloseIcon } from "@components/icons/CloseIcon";
 import { Input } from "@components/input";
 import ContactUsImg from "./assets/ContactUsImage.png";
-import LogoImg from "./assets/Logo.png";
+import LogoImg from "@styles/assets/Logo.png";
 import styles from "./index.module.scss";
 
 interface IVacancyApplyModal {

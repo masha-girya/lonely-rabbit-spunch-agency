@@ -9,10 +9,13 @@ import { BANNER_IMGS } from "src/constants";
 import { getDataPages } from "src/services/api";
 import { HomePage, Page } from "src/services/api-types";
 import styles from "./index.module.scss";
+import { Modal } from "@components/modal";
+import { PreOrderModal } from "@components/modals-ui/pre-order-modal";
 
 export const Banner = () => {
   const [title, setTitle] = useState("");
   const [images, setImages] = useState(BANNER_IMGS);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const loadData = async () => {
     const res = await getDataPages(Page.home, [HomePage.first_block_title]);
@@ -28,11 +31,16 @@ export const Banner = () => {
   return (
     <div className={styles.banner}>
       <Header />
+      <Modal
+        isOpen={isModalOpen}
+        isOpenCallback={setIsModalOpen}
+        children={<PreOrderModal setIsModalOpen={setIsModalOpen} />}
+      />
       <div className={styles.banner__bannerContainer}>
         <div className={styles.banner__content}>
           <h1>{title}</h1>
           <div className={styles.banner__content__button}>
-            <Button onClick={() => {}} name="Play Now" />
+            <Button onClick={() => setIsModalOpen(true)} name="Play Now" />
           </div>
         </div>
         <div className={styles.banner__images}>
@@ -40,8 +48,9 @@ export const Banner = () => {
             <Swiper
               spaceBetween={0}
               centeredSlides={true}
+              speed={700}
               autoplay={{
-                delay: 5000,
+                delay: 3000,
                 disableOnInteraction: false,
               }}
               navigation={false}
@@ -88,7 +97,7 @@ export const Banner = () => {
             styles.banner__content__button_mob
           )}
         >
-          <Button onClick={() => {}} name="Play Now" />
+          <Button onClick={() => setIsModalOpen(true)} name="Play Now" />
         </div>
       </div>
     </div>
