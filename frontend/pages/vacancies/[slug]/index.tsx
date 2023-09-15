@@ -5,10 +5,9 @@ import { Footer } from "@components/footer";
 import { Button } from "@components/button";
 import { Modal } from "@components/modal";
 import { VacancyApplyModal } from "@components/modals-ui/vacancy-apply";
-import { IBodyImage, IVacancySinglePage, Page } from "src/services/api-types";
+import { IVacancySinglePage, Page } from "src/services/api-types";
 import { getPageBySlug } from "src/services/api";
 import styles from "./index.module.scss";
-import { API_MEDIA_ENDPOINT } from "src/constants";
 import { ContentConstructor } from "@components/content-constructor";
 
 const VacancyInner = () => {
@@ -55,12 +54,15 @@ const VacancyInner = () => {
               <Button name="Apply" onClick={() => setIsOpenModal(true)} />
             </div>
             <div className={styles.vacancyInner__content__textBox}>
-              <ContentConstructor content={vacancy.body} stylesCustom={styles.vacancyInner__content__textBox__imgBox} />
+              <ContentConstructor
+                content={vacancy.body}
+                stylesCustom={styles.vacancyInner__content__textBox__imgBox}
+              />
             </div>
           </article>
         )}
       </main>
-      <Footer />
+      {vacancy && <Footer />}
     </>
   );
 };

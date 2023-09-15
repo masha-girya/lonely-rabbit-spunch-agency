@@ -1,5 +1,4 @@
 import classNames from "classnames";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { NAV } from "src/constants";
 import styles from "./index.module.scss";
@@ -42,7 +41,7 @@ export const Nav: React.FC<INav> = (props) => {
             })}
             key={item.title}
           >
-            <Link href={item.link}>{item.title}</Link>
+            <a href={item.link}>{item.title}</a>
           </li>
         ))}
       </ul>

@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
 import { useDevice } from "src/hooks/useDevice";
-import { useRouter } from "next/router";
 import { SwiperNews } from "./swiper";
 import { GameIcon } from "@components/icons/GameIcon";
 import { Button } from "@components/button";
@@ -15,7 +14,6 @@ interface INews {
 
 export const NewsList: React.FC<INews> = (props) => {
   const { title, buttonTitle } = props;
-  const router = useRouter();
   const [news, setNews] = useState<INewsSingle[]>([]);
   const { isMobile, isDesktop } = useDevice();
 
@@ -32,10 +30,12 @@ export const NewsList: React.FC<INews> = (props) => {
   }, []);
 
   const button = (
-    <Button
-      name={buttonTitle ?? "All our news"}
-      onClick={() => router.push("/news")}
-    />
+    <a href="/news">
+      <Button
+        name={buttonTitle ?? "All our news"}
+        onClick={() => {}}
+      />
+    </a>
   );
 
   return (

@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import { useEffect, useState } from "react";
 import classNames from "classnames";
 import { Nav } from "@components/nav";
 import { Socials } from "@components/socials";
@@ -56,7 +55,7 @@ export const Header = () => {
       })}
     >
       <div className={styles.header__container}>
-        <Link href="/">
+        <a href="/">
           <img
             src={Logo.src}
             alt="logo"
@@ -64,7 +63,7 @@ export const Header = () => {
               [styles.header__logo_scroll]: onScroll,
             })}
           />
-        </Link>
+        </a>
         <div className={styles.burger}>
           <input onClick={handleMobileMenu} type="checkbox" />
           <span></span>

@@ -19,9 +19,9 @@ export const VacancyCard: React.FC<IVacancyCard> = (props) => {
         <p className={styles.vacancy__text__shortText}>{caption}</p>
         <p className={styles.vacancy__text__date}>{date.split("-").reverse().join("/")}</p>
       </div>
-      <div className={styles.vacancy__button}>
-        <Button onClick={() => router.push(`vacancies/${meta.slug}`)} name="Apply" />
-      </div>
+      <a href={`vacancies/${meta.slug}`} className={styles.vacancy__button}>
+        <Button onClick={() => {}} name="Apply" />
+      </a>
     </div>
   );
 };

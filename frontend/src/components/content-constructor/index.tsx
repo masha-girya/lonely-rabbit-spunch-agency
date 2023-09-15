@@ -38,7 +38,6 @@ export const ContentConstructor: React.FC<IContentConstructor> = (props) => {
   };
 
   useEffect(() => {
-    console.log("here")
     setContentToShow(createContent());
   }, [content]);
 
