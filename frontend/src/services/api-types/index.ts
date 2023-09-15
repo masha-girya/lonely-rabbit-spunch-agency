@@ -67,10 +67,7 @@ export interface INewsSingle {
   [NewsSinglePage.caption]: string;
   [NewsSinglePage.main_image]: IImage;
   [NewsSinglePage.thumbnail_image]: IImage;
-  [NewsSinglePage.body]: {
-    type: "h1" | "h2" | "paragraph" | "image";
-    value: string | IBodyImage;
-  }[];
+  [NewsSinglePage.body]: IBody[];
 }
 
 export interface IAboutUs {
@@ -87,11 +84,7 @@ export interface IAboutUsSection {
 }
 
 export interface IPolicy {
-  body: {
-    type: "h1" | "h2" | "paragraph";
-    value: string;
-    id: string;
-  }[];
+  body: IBody[];
 }
 
 export interface IVacancySinglePage {
@@ -100,10 +93,13 @@ export interface IVacancySinglePage {
   title: string;
   [VacanciesSinglePage.date]: string;
   [VacanciesSinglePage.caption]: string;
-  [VacanciesSinglePage.body]: {
-    type: "h1" | "h2" | "paragraph" | "image";
-    value: string | IBodyImage;
-  }[];
+  [VacanciesSinglePage.body]: IBody[];
+}
+
+export interface IBody {
+  id?: string;
+  type: "h1" | "h2" | "paragraph" | "image";
+  value: string | IBodyImage;
 }
 
 export interface IBodyImage {

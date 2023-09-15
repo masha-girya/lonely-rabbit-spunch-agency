@@ -55,12 +55,7 @@ const AboutUs = () => {
                     <p>{item.text}</p>
                   </div>
                 </div>
-                <div
-                  className={classNames(styles.aboutUs__item__imgBox, {
-                    [styles.aboutUs__item__imgBox]:
-                      item.image_position === "LEFT",
-                  })}
-                >
+                <div className={styles.aboutUs__item__imgBox}>
                   <h1 className={styles.aboutUs__item__imgBox__title}>
                     {item.title}
                   </h1>

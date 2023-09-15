@@ -1,0 +1,19 @@
+@import "src/styles/mixins.scss";
+
+.p {
+  @include bodyText();
+}
+
+.h1 {
+  @include blockTitle();
+  text-align: start;
+}
+
+.h2 {
+  @include middleTitle();
+
+  @include devices(mobile) {
+    margin-bottom: 16px;
+    font-size: 22px;
+  }
+}

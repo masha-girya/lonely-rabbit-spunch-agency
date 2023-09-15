@@ -51,24 +51,6 @@
       flex-direction: column;
       row-gap: 40px;
 
-      p {
-        @include bodyText();
-      }
-
-      h1 {
-        @include blockTitle();
-        text-align: start;
-      }
-
-      h2 {
-        @include middleTitle();
-
-        @include devices(mobile) {
-          margin-bottom: 16px;
-          font-size: 22px;
-        }
-      }
-
       &__imgBox {
         width: 100%;
 

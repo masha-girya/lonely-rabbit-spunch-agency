@@ -9,6 +9,7 @@ import { IBodyImage, IVacancySinglePage, Page } from "src/services/api-types";
 import { getPageBySlug } from "src/services/api";
 import styles from "./index.module.scss";
 import { API_MEDIA_ENDPOINT } from "src/constants";
+import { ContentConstructor } from "@components/content-constructor";
 
 const VacancyInner = () => {
   const router = useRouter();
@@ -29,34 +30,6 @@ const VacancyInner = () => {
   useEffect(() => {
     loadData();
   }, [slug]);
-
-  const createContent = (body: IVacancySinglePage["body"]) => {
-    return body.map((item, i) => {
-      switch (item.type) {
-        case "h1":
-          return <h1 key={i}>{item.value}</h1>;
-        case "h2":
-          return <h2 key={i}>{item.value}</h2>;
-        case "paragraph":
-          return <p key={i}>{item.value}</p>;
-        case "image":
-          const imageValue = item.value as IBodyImage;
-          return (
-            <div
-              key={i}
-              className={styles.vacancyInner__content__textBox__imgBox}
-            >
-              <img
-                src={`${API_MEDIA_ENDPOINT}${imageValue.url}`}
-                alt={imageValue.title}
-              />
-            </div>
-          );
-        default:
-          return <p key={i}></p>;
-      }
-    });
-  };
 
   return (
     <>
@@ -82,7 +55,7 @@ const VacancyInner = () => {
               <Button name="Apply" onClick={() => setIsOpenModal(true)} />
             </div>
             <div className={styles.vacancyInner__content__textBox}>
-              {createContent(vacancy.body)}
+              <ContentConstructor content={vacancy.body} stylesCustom={styles.vacancyInner__content__textBox__imgBox} />
             </div>
           </article>
         )}
