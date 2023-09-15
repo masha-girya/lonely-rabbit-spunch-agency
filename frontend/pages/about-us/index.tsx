@@ -7,14 +7,15 @@ import { getDataPages } from "src/services/api";
 import { AboutUsPage, IAboutUsSection, Page } from "src/services/api-types";
 import { API_MEDIA_ENDPOINT } from "src/constants";
 import styles from "./index.module.scss";
+import { Modal } from "@components/modal";
+import { VacancyApplyModal } from "@components/modals-ui/vacancy-apply";
 
 const AboutUs = () => {
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
-  const [ctaText, setCtaText] = useState(
-    "Lorem ipsum dolor sit amet consectetur.."
-  );
+  const [ctaText, setCtaText] = useState("");
   const [aboutUsData, setAboutUsData] = useState<IAboutUsSection[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const loadData = useCallback(async () => {
     const res = await getDataPages(Page.about_us, ["*"]);
@@ -22,6 +23,7 @@ const AboutUs = () => {
       setText(res[0][AboutUsPage.banner_description]);
       setTitle(res[0][AboutUsPage.banner_title]);
       setAboutUsData(res[0][AboutUsPage.sections]);
+      setCtaText(res[0][AboutUsPage.footer_banner_title]);
     }
   }, []);
 
@@ -32,6 +34,11 @@ const AboutUs = () => {
   return (
     <div>
       <Header />
+      <Modal
+        isOpen={isModalOpen}
+        isOpenCallback={setIsModalOpen}
+        children={<VacancyApplyModal setIsModalOpen={setIsModalOpen} />}
+      />
       <main className={styles.aboutUs}>
         <div className={styles.aboutUs__banner}>
           <div className={styles.aboutUs__banner__container}>
@@ -51,19 +58,14 @@ const AboutUs = () => {
                       item.image_position === "LEFT",
                   })}
                 >
-                  <h1>Title required from back</h1>
+                  <h1>{item.title}</h1>
                   <div className={styles.aboutUs__item__text__textBox}>
                     <p>{item.text}</p>
                   </div>
                 </div>
-                <div
-                  className={classNames(styles.aboutUs__item__imgBox, {
-                    [styles.aboutUs__item__imgBox]:
-                      item.image_position === "LEFT",
-                  })}
-                >
+                <div className={styles.aboutUs__item__imgBox}>
                   <h1 className={styles.aboutUs__item__imgBox__title}>
-                    Title required from back
+                    {item.title}
                   </h1>
                   <img
                     src={`${API_MEDIA_ENDPOINT}${item.image.meta.download_url}`}
@@ -77,7 +79,7 @@ const AboutUs = () => {
         <section className={styles.aboutUs__ctaSection}>
           <h1>{ctaText}</h1>
           <div className={styles.aboutUs__ctaSection__button}>
-            <Button name="Join Us" onClick={() => {}} />
+            <Button name="Join Us" onClick={() => setIsModalOpen(true)} />
           </div>
         </section>
       </main>

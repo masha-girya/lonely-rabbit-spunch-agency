@@ -138,3 +138,10 @@
     background-color: #54A178;
   }
 }
+
+@mixin nonSelect {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Chrome, Edge, Opera and Firefox */
+}

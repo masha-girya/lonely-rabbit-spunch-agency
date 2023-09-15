@@ -5,11 +5,10 @@ import { Footer } from "@components/footer";
 import { Button } from "@components/button";
 import { Modal } from "@components/modal";
 import { VacancyApplyModal } from "@components/modals-ui/vacancy-apply";
-import { IBodyImage, IVacancySinglePage, Page } from "src/services/api-types";
+import { IVacancySinglePage, Page } from "src/services/api-types";
 import { getPageBySlug } from "src/services/api";
 import styles from "./index.module.scss";
-import { API_MEDIA_ENDPOINT } from "src/constants";
-
+import { ContentConstructor } from "@components/content-constructor";
 
 const VacancyInner = () => {
   const router = useRouter();
@@ -31,31 +30,6 @@ const VacancyInner = () => {
     loadData();
   }, [slug]);
 
-  const createContent = (body: IVacancySinglePage["body"]) => {
-    return body.map((item, i) => {
-      switch (item.type) {
-        case "h1":
-          return <h1 key={i}>{item.value}</h1>;
-        case "h2":
-          return <h2 key={i}>{item.value}</h2>;
-        case "paragraph":
-          return <p key={i}>{item.value}</p>;
-        case "image":
-          const imageValue = item.value as IBodyImage;
-          return (
-            <div key={i} className={styles.vacancyInner__content__textBox__imgBox}>
-              <img
-                src={`${API_MEDIA_ENDPOINT}${imageValue.url}`}
-                alt={imageValue.title}
-              />
-            </div>
-          );
-        default:
-          return <p key={i}></p>;
-      }
-    });
-  };
-
   return (
     <>
       <Header />
@@ -67,19 +41,28 @@ const VacancyInner = () => {
       <main className={styles.vacancyInner}>
         {vacancy && (
           <article className={styles.vacancyInner__content}>
-            <h1 className={styles.vacancyInner__content__title}>Title is required</h1>
-            <p className={styles.vacancyInner__content__date}>{vacancy.date.split("-").reverse().join("/")}</p>
-            <p className={styles.vacancyInner__content__desc}>{vacancy.caption}</p>
+            <h1 className={styles.vacancyInner__content__title}>
+              {vacancy.title}
+            </h1>
+            <p className={styles.vacancyInner__content__date}>
+              {vacancy.date.split("-").reverse().join("/")}
+            </p>
+            <p className={styles.vacancyInner__content__desc}>
+              {vacancy.caption}
+            </p>
             <div className={styles.vacancyInner__content__button}>
               <Button name="Apply" onClick={() => setIsOpenModal(true)} />
             </div>
             <div className={styles.vacancyInner__content__textBox}>
-              {createContent(vacancy.body)}
+              <ContentConstructor
+                content={vacancy.body}
+                stylesCustom={styles.vacancyInner__content__textBox__imgBox}
+              />
             </div>
           </article>
         )}
       </main>
-      <Footer />
+      {vacancy && <Footer />}
     </>
   );
 };

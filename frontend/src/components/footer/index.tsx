@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Nav } from "@components/nav";
 import { RightsIcon } from "@components/icons/RightsIcon";
 import { Socials } from "@components/socials";
@@ -10,13 +9,13 @@ export const Footer = () => {
     <footer className={styles.footer}>
       <div className={styles.footer__container}>
         <div className={styles.footer__mainBlock}>
-          <Link href="/">
+          <a href="/">
             <img
               className={styles.footer__mainBlock__logo}
               src={Logo.src}
               alt="logo"
             />
-          </Link>
+          </a>
           <div className={styles.footer__mainBlock__rightCol}>
             <Nav isFooter />
             <Socials />

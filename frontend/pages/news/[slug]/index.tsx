@@ -3,8 +3,9 @@ import { useRouter } from "next/router";
 import { Header } from "@components/header";
 import { Footer } from "@components/footer";
 import { NewsList } from "@components/news";
+import { ContentConstructor } from "@components/content-constructor";
 import { getPageBySlug } from "src/services/api";
-import { IBodyImage, INewsSingle } from "src/services/api-types";
+import { INewsSingle } from "src/services/api-types";
 import { API_MEDIA_ENDPOINT } from "src/constants";
 import styles from "./index.module.scss";
 
@@ -28,31 +29,6 @@ const NewsInner = () => {
     loadData();
   }, [slug]);
 
-  const createContent = (body: INewsSingle["body"]) => {
-    return body.map((item, i) => {
-      switch (item.type) {
-        case "h1":
-          return <h1 key={i}>{item.value}</h1>;
-        case "h2":
-          return <h2 key={i}>{item.value}</h2>;
-        case "paragraph":
-          return <p key={i}>{item.value}</p>;
-        case "image":
-          const imageValue = item.value as IBodyImage;
-          return (
-            <div key={i} className={styles.newsInner__content__imgBox}>
-              <img
-                src={`${API_MEDIA_ENDPOINT}${imageValue.url}`}
-                alt={imageValue.title}
-              />
-            </div>
-          );
-        default:
-          return <p key={i}></p>;
-      }
-    });
-  };
-
   return (
     <>
       <Header />
@@ -71,7 +47,7 @@ const NewsInner = () => {
               <p>{news.date.split("-").reverse().join(".")}</p>
             </div>
             <section className={styles.newsInner__content__textBox}>
-              {createContent(news.body)}
+              <ContentConstructor content={news.body} stylesCustom={styles.newsInner__content__imgBox} />
             </section>
           </article>
           <NewsList title={newsTitle} buttonTitle="See more news" />

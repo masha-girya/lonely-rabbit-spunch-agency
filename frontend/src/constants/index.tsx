@@ -18,14 +18,6 @@ export const NAV = [
   { title: "Recruitment", link: "/vacancies" },
 ];
 
-export const NAV_FOOTER = [
-  ...NAV,
-  {
-    title: "Contact Us",
-    link: "",
-  },
-];
-
 export const SOCIALS = [
   { title: "Twitch", Icon: <TwitchIcon />, link: "" },
   { title: "Instagram", Icon: <InstaIcon />, link: "" },

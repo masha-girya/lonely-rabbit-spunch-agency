@@ -57,19 +57,6 @@
         row-gap: 21px;
         margin-bottom: 20px;
       }
-
-      h1 {
-        @include blockTitle();
-        text-align: start;
-      }
-
-      h2 {
-        @include middleTitle();
-      }
-
-      p {
-        @include bodyText();
-      }
     }
 
     &__imgBox {
