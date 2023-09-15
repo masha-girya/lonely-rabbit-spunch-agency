@@ -32,6 +32,7 @@ services:
     volumes:
       - /var/www/app
       - static_volume:/app/static
+      - media_volume:/app/media
     networks:
       - backend
     ports:
