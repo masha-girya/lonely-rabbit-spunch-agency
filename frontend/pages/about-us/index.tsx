@@ -7,12 +7,15 @@ import { getDataPages } from "src/services/api";
 import { AboutUsPage, IAboutUsSection, Page } from "src/services/api-types";
 import { API_MEDIA_ENDPOINT } from "src/constants";
 import styles from "./index.module.scss";
+import { Modal } from "@components/modal";
+import { VacancyApplyModal } from "@components/modals-ui/vacancy-apply";
 
 const AboutUs = () => {
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
   const [ctaText, setCtaText] = useState("");
   const [aboutUsData, setAboutUsData] = useState<IAboutUsSection[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const loadData = useCallback(async () => {
     const res = await getDataPages(Page.about_us, ["*"]);
@@ -31,6 +34,11 @@ const AboutUs = () => {
   return (
     <div>
       <Header />
+      <Modal
+        isOpen={isModalOpen}
+        isOpenCallback={setIsModalOpen}
+        children={<VacancyApplyModal setIsModalOpen={setIsModalOpen} />}
+      />
       <main className={styles.aboutUs}>
         <div className={styles.aboutUs__banner}>
           <div className={styles.aboutUs__banner__container}>
@@ -71,7 +79,7 @@ const AboutUs = () => {
         <section className={styles.aboutUs__ctaSection}>
           <h1>{ctaText}</h1>
           <div className={styles.aboutUs__ctaSection__button}>
-            <Button name="Join Us" onClick={() => {}} />
+            <Button name="Join Us" onClick={() => setIsModalOpen(true)} />
           </div>
         </section>
       </main>
