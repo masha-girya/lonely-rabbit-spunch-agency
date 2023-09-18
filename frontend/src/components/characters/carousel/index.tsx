@@ -33,7 +33,10 @@ export const Carousel: React.FC<ICarousel> = (props) => {
     initialStartingPosition: "center",
     itemsPerSlide: chars.length % 2 === 0 ? chars.length - 1 : chars.length,
     withLoop: true,
-    initialActiveItem: chars.length % 2 === 0 ? Math.floor((chars.length - 1) / 2) : Math.floor(chars.length / 2),
+    initialActiveItem:
+      chars.length % 2 === 0
+        ? Math.floor((chars.length - 1) / 2)
+        : Math.floor(chars.length / 2),
     withThumbs: true,
     items: chars.map((item) => ({
       id: item.id.toString(),
@@ -49,12 +52,14 @@ export const Carousel: React.FC<ICarousel> = (props) => {
               [styles.charsList__item_main]: currentSlide === item.id,
             })}
           >
-            <img
-              src={`${API_MEDIA_ENDPOINT}${item.carousel_image.meta.download_url}`}
-              alt={item.carousel_image.title}
-              className={styles.charsList__item__image}
-              loading="eager"
-            />
+            {item.carousel_image && (
+              <img
+                src={`${API_MEDIA_ENDPOINT}${item.carousel_image.meta.download_url}`}
+                alt={item.carousel_image.title}
+                className={styles.charsList__item__image}
+                loading="eager"
+              />
+            )}
           </div>
         </div>
       ),

@@ -67,11 +67,13 @@ const AboutUs = () => {
                   <h1 className={styles.aboutUs__item__imgBox__title}>
                     {item.title}
                   </h1>
-                  <img
-                    src={`${API_MEDIA_ENDPOINT}${item.image.meta.download_url}`}
-                    alt={item.image.title}
-                    className={styles.aboutUs__item__imgBox__img}
-                  />
+                  {item.image && (
+                    <img
+                      src={`${API_MEDIA_ENDPOINT}${item.image.meta.download_url}`}
+                      alt={item.image.title}
+                      className={styles.aboutUs__item__imgBox__img}
+                    />
+                  )}
                 </div>
               </section>
             ))}

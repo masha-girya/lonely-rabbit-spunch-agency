@@ -5,6 +5,7 @@ import { getDataPages } from "src/services/api";
 import { IPolicy, Page, PolicyPage, } from "src/services/api-types";
 import styles from "./index.module.scss";
 import { ContentConstructor } from "@components/content-constructor";
+import classNames from "classnames";
 
 const PrivacyPolicy = () => {
   const [policyText, setPolicyText] = useState<IPolicy["body"]>([]);
@@ -23,7 +24,9 @@ const PrivacyPolicy = () => {
   return (
     <>
       <Header />
-      <main className={styles.privacy}>
+      <main className={classNames(styles.privacy, {
+        [styles.privacy_noContent]: policyText.length === 0,
+      })}>
         <article className={styles.privacy__container}>
           <section className={styles.privacy__articleBlock}>
             <ContentConstructor content={policyText} />

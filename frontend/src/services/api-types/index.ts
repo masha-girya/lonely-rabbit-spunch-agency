@@ -56,7 +56,7 @@ export interface ICharacters {
   meta: { type: string };
   description: string;
   name: string;
-  carousel_image: IImage;
+  carousel_image: IImage | null;
 }
 
 export interface INewsSingle {
@@ -65,8 +65,8 @@ export interface INewsSingle {
   [NewsSinglePage.title]: string;
   [NewsSinglePage.date]: string;
   [NewsSinglePage.caption]: string;
-  [NewsSinglePage.main_image]: IImage;
-  [NewsSinglePage.thumbnail_image]: IImage;
+  [NewsSinglePage.main_image]: IImage | null;
+  [NewsSinglePage.thumbnail_image]: IImage | null;
   [NewsSinglePage.body]: IBody[];
 }
 
@@ -77,7 +77,7 @@ export interface IAboutUs {
 }
 
 export interface IAboutUsSection {
-  image: IImage;
+  image: IImage | null;
   text: string;
   title: string;
   image_position: "RIGHT" | "LEFT";
