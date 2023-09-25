@@ -35,11 +35,13 @@ const NewsInner = () => {
       {news ? (
         <main className={styles.newsInner}>
           <div className={styles.newsInner__banner}>
-            <img
-              alt={news.main_image.title}
-              src={`${API_MEDIA_ENDPOINT}${news.main_image.meta.download_url}`}
-              className={styles.newsInner__banner__img}
-            />
+            {news.main_image && (
+              <img
+                alt={news.main_image.title}
+                src={`${API_MEDIA_ENDPOINT}${news.main_image.meta.download_url}`}
+                className={styles.newsInner__banner__img}
+              />
+            )}
           </div>
           <article className={styles.newsInner__content}>
             <div className={styles.newsInner__content__title}>
@@ -47,7 +49,10 @@ const NewsInner = () => {
               <p>{news.date.split("-").reverse().join(".")}</p>
             </div>
             <section className={styles.newsInner__content__textBox}>
-              <ContentConstructor content={news.body} stylesCustom={styles.newsInner__content__imgBox} />
+              <ContentConstructor
+                content={news.body}
+                stylesCustom={styles.newsInner__content__imgBox}
+              />
             </section>
           </article>
           <NewsList title={newsTitle} buttonTitle="See more news" />
