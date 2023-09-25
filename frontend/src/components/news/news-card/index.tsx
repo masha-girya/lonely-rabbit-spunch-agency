@@ -29,22 +29,22 @@ export const NewsCard: React.FC<INewsCard> = (props) => {
 
   return (
     <div className={styles.card} key={id}>
-      <img
-        src={`${API_MEDIA_ENDPOINT}${thumbnail_image.meta.download_url}`}
-        alt={thumbnail_image.title}
-        className={styles.card__img}
-      />
+      {thumbnail_image && (
+        <img
+          src={`${API_MEDIA_ENDPOINT}${thumbnail_image.meta.download_url}`}
+          alt={thumbnail_image.title}
+          className={styles.card__img}
+        />
+      )}
       <div className={styles.card__text}>
         <h1 className={styles.card__text__title}>{title}</h1>
         <p className={styles.card__text__desc}>{formatDesc}</p>
-        <p className={styles.card__text__date}>{date.split("-").reverse().join("/")}</p>
-        <div className={styles.card__button}>
-          <Button
-            name="Read more"
-            onClick={() => router.push(`/news/${meta.slug}`)}
-            variant="secondary"
-          />
-        </div>
+        <p className={styles.card__text__date}>
+          {date.split("-").reverse().join("/")}
+        </p>
+        <a href={`/news/${meta.slug}`} className={styles.card__button}>
+          <Button name="Read more" onClick={() => {}} variant="secondary" />
+        </a>
       </div>
     </div>
   );
