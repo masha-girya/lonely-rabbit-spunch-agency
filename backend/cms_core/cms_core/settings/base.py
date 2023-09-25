@@ -28,10 +28,10 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 if env("DEBUG") == 'True':
     ALLOWED_HOSTS = ['*']
     CORS_ALLOW_ALL_ORIGINS = True
-    CSRF_TRUSTED_ORIGINS = ['https://api-lonely-rabbit.spunch.agency']
+    CSRF_TRUSTED_ORIGINS = [env("CSRF_TRUSTED_ORIGINS")]
 else:
     ALLOWED_HOSTS = env("ALLOWED_HOST").split(",")
-    CSRF_TRUSTED_ORIGINS = ['https://api-lonely-rabbit.spunch.agency']
+    CSRF_TRUSTED_ORIGINS = [env("CSRF_TRUSTED_ORIGINS")]
 
 # Application definition
 
