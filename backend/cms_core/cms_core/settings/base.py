@@ -30,6 +30,7 @@ if env("DEBUG") == 'True':
     CORS_ALLOW_ALL_ORIGINS = True
     CSRF_TRUSTED_ORIGINS = [env("CSRF_TRUSTED_ORIGINS")]
 else:
+    CORS_ALLOWED_ORIGINS = env("CORS_ALLOWED_HOST").split(",")
     ALLOWED_HOSTS = env("ALLOWED_HOST").split(",")
     CSRF_TRUSTED_ORIGINS = [env("CSRF_TRUSTED_ORIGINS")]
 
