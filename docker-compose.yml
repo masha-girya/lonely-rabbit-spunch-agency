@@ -51,6 +51,9 @@ services:
     build:
       context: .
       dockerfile: docker/nginx/Dockerfile
+      args:
+        - FRONT_END_DOMAIN=${FRONT_END_DOMAIN}
+        - BACK_END_DOMAIN=${BACK_END_DOMAIN}
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
     depends_on:
       - ui
@@ -61,9 +64,6 @@ services:
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
       - static_volume:/app/static
-    environment:
-      - FRONT_END_DOMAIN=${FRONT_END_DOMAIN}
-      - BACK_END_DOMAIN=${BACK_END_DOMAIN}
     ports:
       - "80:80"
       - "443:443"
