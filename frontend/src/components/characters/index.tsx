@@ -8,7 +8,7 @@ export const Characters = () => {
   const [title, setTitle] = useState("Meet the Characters");
   const [charsOnShow, setCharsOnShow] = useState<ICharacters[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [currentChar, setCurrentChar] = useState({
+  const [currentChar, setCurrentChar] = useState<ICharacters>({
     id: 0,
     meta: { type: "" },
     description: "",

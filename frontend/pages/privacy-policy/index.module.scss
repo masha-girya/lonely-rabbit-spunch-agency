@@ -3,6 +3,10 @@
 .privacy {
   padding-top: 100px;
 
+  &_noContent {
+    height: calc(100vh - 260px);
+  }
+
   &__container {
     padding: 80px 40px;
     max-width: 826px;
@@ -23,23 +27,5 @@
     @include devices(mobile) {
       row-gap: 40px;
     }
-    
-    // h1 {
-    //   @include blockTitle();
-    //   text-align: start;
-    // }
-
-    // h2 {
-    //   @include middleTitle();
-    // }
-
-    // p {
-    //   @include bodyText();
-    //   line-height: 27px;
-
-    //   @include devices(mobile) {
-    //     line-height: 21px;
-    //   }
-    // }
   }
 }

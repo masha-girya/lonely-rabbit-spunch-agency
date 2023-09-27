@@ -8,8 +8,8 @@ import Banner3 from "@components/banner/assets/Banner3.png";
 import Banner4 from "@components/banner/assets/Banner4.png";
 import Banner5 from "@components/banner/assets/Banner5.png";
 
-export const API_ENDPOINT = "https://api-lonely-rabbit.spunch.agency/api/v2";
-export const API_MEDIA_ENDPOINT = "https://api-lonely-rabbit.spunch.agency";
+export const API_ENDPOINT = process.env.NEXT_PUBLIC_BACK_END_ENDPOINT;
+export const API_MEDIA_ENDPOINT = process.env.NEXT_PUBLIC_BACK_END_MEDIA_ENDPOINT;
 
 export const NAV = [
   { title: "Midnight Strikes", link: "/" },
