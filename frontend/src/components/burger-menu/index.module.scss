@@ -1,0 +1,44 @@
+@import "src/styles/mixins.scss";
+
+.burger {
+  position: relative;
+  width: 26px;
+  height: 20px;
+  display: none;
+
+  @include devices(mobile) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__1,
+  &__2,
+  &__3 {
+    height: 2px;
+    width: 100%;
+    background-color: #fbfbfb;
+    transition: all 0.3s ease;
+    border-radius: 20px;
+  }
+
+  &__1 {
+    &_open {
+      transform: translateY(7.7px) rotate(-45deg) scale(0.9);
+      height: 2.7px;
+    }
+  }
+
+  &__3 {
+    &_open {
+      transform: translateY(-9.7px) rotate(45deg) scale(0.9);
+      height: 2.7px;
+    }
+  }
+
+  &__2 {
+    &_open {
+      opacity: 0;
+    }
+  }
+}

@@ -24,6 +24,10 @@
     line-height: normal;
     transition: all .2s ease-in-out;
 
+    @include devices(mobile) {
+      color: rgba(251, 251, 251, 0.80);
+    }
+
     &_onFocus {
       transform: translateY(-26px);
     }
@@ -52,6 +56,11 @@
     font-weight: 500;
     line-height: normal;
     letter-spacing: 1px;
+
+    @include devices(mobile) {
+      color: #FBFBFB;
+      border-bottom: 0.5px solid rgba(251, 251, 251, 0.50);
+    }
 
     &_darkMode {
       border-bottom-color: #B0B0B0;

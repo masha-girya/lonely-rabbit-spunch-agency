@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import classNames from "classnames";
 import { Nav } from "@components/nav";
 import { Socials } from "@components/socials";
+import { BurgerMenu } from "@components/burger-menu";
 import Logo from "@styles/assets/Logo.png";
 import styles from "./index.module.scss";
 
@@ -64,10 +65,7 @@ export const Header = () => {
             })}
           />
         </a>
-        <div className={styles.burger}>
-          <input onClick={handleMobileMenu} type="checkbox" />
-          <span></span>
-        </div>
+        <BurgerMenu handleMobileMenu={handleMobileMenu} menuOpen={menuOpen} />
         <Nav />
       </div>
       <div

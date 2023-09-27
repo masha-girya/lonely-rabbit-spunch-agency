@@ -16,6 +16,7 @@ export const Banner = () => {
   const [title, setTitle] = useState("");
   const [images, setImages] = useState(BANNER_IMGS);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSafari, setIsSafari] = useState(true);
 
   const loadData = async () => {
     const res = await getDataPages(Page.home, [HomePage.first_block_title]);
@@ -23,6 +24,10 @@ export const Banner = () => {
       setTitle(res[0][HomePage.first_block_title]);
     }
   };
+
+  useEffect(() => {
+    setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
+  }, [])
 
   useEffect(() => {
     loadData();
@@ -56,7 +61,9 @@ export const Banner = () => {
               navigation={false}
               modules={[Autoplay]}
               loop={true}
-              className={styles.banner__images__boxItem}
+              className={classNames(styles.banner__images__boxItem, {
+                [styles.banner__images__boxItem_safari]: isSafari
+              })}
             >
               {images.map((img, i) => (
                 <SwiperSlide key={img.src + i}>
