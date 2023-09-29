@@ -3,12 +3,19 @@
 .banner {
   height: 100vh;
   min-height: 500px;
+  background: #040811;
+
 
   @include devices(tablet) {
     min-height: 750px;
   }
 
   &__bannerContainer {
+    position: relative;
+    background-image: url(./assets/background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: center;
     padding: 0 64px;
     padding-top: 111px;
     height: 100%;
@@ -29,6 +36,8 @@
 
   &__content {
     width: 55%;
+    //transition: all ease-in-out 2s;
+    position: relative;
 
     @include devices(tablet) {
       width: 100%;
@@ -37,6 +46,7 @@
     h1 {
       @include mainTitle();
       max-width: 670px;
+      color: #FBFBFB;
       margin-bottom: 24px;
 
       @include devices(tablet) {
@@ -77,7 +87,7 @@
       max-height: 800px;
       border-radius: 50% 50% 50% 50%;
       overflow: hidden;
-      filter:url(#round);
+      filter: url(#round);
       -webkit-filter: url(#round);
       animation: changeShapeBox 5s linear infinite;
 
@@ -154,5 +164,282 @@
   }
   100% {
     border-radius: 50% 50% 50% 50%;
+  }
+}
+
+.intro {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #040811;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  @include devices(tablet) {
+    display: none;
+  }
+
+  &__smoke_1 {
+    transition: all ease 1s;
+    background-image: url(./assets/smoke.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    left: 0;
+    transform: rotate(180deg);
+    bottom: 0;
+    animation: smokeMoveLeft 4s linear;
+    animation-fill-mode: forwards;
+    z-index: 1;
+  }
+
+  &__smoke_2 {
+    transition: all ease 1s;
+    background-image: url(./assets/smoke.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 80%;
+    height: 80%;
+    right: 0;
+    position: absolute;
+    animation: smokeMoveRight 4s linear;
+    animation-fill-mode: forwards;
+    z-index: 1;
+  }
+
+  &__strikeLogo {
+    transition: all ease-in 1s;
+    background-image: url(./assets/strikes_logo.png);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    transform: translate(-50%, -50%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: midnightLogo 4s linear;
+    animation-fill-mode: forwards;
+    z-index: 2;
+    opacity: 0;
+  }
+}
+
+@keyframes smokeMoveLeft {
+  0% {
+    left: -15px;
+    opacity: .8;
+  }
+  25% {
+    left: -35px;
+  }
+  50% {
+    left: -55px;
+  }
+  75% {
+    left: -75px;
+  }
+  100% {
+    left: -90px;
+    //opacity: 0;
+  }
+}
+
+@keyframes smokeMoveRight {
+  0% {
+    right: -15px;
+    opacity: .6;
+  }
+  25% {
+    right: -35px;
+  }
+  50% {
+    right: -55px;
+  }
+  75% {
+    right: -75px;
+  }
+  100% {
+    right: -90px;
+    //opacity: 0;1
+  }
+}
+
+@keyframes midnightLogo {
+  25% {
+    width: calc(424px * 0.25);
+    height: calc(354px * 0.25);
+    opacity: 0.25;
+  }
+  50% {
+    width: calc(424px * 0.5);
+    height: calc(354px * 0.5);
+    opacity: 0.5;
+  }
+  75% {
+    width: calc(424px * 0.75);
+    height: calc(354px * 0.75);
+    opacity: 0.75;
+  }
+  100% {
+    width: 424px;
+    height: 354px;
+    opacity: 1;
+  }
+}
+
+.smokeElement {
+  position: absolute;
+  bottom: 0;
+  width: 500px;
+  height: 500px;
+  @include devices(tablet) {
+    display: none;
+  }
+}
+
+.smokeContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  &_first {
+    top: 10%;
+    transform: rotate(-185deg) translateY(-47%) translateX(-8%);
+  }
+
+  &_second {
+    top: 10%;
+    transform: rotate(-185deg) translateY(-47%) translateX(-52%);
+  }
+}
+
+.smoke {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 100%;
+
+  &__item, &__item2, &__item3 {
+    filter: blur(5px);
+    transform-origin: 50% 50%;
+  }
+
+  &__item {
+    animation: smoke1 3s linear infinite;
+    animation-delay: 0.5s;
+    width: 80%;
+  }
+
+  &__item2 {
+    width: 80%;
+    animation: smoke2 3s linear infinite;
+    animation-delay: 1.5s;
+  }
+
+  &__item3 {
+    width: 100%;
+    animation: smoke3 4s linear infinite;
+    animation-delay: 2.5s;
+  }
+}
+
+@keyframes smoke1 {
+  0% {
+    filter: blur(0px);
+    transform: translateY(0px) scale(-1, 1);
+    opacity: 0;
+  }
+
+  25% {
+    filter: blur(3px);
+    transform: translateY(-10px) scale(-1, 1.05);
+    opacity: 0.5;
+  }
+
+  50% {
+    filter: blur(5px);
+    transform: translateY(-20px) scale(-1, 1.1);
+    opacity: 1;
+  }
+
+  75% {
+    filter: blur(5px);
+    transform: translateY(-30px) scale(-1, 1.15);
+    opacity: 0.5;
+  }
+
+  100% {
+    filter: blur(7px);
+    transform: translateY(-40px) scale(-1, 1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes smoke2 {
+  0% {
+    filter: blur(0px);
+    transform: translateY(0px) scale(1);
+    opacity: 0;
+  }
+
+  25% {
+    filter: blur(3px);
+    transform: translateY(-10px) scale(1.05);
+    opacity: 0.5;
+  }
+
+  50% {
+    filter: blur(5px);
+    transform: translateY(-20px) scale(1.1);
+    opacity: 1;
+  }
+
+  75% {
+    filter: blur(5px);
+    transform: translateY(-30px) scale(1.15);
+    opacity: 0.5;
+  }
+
+  100% {
+    filter: blur(7px);
+    transform: translateY(-40px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes smoke3 {
+  0% {
+    filter: blur(0px);
+    transform: translateY(0px) scale(1);
+    opacity: 0;
+  }
+
+  25% {
+    filter: blur(3px);
+    transform: translateY(-20px) scale(1.05);
+    opacity: 0.5;
+  }
+
+  50% {
+    filter: blur(5px);
+    transform: translateY(-40px) scale(1.1);
+    opacity: 1;
+  }
+
+  75% {
+    filter: blur(5px);
+    transform: translateY(-60px) scale(1.15);
+    opacity: 0.5;
+  }
+
+  100% {
+    filter: blur(7px);
+    transform: translateY(-80px) scale(1.2);
+    opacity: 0;
   }
 }

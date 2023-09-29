@@ -3,10 +3,10 @@
 .ctaBanner {
   height: 100vh;
   min-height: 500px;
-  background-image: url(./assets/Banner.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+
+  &__paralaxContent{
+    height: 100%;
+  }
 
   &__container {
     padding: 60px 64px;
