@@ -28,6 +28,8 @@
 
     &__text {
       width: 45%;
+      position: relative;
+      z-index: 1;
 
       @include devices(tablet) {
         width: 100%;
