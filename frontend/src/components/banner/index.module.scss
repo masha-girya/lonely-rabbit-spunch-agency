@@ -8,6 +8,7 @@
 
   @include devices(tablet) {
     min-height: 750px;
+    height: 105vh;
   }
 
   &__bannerContainer {
