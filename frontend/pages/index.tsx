@@ -5,8 +5,7 @@ import { ContactUs } from "@components/contact-us";
 import { CtaBanner } from "@components/cta-banner";
 import { Footer } from "@components/footer";
 import { NewsList } from "@components/news";
-import { PhotoBlock } from "@components/photo-block";
-import { VideoBlock } from "@components/video-block";
+import { Gameplay } from "@components/gameplay";
 
 const Home: React.FC = () => {
   return (
@@ -14,8 +13,7 @@ const Home: React.FC = () => {
       <Banner/>
       <main>
         <CtaBanner/>
-        <VideoBlock/>
-        <PhotoBlock/>
+        <Gameplay />
         <Characters/>
         <NewsList/>
         <ContactUs/>

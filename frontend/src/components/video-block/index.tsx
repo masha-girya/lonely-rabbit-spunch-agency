@@ -13,7 +13,7 @@ export const VideoBlock = () => {
     const res = await getDataPages(Page.home, [HomePage.video_block_title, HomePage.video_block_description]);
     if (res) {
       setTitle(res[0][HomePage.video_block_title]);
-      setDescription(res[0][HomePage.video_block_description])
+      setDescription(res[0][HomePage.video_block_description]);
     }
   };
 
@@ -24,7 +24,7 @@ export const VideoBlock = () => {
   return (
     <article className={styles.videoBlock}>
       <div className={styles.videoBlock__container}>
-        <h1>{title}</h1>
+        <h1>Gameplay</h1>
         <div className={styles.videoBlock__content}>
           <div className={styles.videoBlock__content__text}>
             <p>{description}</p>

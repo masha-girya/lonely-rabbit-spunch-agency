@@ -1,0 +1,174 @@
+@import "src/styles/mixins.scss";
+
+.gameplay {
+  position: relative;
+  background-image: url(./assets/Background.png);
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+
+  @include devices(mobile) {
+    background-position: 100% 0;
+    background-image: url(./assets/BackgroundMob.png);
+  }
+
+  &__container {
+    @include devices(mobile) {
+      background: rgba(51, 51, 51, 0.8);
+    }
+  }
+}
+
+@mixin fadeInAnimation() {
+  animation-name: fadeIn;
+  animation-duration: 0.3s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.footsteps {
+  position: absolute;
+  z-index: 0;
+  animation: walk infinite linear;
+  left: 15%;
+  top: -14px;
+  transform: translate(0, 0) rotate(0);
+
+  &__left {
+    width: max-content;
+    position: absolute;
+
+    &_2,
+    &_3,
+    &_4,
+    &_5,
+    &_6,
+    &_7,
+    &_8,
+    &_9,
+    &_10,
+    &_11 {
+      opacity: 0;
+      @include fadeInAnimation();
+    }
+
+    &_1 {
+      opacity: 0;
+    }
+
+    &_2 {
+      transform: translate(-75px, 75px) rotate(5deg);
+    }
+
+    &_3 {
+      transform: translate(-197px, 281px) rotate(-25deg);
+    }
+
+    &_4 {
+      transform: translate(-200px, 490px) rotate(-40deg);
+    }
+
+    &_5 {
+      transform: translate(-103px, 717px) rotate(-75deg);
+    }
+
+    &_6 {
+      transform: translate(47px, 897px) rotate(-85deg);
+    }
+
+    &_7 {
+      transform: translate(230px, 983px) rotate(-100deg);
+    }
+
+    &_8 {
+      transform: translate(438px, 1032px) rotate(-120deg);
+    }
+
+    &_9 {
+      transform: translate(648px, 1065px) rotate(-100deg);
+    }
+
+    &_10 {
+      transform: translate(864px, 1149px) rotate(-105deg);
+    }
+
+    &_11 {
+      transform: translate(1069px, 1216px) rotate(-100deg);
+    }
+  }
+
+  &__right {
+    position: absolute;
+    top: -9px;
+    left: 45px;
+
+    &_1,
+    &_2,
+    &_3,
+    &_4,
+    &_5,
+    &_6,
+    &_7,
+    &_8,
+    &_9,
+    &_10,
+    &_11 {
+      opacity: 0;
+      @include fadeInAnimation();
+    }
+
+    &_1 {
+      top: 0;
+      left: 25px;
+    }
+
+    &_2 {
+      transform: translate(-157px, 186px) rotate(35deg);
+    }
+
+    &_3 {
+      transform: translate(-209px, 391px) rotate(0deg);
+    }
+
+    &_4 {
+      transform: translate(-168px, 595px) rotate(-35deg);
+    }
+
+    &_5 {
+      transform: translate(-46px, 791px) rotate(-45deg);
+    }
+
+    &_6 {
+      transform: translate(110px, 919px) rotate(-80deg);
+    }
+
+    &_7 {
+      transform: translate(283px, 984px) rotate(-85deg);
+    }
+
+    &_8 {
+      transform: translate(504px, 1018px) rotate(-90deg);
+    }
+
+    &_9 {
+      transform: translate(718px, 1085px) rotate(-75deg);
+    }
+
+    &_10 {
+      transform: translate(926px, 1161px) rotate(-80deg);
+    }
+
+    &_11 {
+      transform: translate(1143px, 1229px) rotate(-75deg);
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

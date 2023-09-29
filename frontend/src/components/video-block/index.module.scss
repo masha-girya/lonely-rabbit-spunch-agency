@@ -13,6 +13,7 @@
 
   h1 {
     @include blockTitle();
+    color: #FBFBFB;
   }
 
   &__content {
@@ -27,6 +28,8 @@
 
     &__text {
       width: 45%;
+      position: relative;
+      z-index: 1;
 
       @include devices(tablet) {
         width: 100%;
@@ -36,12 +39,13 @@
       p {
         @include bodyText();
         margin-bottom: 20px;
+        color: #FBFBFB;
 
-        @include devices(tablet) {
-          &:last-of-type {
-            margin-top: 20px;
-          }
-        }
+        // @include devices(tablet) {
+        //   &:last-of-type {
+        //     margin-top: 20px;
+        //   }
+        // }
       }
     }
 
