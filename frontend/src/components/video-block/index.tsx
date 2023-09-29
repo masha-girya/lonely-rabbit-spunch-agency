@@ -24,7 +24,7 @@ export const VideoBlock = () => {
   return (
     <article className={styles.videoBlock}>
       <div className={styles.videoBlock__container}>
-        <h1>{title}</h1>
+        <h1>Gameplay</h1>
         <div className={styles.videoBlock__content}>
           <div className={styles.videoBlock__content__text}>
             <p>{description}</p>
