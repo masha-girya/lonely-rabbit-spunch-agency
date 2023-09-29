@@ -45,18 +45,18 @@ export const Banner = () => {
 
 
     return (
-        <div className={styles.banner}>
-            <Header/>
-            <Modal
-                isOpen={isModalOpen}
-                isOpenCallback={setIsModalOpen}
-                children={<PreOrderModal setIsModalOpen={setIsModalOpen}/>}
-            />
-            <Transition
-                in={introState}
-                timeout={0}
-            >
-                {(state) => (
+        <Transition
+            in={introState}
+            timeout={0}
+        >
+            {(state) => (
+                <div className={styles.banner}>
+                    <Header classNamesProps={classNames(`fade-banner-${state}`)}/>
+                    <Modal
+                        isOpen={isModalOpen}
+                        isOpenCallback={setIsModalOpen}
+                        children={<PreOrderModal setIsModalOpen={setIsModalOpen}/>}
+                    />
                     <div style={{width: '100%', height: '100%'}}>
                         <div className={classNames(styles.intro, `fade-intro-${state}`)}>
                             <div className={styles.intro__smoke_1}/>
@@ -156,8 +156,8 @@ export const Banner = () => {
                             </div>
                         </div>
                     </div>
-                )}
-            </Transition>
-        </div>
+                </div>
+            )}
+        </Transition>
     );
 };
