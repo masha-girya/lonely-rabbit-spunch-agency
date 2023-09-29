@@ -11,24 +11,26 @@ import classNames from "classnames";
 export const Gameplay = () => {
   const transRef = useRef<any | null>(null);
   const [isOnPlay, setIsOnPlay] = useState(false);
-
+  const { isTablet, isMobile } = useDevice();
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (transRef.current) {
-        if (transRef.current.getBoundingClientRect().y < 500) {
-          setIsOnPlay(true);
+    if (!isMobile && !isTablet) {
+      const handleScroll = () => {
+        if (transRef.current) {
+          if (transRef.current.getBoundingClientRect().y < 500) {
+            setIsOnPlay(true);
+          }
         }
-      }
-    };
+      };
 
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
+      window.addEventListener("scroll", handleScroll);
+      handleScroll();
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, [isMobile, isTablet]);
 
   return (
     <section className={styles.gameplay}>
