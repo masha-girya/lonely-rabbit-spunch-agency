@@ -195,6 +195,7 @@
     animation: smokeMoveLeft 4s linear;
     animation-fill-mode: forwards;
     z-index: 1;
+    filter: blur(2px);
   }
 
   &__smoke_2 {
@@ -209,6 +210,7 @@
     animation: smokeMoveRight 4s linear;
     animation-fill-mode: forwards;
     z-index: 1;
+    filter: blur(2px);
   }
 
   &__strikeLogo {
