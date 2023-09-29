@@ -20,6 +20,7 @@
     display: flex;
     column-gap: 40px;
     margin-top: 60px;
+    align-items: center;
 
     @include devices(tablet) {
       flex-direction: column;
