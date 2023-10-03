@@ -1,28 +1,25 @@
 import { useEffect, useState } from "react";
 import classNames from "classnames";
-import { Transition } from "react-transition-group";
-import { Parallax } from "react-parallax";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import "swiper/css";
 import { Button } from "@components/button";
 import { Header } from "@components/header";
-import { Modal } from "@components/modal";
-import { PreOrderModal } from "@components/modals-ui/pre-order-modal";
 import { BANNER_IMGS } from "src/constants";
 import { getDataPages } from "src/services/api";
 import { HomePage, Page } from "src/services/api-types";
 import styles from "./index.module.scss";
-import smokeFloorImg from "./assets/smoke_floor.png";
-import BgImage from "./assets/background.png";
+import { Modal } from "@components/modal";
+import { PreOrderModal } from "@components/modals-ui/pre-order-modal";
+import { Transition } from "react-transition-group";
+import smokeImg from "./assets/smoke.png";
 
 export const Banner = () => {
   const [title, setTitle] = useState("");
   const [images, setImages] = useState(BANNER_IMGS);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSafari, setIsSafari] = useState(true);
-  const [introState, setIntroState] = useState<boolean>(false);
-  const [contentState, setContentState] = useState<boolean>(true);
+  const [introState, setIntroState] = useState<boolean>(true);
 
   const loadData = async () => {
     const res = await getDataPages(Page.home, [HomePage.first_block_title]);
@@ -146,55 +143,14 @@ export const Banner = () => {
                 <Button onClick={() => setIsModalOpen(true)} name="Play Now" />
               </div>
               <div className={styles.smokeElement}>
-                <div
-                  className={classNames(
-                    styles.smokeContainer,
-                    styles.smokeContainer_first
-                  )}
-                >
+                <div className={styles.smokeContainer}>
                   <div className={styles.smoke}>
-                    <img
-                      className={styles.smoke__item}
-                      src={smokeFloorImg.src}
-                    />
+                    <img className={styles.smoke__itemBig} src={smokeImg.src} />
                   </div>
                   <div className={styles.smoke}>
                     <img
-                      className={styles.smoke__item2}
-                      src={smokeFloorImg.src}
-                    />
-                  </div>
-                  <div className={styles.smoke}>
-                    <img
-                      className={styles.smoke__item3}
-                      src={smokeFloorImg.src}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className={styles.smokeElement}>
-                <div
-                  className={classNames(
-                    styles.smokeContainer,
-                    styles.smokeContainer_second
-                  )}
-                >
-                  <div className={styles.smoke}>
-                    <img
-                      className={styles.smoke__item}
-                      src={smokeFloorImg.src}
-                    />
-                  </div>
-                  <div className={styles.smoke}>
-                    <img
-                      className={styles.smoke__item2}
-                      src={smokeFloorImg.src}
-                    />
-                  </div>
-                  <div className={styles.smoke}>
-                    <img
-                      className={styles.smoke__item3}
-                      src={smokeFloorImg.src}
+                      className={styles.smoke__itemMedium}
+                      src={smokeImg.src}
                     />
                   </div>
                 </div>
