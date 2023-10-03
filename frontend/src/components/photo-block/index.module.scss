@@ -11,30 +11,6 @@
     min-height: auto;
   }
 
-  &__title {
-    position: relative;
-    width: max-content;
-    margin: 0 auto;
-
-    h1 {
-      @include blockTitle();
-    }
-
-    svg {
-      position: absolute;
-      top: 0;
-      bottom: 20px;
-      right: 50%;
-      margin: auto;
-
-      @include devices(tablet) {
-        width: 116px;
-        bottom: 10px;
-        right: 52%;
-      }
-    }
-  }
-
   &__container {
     padding: 0 64px 60px;
 

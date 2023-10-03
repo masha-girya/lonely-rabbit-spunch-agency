@@ -39,6 +39,7 @@
     width: 55%;
     //transition: all ease-in-out 2s;
     position: relative;
+    z-index: 2;
 
     @include devices(tablet) {
       width: 100%;
@@ -297,9 +298,12 @@
 
 .smokeElement {
   position: absolute;
+  z-index: 0;
   bottom: 0;
-  width: 500px;
-  height: 500px;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   @include devices(tablet) {
     display: none;
   }
@@ -307,142 +311,109 @@
 
 .smokeContainer {
   position: relative;
+  top: 10%;
   width: 100%;
   height: 100%;
-
-  &_first {
-    top: 10%;
-    transform: rotate(-185deg) translateY(-47%) translateX(-8%);
-  }
-
-  &_second {
-    top: 10%;
-    transform: rotate(-185deg) translateY(-47%) translateX(-52%);
-  }
 }
 
 .smoke {
   position: absolute;
-  left: 50%;
   bottom: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  &__item, &__item2, &__item3 {
-    filter: blur(5px);
-    transform-origin: 50% 50%;
+  &__itemBig {
+    filter: blur(10px);
+    transform: translate(0px, 0px) scale(1);
+    animation: smokeBig 15s linear infinite;
+    opacity: 0.4;
   }
 
-  &__item {
-    animation: smoke1 3s linear infinite;
-    animation-delay: 0.5s;
-    width: 80%;
-  }
-
-  &__item2 {
-    width: 80%;
-    animation: smoke2 3s linear infinite;
-    animation-delay: 1.5s;
-  }
-
-  &__item3 {
-    width: 100%;
-    animation: smoke3 4s linear infinite;
-    animation-delay: 2.5s;
+  &__itemMedium {
+    position: relative;
+    left: 10%;
+    top: 15%;
+    align-self: flex-start;
+    filter: blur(1px);
+    transform: translate(0px, 0px) scale(1);
+    opacity: 0.5;
+    width: 90%;
+    animation-delay: 2s;
+    animation: smokeMedium 10s linear infinite;
   }
 }
 
-@keyframes smoke1 {
+@keyframes smokeBig {
   0% {
-    filter: blur(0px);
-    transform: translateY(0px) scale(-1, 1);
-    opacity: 0;
+    filter: blur(10px);
+    transform: translate(0px, 0px) scale(1);
+    opacity: 0.4;
   }
 
-  25% {
-    filter: blur(3px);
-    transform: translateY(-10px) scale(-1, 1.05);
+  20% {
+    filter: blur(7px);
+    transform: translate(-20px, 0px) scale(1.03);
     opacity: 0.5;
   }
 
-  50% {
+  40% {
     filter: blur(5px);
-    transform: translateY(-20px) scale(-1, 1.1);
-    opacity: 1;
+    transform: translate(-50px, -20px) scale(1.03);
+    opacity: 0.6;
   }
 
-  75% {
+  60% {
     filter: blur(5px);
-    transform: translateY(-30px) scale(-1, 1.15);
-    opacity: 0.5;
+    transform: translate(-40px, -30px) scale(1.02);
+    opacity: 0.4;
+  }
+
+  80% {
+    filter: blur(8px);
+    transform: translate(-20px, -20px) scale(1.03);
+    opacity: 0.6;
   }
 
   100% {
-    filter: blur(7px);
-    transform: translateY(-40px) scale(-1, 1.2);
-    opacity: 0;
+    filter: blur(10px);
+    transform: translate(0px) scale(1);
+    opacity: 0.4;
   }
 }
 
-@keyframes smoke2 {
+@keyframes smokeMedium {
   0% {
-    filter: blur(0px);
-    transform: translateY(0px) scale(1);
-    opacity: 0;
+    transform: translate(0px, 0px) scale(1);
+    opacity: 0.7;
+    filter: blur(1px);
   }
-
-  25% {
+  20% {
+    transform: translate(10px, 15px) scale(1.03);
+    opacity: 0.6;
+    filter: blur(2px);
+  }
+  40% {
+    transform: translate(0px, 5px) scale(1.02);
+    opacity: 0.5;
+    filter: blur(1px);
+  }
+  60% {
+    transform: translate(-10px, 10px) scale(1.03);
+    opacity: 0.4;
     filter: blur(3px);
-    transform: translateY(-10px) scale(1.05);
+  }
+  80% {
+    transform: translate(0px, -5px) scale(1.01);
     opacity: 0.5;
+    filter: blur(2px);
   }
-
-  50% {
-    filter: blur(5px);
-    transform: translateY(-20px) scale(1.1);
-    opacity: 1;
-  }
-
-  75% {
-    filter: blur(5px);
-    transform: translateY(-30px) scale(1.15);
-    opacity: 0.5;
-  }
-
   100% {
-    filter: blur(7px);
-    transform: translateY(-40px) scale(1.2);
-    opacity: 0;
-  }
-}
-
-@keyframes smoke3 {
-  0% {
-    filter: blur(0px);
-    transform: translateY(0px) scale(1);
-    opacity: 0;
-  }
-
-  25% {
-    filter: blur(3px);
-    transform: translateY(-20px) scale(1.05);
-    opacity: 0.5;
-  }
-
-  50% {
-    filter: blur(5px);
-    transform: translateY(-40px) scale(1.1);
-    opacity: 1;
-  }
-
-  75% {
-    filter: blur(5px);
-    transform: translateY(-60px) scale(1.15);
-    opacity: 0.5;
-  }
-
-  100% {
-    filter: blur(7px);
-    transform: translateY(-80px) scale(1.2);
-    opacity: 0;
+    transform: translate(0px, 0px) scale(1);
+    opacity: 0.7;
+    filter: blur(1px);
   }
 }
