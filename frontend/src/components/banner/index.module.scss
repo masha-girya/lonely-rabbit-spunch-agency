@@ -11,6 +11,13 @@
     height: 105vh;
   }
 
+  &__fixedContainer {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 0;
+  }
+
   &__bannerContainer {
     position: relative;
     background-image: url(./assets/background.png);
@@ -24,6 +31,10 @@
     justify-content: center;
     align-items: center;
     column-gap: 40px;
+
+    &_parallax {
+      height: 100%;
+    }
 
     @include devices(tablet) {
       flex-direction: column;
