@@ -38,7 +38,6 @@ export const Banner = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > window.innerHeight + 10) {
-        console.log("here")
         setIsInvisible(true);
       } else {
         setIsInvisible(false);

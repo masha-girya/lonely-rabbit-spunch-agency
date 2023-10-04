@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useDevice } from "src/hooks/useDevice";
 import { Button } from "@components/button";
 import { Modal } from "@components/modal";
 import { PreOrderModal } from "@components/modals-ui/pre-order-modal";
@@ -13,6 +14,7 @@ export const CtaBanner = () => {
   const [title, setTitle] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLogoVisible, setIsLogoVisible] = useState(false);
+  const { isMobile, isTablet, isDesktop, isSmallNote } = useDevice();
 
   const loadData = async () => {
     const res = await getDataPages(Page.home, [HomePage.second_block_title]);
@@ -26,8 +28,13 @@ export const CtaBanner = () => {
   }, []);
 
   useEffect(() => {
-    setTimeout(() => setIsLogoVisible(true), 4000);
-  }, []);
+    if(isDesktop || isSmallNote) {
+      setTimeout(() => setIsLogoVisible(true), 4000);
+    }
+    if(isMobile || isTablet){
+      setIsLogoVisible(true);
+    }
+  }, [isDesktop, isSmallNote, isMobile, isTablet]);
 
   return (
     <article className={styles.ctaBanner}>
@@ -42,6 +49,7 @@ export const CtaBanner = () => {
         strength={200}
         blur={0}
         style={{ width: "100%", height: "100%" }}
+        bgClassName={styles.imageParallax}
         contentClassName={styles.ctaBanner__paralaxContent}
       >
         <div className={styles.ctaBanner__container}>

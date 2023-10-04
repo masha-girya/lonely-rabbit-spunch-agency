@@ -12,6 +12,7 @@
   @include devices(tablet) {
     height: 0;
     min-height: 95px;
+    background: #333333;
   }
 
   &__fixedContainer {

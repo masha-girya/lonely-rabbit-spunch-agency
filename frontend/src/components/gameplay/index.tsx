@@ -3,8 +3,7 @@ import { PhotoBlock } from "@components/photo-block";
 import FootstepL from "./assets/FootStepLeft.png";
 import FootstepR from "./assets/FootstepRight.png";
 import styles from "./index.module.scss";
-import { Transition } from "react-transition-group";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDevice } from "src/hooks/useDevice";
 import classNames from "classnames";
 
