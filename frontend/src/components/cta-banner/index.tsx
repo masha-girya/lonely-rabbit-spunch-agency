@@ -12,6 +12,7 @@ import styles from "./index.module.scss";
 export const CtaBanner = () => {
   const [title, setTitle] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLogoVisible, setIsLogoVisible] = useState(false);
 
   const loadData = async () => {
     const res = await getDataPages(Page.home, [HomePage.second_block_title]);
@@ -24,9 +25,13 @@ export const CtaBanner = () => {
     loadData();
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => setIsLogoVisible(true), 4000);
+  }, []);
+
   return (
     <article className={styles.ctaBanner}>
-      <img className={styles.ctaBanner__logo} src={logoImage.src} />
+      {isLogoVisible &&  <img className={styles.ctaBanner__logo} src={logoImage.src} />}
       <Modal
         isOpen={isModalOpen}
         isOpenCallback={setIsModalOpen}
