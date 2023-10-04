@@ -1,40 +1,39 @@
 @import "./mixins.scss";
 @import 'swiper/swiper-bundle.min.css';
-// @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;700;800&display=swap');
 
 @font-face {
   font-family: 'Nunito';
   font-style: bold;
   font-weight: 800;
-  src: url(../assets/fonts/Nunito-ExtraBold.ttf);
+  src: url(./assets/fonts/Nunito-ExtraBold.ttf);
 }
 
 @font-face {
   font-family: 'Nunito';
   font-style: bold;
   font-weight: 700;
-  src: url(../assets/fonts/Nunito-Bold.ttf);
+  src: url(./assets/fonts/Nunito-Bold.ttf);
 }
 
 @font-face {
   font-family: 'Nunito';
   font-style: normal;
   font-weight: 500;
-  src: url(../assets/fonts/Nunito-Medium.ttf);
+  src: url(./assets/fonts/Nunito-Medium.ttf);
 }
 
 @font-face {
   font-family: 'Nunito';
   font-style: normal;
   font-weight: 400;
-  src: url(../assets/fonts/Nunito-Regular.ttf);
+  src: url(./assets/fonts/Nunito-Regular.ttf);
 }
 
 @font-face {
   font-family: 'Nunito';
   font-style: normal;
   font-weight: 300;
-  src: url(../assets/fonts/Nunito-Light.ttf);
+  src: url(./assets/fonts/Nunito-Light.ttf);
 }
 
 *,
@@ -57,8 +56,6 @@ body {
 
 body {
   background-color: #FBFBFB;
-  // overflow-y: auto;
-  // overflow-x: hidden;
 }
 
 button {
@@ -68,10 +65,6 @@ button {
   font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
   "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
   "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
-
-#__next {
-  // height: 100%;
 }
 
 h1, h2, h3, h4, h5, p {

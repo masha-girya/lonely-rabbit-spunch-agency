@@ -3,13 +3,14 @@
 .ctaBanner {
   height: 100vh;
   min-height: 500px;
+  position: relative;
 
   &__paralaxContent{
     height: 100%;
   }
 
   &__container {
-    padding: 60px 64px;
+    padding: 134px 64px 60px 64px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -18,6 +19,19 @@
 
     @include devices(tablet) {
       padding: 60px 16px;
+    }
+  }
+
+  &__logo {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    top: -140px;
+    margin: 0 auto;
+
+    @include devices(tablet) {
+      display: none;
     }
   }
 

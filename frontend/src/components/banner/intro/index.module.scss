@@ -1,0 +1,128 @@
+@import "src/styles/mixins.scss";
+
+.intro {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #040811;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  @include devices(tablet) {
+    display: none;
+  }
+
+  &__smoke_1 {
+    transition: all ease 1s;
+    background-image: url(../assets/smoke.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    left: 0;
+    transform: rotate(180deg);
+    bottom: 0;
+    animation: smokeMoveLeft 4s linear;
+    animation-fill-mode: forwards;
+    z-index: 1;
+    filter: blur(2px);
+  }
+
+  &__smoke_2 {
+    transition: all ease 1s;
+    background-image: url(../assets/smoke.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 80%;
+    height: 80%;
+    right: 0;
+    position: absolute;
+    animation: smokeMoveRight 4s linear;
+    animation-fill-mode: forwards;
+    z-index: 1;
+    filter: blur(2px);
+  }
+
+  &__strikeLogo {
+    transition: all ease-in 1s;
+    background-image: url(../assets/strikes_logo.png);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    transform: translate(-50%, -50%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: midnightLogo 4s linear;
+    animation-fill-mode: forwards;
+    z-index: 2;
+    opacity: 0;
+  }
+}
+
+@keyframes smokeMoveLeft {
+  0% {
+    left: -15px;
+    opacity: 0.8;
+  }
+  25% {
+    left: -35px;
+  }
+  50% {
+    left: -55px;
+  }
+  75% {
+    left: -75px;
+  }
+  100% {
+    left: -90px;
+    //opacity: 0;
+  }
+}
+
+@keyframes smokeMoveRight {
+  0% {
+    right: -15px;
+    opacity: 0.6;
+  }
+  25% {
+    right: -35px;
+  }
+  50% {
+    right: -55px;
+  }
+  75% {
+    right: -75px;
+  }
+  100% {
+    right: -90px;
+    //opacity: 0;1
+  }
+}
+
+@keyframes midnightLogo {
+  25% {
+    width: calc(424px * 0.25);
+    height: calc(354px * 0.25);
+    opacity: 0.25;
+  }
+  50% {
+    width: calc(424px * 0.5);
+    height: calc(354px * 0.5);
+    opacity: 0.5;
+  }
+  75% {
+    width: calc(424px * 0.75);
+    height: calc(354px * 0.75);
+    opacity: 0.75;
+  }
+  100% {
+    width: 424px;
+    height: 354px;
+    opacity: 1;
+  }
+}

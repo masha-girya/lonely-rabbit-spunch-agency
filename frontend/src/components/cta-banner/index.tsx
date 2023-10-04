@@ -6,6 +6,7 @@ import { getDataPages } from "src/services/api";
 import { Parallax } from "react-parallax";
 import { HomePage, Page } from "src/services/api-types";
 import bgImage from "./assets/Banner.png";
+import logoImage from "./assets/strikes_logo_white.png";
 import styles from "./index.module.scss";
 
 export const CtaBanner = () => {
@@ -25,6 +26,7 @@ export const CtaBanner = () => {
 
   return (
     <article className={styles.ctaBanner}>
+      <img className={styles.ctaBanner__logo} src={logoImage.src} />
       <Modal
         isOpen={isModalOpen}
         isOpenCallback={setIsModalOpen}
