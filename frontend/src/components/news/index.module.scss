@@ -1,6 +1,9 @@
 @import "src/styles/mixins.scss";
 
 .news {
+  position: relative;
+  background-color: #FBFBFB;
+  
   &__container {
     padding: 60px 0;
     position: relative;

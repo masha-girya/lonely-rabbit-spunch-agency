@@ -5,10 +5,20 @@
   min-height: 500px;
   background: #040811;
 
+  &_invisible {
+    background-color: #FBFBFB;
+  }
 
   @include devices(tablet) {
     min-height: 750px;
     height: 105vh;
+  }
+
+  &__fixedContainer {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 0;
   }
 
   &__bannerContainer {
@@ -25,12 +35,17 @@
     align-items: center;
     column-gap: 40px;
 
+    &_invisible {
+      opacity: 0;
+    }
+
     @include devices(tablet) {
       flex-direction: column;
-      justify-content: space-evenly;
+      justify-content: space-between;
       column-gap: 0;
-      padding: 16px;
-      padding-top: 111px;
+      // padding: 16px;
+      // padding-top: 111px;
+      padding: 111px 16px 40px 16px;
       overflow: hidden;
     }
   }
@@ -70,350 +85,5 @@
         }
       }
     }
-  }
-
-  &__images {
-    width: 45%;
-    height: 90%;
-
-    @include devices(tablet) {
-      width: 130%;
-      max-height: 414px;
-    }
-
-    &__box {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-      max-height: 800px;
-      border-radius: 50% 50% 50% 50%;
-      overflow: hidden;
-      filter: url(#round);
-      -webkit-filter: url(#round);
-      animation: changeShapeBox 5s linear infinite;
-
-      @include devices(mobile) {
-        filter: none;
-      }
-    }
-
-    &__boxItem {
-      width: 100%;
-      height: 100%;
-      background-color: transparent;
-      transition: all 0.5s ease-in-out;
-
-      clip-path: polygon(29% 4%, 93% 0, 100% 36%, 100% 88%, 60% 95%, 0 98%, 7% 55%, 1% 19%);
-      animation: changeShape 7s linear infinite;
-
-      &_safari {
-        clip-path: none;
-        animation: none;
-      }
-
-      @include devices(mobile) {
-        position: relative;
-        z-index: 0;
-        clip-path: none;
-        animation: none;
-      }
-    }
-
-    &__img {
-      position: relative;
-      z-index: 3;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
-      transition: all 0.5s ease;
-
-    }
-  }
-}
-
-@keyframes changeShape {
-  0% {
-    clip-path: polygon(29% 4%, 93% 0, 100% 36%, 100% 88%, 60% 95%, 0 98%, 7% 55%, 1% 19%);
-  }
-  25% {
-    clip-path: polygon(38% 8%, 93% 7%, 94% 32%, 96% 85%, 62% 100%, 0 88%, 4% 53%, 6% 11%);
-  }
-  50% {
-    clip-path: polygon(44% 9%, 98% 4%, 92% 49%, 97% 80%, 52% 100%, 2% 90%, 1% 41%, 9% 5%);
-  }
-  75% {
-    clip-path: polygon(52% 4%, 100% 7%, 98% 53%, 99% 90%, 44% 95%, 0 98%, 1% 41%, 16% 1%);
-  }
-  100% {
-    clip-path: polygon(29% 4%, 93% 0, 100% 36%, 100% 88%, 60% 95%, 0 98%, 7% 55%, 1% 19%);
-  }
-}
-
-@keyframes changeShapeBox {
-  0% {
-    border-radius: 50% 50% 50% 50%;
-  }
-  25% {
-    border-radius: 45% 50% 40% 48%;
-  }
-  50% {
-    border-radius: 50% 48% 42% 50%;
-  }
-  75% {
-    border-radius: 45% 42% 48% 44%;
-  }
-  100% {
-    border-radius: 50% 50% 50% 50%;
-  }
-}
-
-.intro {
-  position: absolute;
-  left: 0;
-  top: 0;
-  background: #040811;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: hidden;
-
-  @include devices(tablet) {
-    display: none;
-  }
-
-  &__smoke_1 {
-    transition: all ease 1s;
-    background-image: url(./assets/smoke.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 80%;
-    height: 80%;
-    position: absolute;
-    left: 0;
-    transform: rotate(180deg);
-    bottom: 0;
-    animation: smokeMoveLeft 4s linear;
-    animation-fill-mode: forwards;
-    z-index: 1;
-    filter: blur(2px);
-  }
-
-  &__smoke_2 {
-    transition: all ease 1s;
-    background-image: url(./assets/smoke.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 80%;
-    height: 80%;
-    right: 0;
-    position: absolute;
-    animation: smokeMoveRight 4s linear;
-    animation-fill-mode: forwards;
-    z-index: 1;
-    filter: blur(2px);
-  }
-
-  &__strikeLogo {
-    transition: all ease-in 1s;
-    background-image: url(./assets/strikes_logo.png);
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 0;
-    height: 0;
-    transform: translate(-50%, -50%);
-    background-repeat: no-repeat;
-    background-size: cover;
-    animation: midnightLogo 4s linear;
-    animation-fill-mode: forwards;
-    z-index: 2;
-    opacity: 0;
-  }
-}
-
-@keyframes smokeMoveLeft {
-  0% {
-    left: -15px;
-    opacity: .8;
-  }
-  25% {
-    left: -35px;
-  }
-  50% {
-    left: -55px;
-  }
-  75% {
-    left: -75px;
-  }
-  100% {
-    left: -90px;
-    //opacity: 0;
-  }
-}
-
-@keyframes smokeMoveRight {
-  0% {
-    right: -15px;
-    opacity: .6;
-  }
-  25% {
-    right: -35px;
-  }
-  50% {
-    right: -55px;
-  }
-  75% {
-    right: -75px;
-  }
-  100% {
-    right: -90px;
-    //opacity: 0;1
-  }
-}
-
-@keyframes midnightLogo {
-  25% {
-    width: calc(424px * 0.25);
-    height: calc(354px * 0.25);
-    opacity: 0.25;
-  }
-  50% {
-    width: calc(424px * 0.5);
-    height: calc(354px * 0.5);
-    opacity: 0.5;
-  }
-  75% {
-    width: calc(424px * 0.75);
-    height: calc(354px * 0.75);
-    opacity: 0.75;
-  }
-  100% {
-    width: 424px;
-    height: 354px;
-    opacity: 1;
-  }
-}
-
-.smokeElement {
-  position: absolute;
-  z-index: 0;
-  bottom: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  @include devices(tablet) {
-    display: none;
-  }
-}
-
-.smokeContainer {
-  position: relative;
-  top: 10%;
-  width: 100%;
-  height: 100%;
-}
-
-.smoke {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  &__itemBig {
-    filter: blur(10px);
-    transform: translate(0px, 0px) scale(1);
-    animation: smokeBig 15s linear infinite;
-    opacity: 0.4;
-  }
-
-  &__itemMedium {
-    position: relative;
-    left: 10%;
-    top: 15%;
-    align-self: flex-start;
-    filter: blur(1px);
-    transform: translate(0px, 0px) scale(1);
-    opacity: 0.5;
-    width: 90%;
-    animation-delay: 2s;
-    animation: smokeMedium 10s linear infinite;
-  }
-}
-
-@keyframes smokeBig {
-  0% {
-    filter: blur(10px);
-    transform: translate(0px, 0px) scale(1);
-    opacity: 0.4;
-  }
-
-  20% {
-    filter: blur(7px);
-    transform: translate(-20px, 0px) scale(1.03);
-    opacity: 0.5;
-  }
-
-  40% {
-    filter: blur(5px);
-    transform: translate(-50px, -20px) scale(1.03);
-    opacity: 0.6;
-  }
-
-  60% {
-    filter: blur(5px);
-    transform: translate(-40px, -30px) scale(1.02);
-    opacity: 0.4;
-  }
-
-  80% {
-    filter: blur(8px);
-    transform: translate(-20px, -20px) scale(1.03);
-    opacity: 0.6;
-  }
-
-  100% {
-    filter: blur(10px);
-    transform: translate(0px) scale(1);
-    opacity: 0.4;
-  }
-}
-
-@keyframes smokeMedium {
-  0% {
-    transform: translate(0px, 0px) scale(1);
-    opacity: 0.7;
-    filter: blur(1px);
-  }
-  20% {
-    transform: translate(10px, 15px) scale(1.03);
-    opacity: 0.6;
-    filter: blur(2px);
-  }
-  40% {
-    transform: translate(0px, 5px) scale(1.02);
-    opacity: 0.5;
-    filter: blur(1px);
-  }
-  60% {
-    transform: translate(-10px, 10px) scale(1.03);
-    opacity: 0.4;
-    filter: blur(3px);
-  }
-  80% {
-    transform: translate(0px, -5px) scale(1.01);
-    opacity: 0.5;
-    filter: blur(2px);
-  }
-  100% {
-    transform: translate(0px, 0px) scale(1);
-    opacity: 0.7;
-    filter: blur(1px);
   }
 }
