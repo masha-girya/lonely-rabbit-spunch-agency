@@ -10,8 +10,9 @@
   }
 
   @include devices(tablet) {
-    min-height: 750px;
-    height: 105vh;
+    height: 0;
+    min-height: 95px;
+    background: #333333;
   }
 
   &__fixedContainer {
@@ -19,6 +20,10 @@
     height: 100%;
     position: fixed;
     z-index: 0;
+
+    @include devices(mobile) {
+      display: none;
+    }
   }
 
   &__bannerContainer {
@@ -40,19 +45,12 @@
     }
 
     @include devices(tablet) {
-      flex-direction: column;
-      justify-content: space-between;
-      column-gap: 0;
-      // padding: 16px;
-      // padding-top: 111px;
-      padding: 111px 16px 40px 16px;
-      overflow: hidden;
+      display: none;
     }
   }
 
   &__content {
     width: 55%;
-    //transition: all ease-in-out 2s;
     position: relative;
     z-index: 2;
 
