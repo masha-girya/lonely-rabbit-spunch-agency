@@ -33,6 +33,9 @@
     right: 0;
     top: -140px;
     margin: 0 auto;
+    animation-name: fadeIn;
+    animation-duration: 3s;
+    animation-timing-function: ease;
 
     @include devices(tablet) {
       width: 200px;
@@ -57,5 +60,14 @@
     @include devices(tablet) {
       width: 237px;
     }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
