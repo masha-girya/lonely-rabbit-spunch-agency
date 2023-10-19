@@ -1,6 +1,4 @@
-import { useState } from "react";
 import { useDevice } from "src/hooks/useDevice";
-import { GameIcon } from "@components/icons/GameIcon";
 import { PhotosMobile } from "./photos-mobile";
 import styles from "./index.module.scss";
 import Img1 from "./assets/Img1.png";
@@ -14,10 +12,6 @@ export const PhotoBlock = () => {
   return (
     <article className={styles.photoBlock}>
       <div className={styles.photoBlock__container}>
-        {/* <div className={styles.photoBlock__title}>
-          <GameIcon />
-          <h1>{title}</h1>
-        </div> */}
         <div className={styles.photoBlock__photos}>
           <div className={styles.photoBlock__photos__col}>
             <img src={Img1.src} />

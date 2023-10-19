@@ -1,15 +1,28 @@
 @import "src/styles/mixins.scss";
 
+.imageParallax {
+  object-position: 29% 50%;
+  object-fit: cover;
+  max-width: 100%;
+  max-height: 110%;
+}
+
 .ctaBanner {
   height: 100vh;
   min-height: 500px;
+  position: relative;
+
+  @include devices(tablet) {
+    height: calc(100vh - 95px);
+    min-height: calc(800px - 95px);
+  }
 
   &__paralaxContent{
     height: 100%;
   }
 
   &__container {
-    padding: 60px 64px;
+    padding: 134px 64px 60px 64px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -17,7 +30,24 @@
     align-items: center;
 
     @include devices(tablet) {
-      padding: 60px 16px;
+      padding: 244px 16px 60px 16px;
+    }
+  }
+
+  &__logo {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    top: -140px;
+    margin: 0 auto;
+    animation-name: fadeIn;
+    animation-duration: 3s;
+    animation-timing-function: ease;
+
+    @include devices(tablet) {
+      width: 200px;
+      top: 40px;
     }
   }
 
@@ -38,5 +68,14 @@
     @include devices(tablet) {
       width: 237px;
     }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
