@@ -118,3 +118,21 @@ export interface IImage {
   };
   title: string;
 }
+
+export interface IVacancyRequest {
+  email: string;
+  fullname: string;
+  cover_letter: string;
+  vacancy_page?: string;
+}
+
+export interface IContactUsRequest {
+  email: string;
+  fullname: string;
+}
+
+export enum STATUS {
+  success = "success",
+  failed = "failed",
+  none = "none",
+}

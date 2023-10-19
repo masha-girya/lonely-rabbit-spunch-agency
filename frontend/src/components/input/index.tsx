@@ -1,6 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import { Transition } from "react-transition-group";
+import {
+  DURATION_FADE_IN,
+  DEFAULT_STYLE_FADE_IN,
+  TRANS_STYLES_FADE_IN,
+} from "src/constants/transition";
 import styles from "./index.module.scss";
 
 interface IInput {
@@ -24,7 +29,7 @@ export const Input: React.FC<IInput> = (props) => {
   const [focus, setFocus] = useState(false);
   const ref = useRef<null | any>(null);
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
-  const [isTwoRows, setIsTwoRows] = useState(false);
+  const transRef = useRef(null);
 
   const handleChange = useCallback((event: any) => {
     onChange(event.target.value);
@@ -58,21 +63,6 @@ export const Input: React.FC<IInput> = (props) => {
         value.length > 0 ? scrollHeight + "px" : emptyHeight;
     }
   }, [textAreaRef, value]);
-
-  const transRef = useRef(null);
-  const duration = 200;
-
-  const defaultStyle = {
-    transition: `opacity ${duration}ms ease-in-out`,
-    opacity: 0,
-  };
-
-  const transitionStyles: any = {
-    entering: { opacity: 1 },
-    entered: { opacity: 1 },
-    exiting: { opacity: 0 },
-    exited: { opacity: 0 },
-  };
 
   return (
     <div className={styles.inputContainer}>
@@ -126,7 +116,7 @@ export const Input: React.FC<IInput> = (props) => {
       <Transition
         unmountOnExit
         in={errorText !== undefined && errorText.length > 0}
-        timeout={duration}
+        timeout={DURATION_FADE_IN}
         nodeRef={transRef}
       >
         {(state) => (
@@ -134,8 +124,8 @@ export const Input: React.FC<IInput> = (props) => {
             ref={transRef}
             className={styles.error}
             style={{
-              ...defaultStyle,
-              ...transitionStyles[state],
+              ...DEFAULT_STYLE_FADE_IN,
+              ...TRANS_STYLES_FADE_IN[state],
             }}
           >
             {errorText}

@@ -7,9 +7,15 @@ import Banner2 from "@components/banner/assets/Banner2.png";
 import Banner3 from "@components/banner/assets/Banner3.png";
 import Banner4 from "@components/banner/assets/Banner4.png";
 import Banner5 from "@components/banner/assets/Banner5.png";
+import { STATUS } from "src/services/api-types";
 
 export const API_ENDPOINT = process.env.NEXT_PUBLIC_BACK_END_ENDPOINT;
-export const API_MEDIA_ENDPOINT = process.env.NEXT_PUBLIC_BACK_END_MEDIA_ENDPOINT;
+export const API_MEDIA_ENDPOINT =
+  process.env.NEXT_PUBLIC_BACK_END_MEDIA_ENDPOINT;
+export const API_CONTACT_US_ENDPOINT =
+  process.env.NEXT_PUBLIC_BACK_END_CONTACT_US_ENDPOINT;
+export const API_JOIN_US_ENDPOINT =
+  process.env.NEXT_PUBLIC_BACK_END_JOIN_US_ENDPOINT;
 
 export const NAV = [
   { title: "Midnight Strikes", link: "/" },
@@ -25,13 +31,7 @@ export const SOCIALS = [
   { title: "Youtube", Icon: <YoutubeIcon />, link: "" },
 ];
 
-export const BANNER_IMGS = [
-  Banner1,
-  Banner2,
-  Banner3,
-  Banner4,
-  Banner5,
-];
+export const BANNER_IMGS = [Banner1, Banner2, Banner3, Banner4, Banner5];
 
 export const VACANCY_MOCK = {
   slug: "vacancy",
@@ -50,4 +50,9 @@ export const VACANCY_MOCK = {
       "Sed pellentesque lacus iaculis in non tellus massa imperdiet viverra. Amet suscipit tortor sodales cursus diam.",
     ],
   },
+};
+
+export const REQUEST_STATUS = {
+  [STATUS.failed]: "Request failed, please, check out inputs and try again",
+  [STATUS.success]: "Your application has been successfully sent!",
 };

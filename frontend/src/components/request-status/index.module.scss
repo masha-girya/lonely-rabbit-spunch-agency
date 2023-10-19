@@ -1,0 +1,12 @@
+@import "src/styles/mixins.scss";
+
+.request {
+  position: absolute;
+  bottom: 67px;
+  @include errorText(5px);
+  opacity: 1;
+
+  &__success {
+    color: #98DDB8;
+  }
+}

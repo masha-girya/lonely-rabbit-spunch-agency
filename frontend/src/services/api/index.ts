@@ -1,6 +1,6 @@
 import axios from "axios";
-import { API_ENDPOINT } from "src/constants";
-import { Page } from "../api-types";
+import { API_CONTACT_US_ENDPOINT, API_ENDPOINT, API_JOIN_US_ENDPOINT } from "src/constants";
+import { IContactUsRequest, IVacancyRequest, Page, STATUS } from "../api-types";
 
 export const getDataPages = async (
   page: Page,
@@ -22,7 +22,9 @@ export const getDataPages = async (
 };
 
 export const getPageBySlug = async (slug: string, addField?: string) => {
-  const link = addField ? `${API_ENDPOINT}/pages/?slug=${slug}&${addField}` : `${API_ENDPOINT}/pages/?slug=${slug}`;
+  const link = addField
+    ? `${API_ENDPOINT}/pages/?slug=${slug}&${addField}`
+    : `${API_ENDPOINT}/pages/?slug=${slug}`;
   const link2 = `${API_ENDPOINT}/pages`;
 
   try {
@@ -33,5 +35,29 @@ export const getPageBySlug = async (slug: string, addField?: string) => {
     return data.data;
   } catch (err) {
     console.error(err);
+  }
+};
+
+export const sendVacancyRequest = async (data: IVacancyRequest) => {
+  try {
+    await axios.post(`${API_JOIN_US_ENDPOINT}`, data);
+
+    return { status: STATUS.success };
+  } catch (error) {
+    console.error({error});
+
+    return { status: STATUS.failed };
+  }
+};
+
+export const sendContactUsRequest = async (data: IContactUsRequest) => {
+  try {
+    await axios.post(`${API_CONTACT_US_ENDPOINT}`, data);
+
+    return { status: STATUS.success };
+  } catch (error) {
+    console.error({error});
+
+    return { status: STATUS.failed };
   }
 };

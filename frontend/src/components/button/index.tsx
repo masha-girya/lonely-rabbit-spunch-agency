@@ -8,11 +8,13 @@ export interface IButton {
   onClick: () => void;
   disabled?: boolean;
   isOnLoad?: boolean;
+  type?: "button" | "submit";
 }
 
 export const Button: React.FC<IButton> = (props) => {
   const {
     variant = "primary",
+    type = "button",
     name,
     disabled,
     isOnLoad,
@@ -25,7 +27,7 @@ export const Button: React.FC<IButton> = (props) => {
 
   return (
     <button
-      type="button"
+      type={type}
       onClick={handleClick}
       className={classNames(styles.button, {
         [styles[`button--${variant}`]]: variant,

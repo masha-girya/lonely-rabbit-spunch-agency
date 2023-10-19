@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { Button } from "@components/button";
 import { CloseIcon } from "@components/icons/CloseIcon";
 import { Input } from "@components/input";
-import ContactUsImg from "./assets/ContactUsImage.png";
-import LogoImg from "@styles/assets/Logo.png";
+import { RequestStatus } from "@components/request-status";
+import { sendVacancyRequest } from "src/services/api";
+import { emailValidation } from "src/services/validation";
+import { STATUS } from "src/services/api-types";
 import styles from "./index.module.scss";
+import LogoImg from "@styles/assets/Logo.png";
+import ContactUsImg from "./assets/ContactUsImage.png";
 
 interface IVacancyApplyModal {
   setIsModalOpen: (isOpen: boolean) => void;
@@ -12,56 +17,80 @@ interface IVacancyApplyModal {
 
 export const VacancyApplyModal: React.FC<IVacancyApplyModal> = (props) => {
   const { setIsModalOpen } = props;
-  const [title, setTitle] = useState("Lorem ipsum");
-  const [subTitle, setSubTitle] = useState("Lorem ipsum");
+  const router = useRouter();
+  const [status, setStatus] = useState<STATUS>(STATUS.none);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [coverLetter, setCoverLetter] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({
     name: "",
     email: "",
     coverLetter: "",
   });
 
-  const handleSubmitForm = () => {
-    if (name.trim().length === 0) {
+  const handleSubmitForm = async () => {
+    const isValidName = name.trim().length > 0;
+    const isValidCoverLetter = coverLetter.trim().length > 10;
+    const isValidEmail = emailValidation(email);
+
+    if (!isValidName) {
       setErrors((prev) => ({ ...prev, name: "Please, enter your name" }));
     }
-    if (email.trim().length === 0) {
+    if (!isValidEmail) {
       setErrors((prev) => ({
         ...prev,
         email: "Please, enter your email by pattern: email@email.com",
       }));
     }
-    if (coverLetter.trim().length === 0) {
+    if (!isValidCoverLetter) {
       setErrors((prev) => ({
         ...prev,
         coverLetter: "Please, write something about your experience",
       }));
     }
 
-    if (name.trim().length > 0 && email.trim().length > 0 && coverLetter.trim().length > 0) {
-      console.log("request");
+    if (isValidName && isValidCoverLetter && isValidEmail) {
+      setIsLoading(true);
+
+      const reqData = {
+        email,
+        fullname: name,
+        cover_letter: coverLetter,
+        vacancy_page: router.asPath,
+      };
+
+      const status = await sendVacancyRequest(reqData);
+      setStatus(status.status);
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    if(errors.name.length > 0 && name.trim().length > 0) {
-      setErrors(prev => ({...prev, name: ""}))
+    if (errors.name.length > 0 && name.trim().length > 0) {
+      setErrors((prev) => ({ ...prev, name: "" }));
     }
-  }, [name, errors]);
+  }, [name]);
 
   useEffect(() => {
-    if(errors.email.length > 0 && email.trim().length > 0) {
-      setErrors(prev => ({...prev, email: ""}))
+    if (errors.email.length > 0 && email.trim().length > 0) {
+      setErrors((prev) => ({ ...prev, email: "" }));
     }
-  }, [email, errors]);
+  }, [email]);
 
   useEffect(() => {
-    if(errors.coverLetter.length > 0 && coverLetter.trim().length > 0) {
-      setErrors(prev => ({...prev, coverLetter: ""}))
+    if (errors.coverLetter.length > 0 && coverLetter.trim().length > 0) {
+      setErrors((prev) => ({ ...prev, coverLetter: "" }));
     }
-  }, [coverLetter, errors]);
+  }, [coverLetter]);
+
+  useEffect(() => {
+    if (status === STATUS.success) {
+      setName("");
+      setEmail("");
+      setCoverLetter("");
+    }
+  }, [status]);
 
   return (
     <div className={styles.apply}>
@@ -78,8 +107,8 @@ export const VacancyApplyModal: React.FC<IVacancyApplyModal> = (props) => {
         </div>
         <div className={styles.apply__rightCol}>
           <img src={LogoImg.src} />
-          <h1>{title}</h1>
-          <h2>{subTitle}</h2>
+          <h1>Join our team</h1>
+          <h2>Please send request. We will contact you</h2>
           <form onSubmit={handleSubmitForm}>
             <Input
               darkMode
@@ -103,8 +132,9 @@ export const VacancyApplyModal: React.FC<IVacancyApplyModal> = (props) => {
               placeholder="Cover letter"
               onChange={setCoverLetter}
             />
+            <RequestStatus setStatus={setStatus} status={status} />
             <div className={styles.apply__rightCol__button}>
-              <Button name="Submit" onClick={handleSubmitForm} />
+              <Button disabled={isLoading} name="Submit" onClick={handleSubmitForm} />
             </div>
           </form>
         </div>
