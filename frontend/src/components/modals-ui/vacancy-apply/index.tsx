@@ -53,16 +53,21 @@ export const VacancyApplyModal: React.FC<IVacancyApplyModal> = (props) => {
     if (isValidName && isValidCoverLetter && isValidEmail) {
       setIsLoading(true);
 
-      const reqData = {
-        email,
-        fullname: name,
-        cover_letter: coverLetter,
-        vacancy_page: router.asPath,
-      };
+      try {
+        const reqData = {
+          email,
+          fullname: name,
+          cover_letter: coverLetter,
+          vacancy_page: router.asPath,
+        };
 
-      const status = await sendVacancyRequest(reqData);
-      setStatus(status.status);
-      setIsLoading(false);
+        const status = await sendVacancyRequest(reqData);
+        setStatus(status.status);
+      } catch (error) {
+        console.error({ error });
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -73,7 +78,7 @@ export const VacancyApplyModal: React.FC<IVacancyApplyModal> = (props) => {
   }, [name]);
 
   useEffect(() => {
-    if (errors.email.length > 0 && email.trim().length > 0) {
+    if (emailValidation(email) && email.trim().length > 0) {
       setErrors((prev) => ({ ...prev, email: "" }));
     }
   }, [email]);
@@ -134,7 +139,11 @@ export const VacancyApplyModal: React.FC<IVacancyApplyModal> = (props) => {
             />
             <RequestStatus setStatus={setStatus} status={status} />
             <div className={styles.apply__rightCol__button}>
-              <Button disabled={isLoading} name="Submit" onClick={handleSubmitForm} />
+              <Button
+                disabled={isLoading}
+                name="Submit"
+                onClick={handleSubmitForm}
+              />
             </div>
           </form>
         </div>

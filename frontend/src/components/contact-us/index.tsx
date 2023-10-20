@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import { Input } from "@components/input";
 import { Button } from "@components/button";
-import { STATUS } from "src/services/api-types";
+import { RequestStatus } from "@components/request-status";
 import { emailValidation } from "src/services/validation";
+import { STATUS } from "src/services/api-types";
 import { sendContactUsRequest } from "src/services/api";
 import styles from "./index.module.scss";
 import ContactUsImg from "./assets/ContactUs.png";
-import { RequestStatus } from "@components/request-status";
 
 export const ContactUs = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState<STATUS>(STATUS.none);
   const [errors, setErrors] = useState({
     name: "",
@@ -33,13 +34,21 @@ export const ContactUs = () => {
     }
 
     if (isValidName && isValidEmail) {
-      const reqData = {
-        email,
-        fullname: name,
-      };
+      setIsLoading(true);
 
-      const status = await sendContactUsRequest(reqData);
-      setStatus(status.status);
+      try {
+        const reqData = {
+          email,
+          fullname: name,
+        };
+
+        const status = await sendContactUsRequest(reqData);
+        setStatus(status.status);
+      } catch (error) {
+        console.error({ error });
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -83,7 +92,7 @@ export const ContactUs = () => {
               <RequestStatus setStatus={setStatus} status={status} />
               <div className={styles.contactUs__form__button}>
                 <Button
-                  disabled={status !== STATUS.none}
+                  disabled={isLoading}
                   type="submit"
                   name="Contact Us"
                   onClick={() => {}}

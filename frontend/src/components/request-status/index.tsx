@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
+import { Transition } from "react-transition-group";
 import classNames from "classnames";
 import {
   DURATION_FADE_IN,
   DEFAULT_STYLE_FADE_IN,
   TRANS_STYLES_FADE_IN,
 } from "src/constants/transition";
+import { REQUEST_STATUS } from "src/constants";
 import { STATUS } from "src/services/api-types";
 import styles from "./index.module.scss";
-import { Transition } from "react-transition-group";
-import { REQUEST_STATUS } from "src/constants";
 
 interface IRequestStatus {
   status: STATUS;
@@ -21,12 +21,8 @@ export const RequestStatus: React.FC<IRequestStatus> = (props) => {
   const [statusText, setStatusText] = useState(REQUEST_STATUS.success);
 
   useEffect(() => {
-    if (status === STATUS.success) {
-      setStatusText(REQUEST_STATUS.success);
-    }
-
-    if (status === STATUS.failed) {
-      setStatusText(REQUEST_STATUS.failed);
+    if (status !== STATUS.none) {
+      setStatusText(REQUEST_STATUS[status]);
     }
   }, [status]);
 
