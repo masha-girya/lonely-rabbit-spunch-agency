@@ -1,11 +1,14 @@
 {
-  "name": "lonely-rabbit",
+  "name": "lonely-rabbit-spunch-agency",
   "version": "0.1.0",
+  "homepage": "https://masha-girya.github.io/repository-name",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "predeploy": "next build",
+    "deploy": "gh-pages -d .next",
     "build:analyze": "ANALYZE=true npm run build"
   },
   "dependencies": {
@@ -14,6 +17,7 @@
     "@types/react-transition-group": "^4.4.6",
     "axios": "^1.5.1",
     "classnames": "^2.3.2",
+    "gh-pages": "^6.1.0",
     "next": "^12.1.6",
     "next-compose-plugins": "^2.2.1",
     "react": "17.0.2",
