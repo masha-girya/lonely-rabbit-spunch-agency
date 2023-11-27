@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export enum Page {
   home = "home.HomePage",
   news = "news.NewsPage",
@@ -56,7 +58,7 @@ export interface ICharacters {
   meta: { type: string };
   description: string;
   name: string;
-  carousel_image: IImage | null;
+  carousel_image: StaticImageData | null;
 }
 
 export interface INewsSingle {

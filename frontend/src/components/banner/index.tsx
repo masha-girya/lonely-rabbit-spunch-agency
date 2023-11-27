@@ -13,9 +13,9 @@ import { SmokeEffect } from "./smoke-effect";
 import { Intro } from "./intro";
 
 export const Banner = () => {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("Lorem ipsum dolor sit amet");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [introState, setIntroState] = useState<boolean>(true);
+  const [introState, setIntroState] = useState<boolean>(false);
   const [isInvisible, setIsInvisible] = useState(false);
 
   const loadData = async () => {
@@ -29,11 +29,11 @@ export const Banner = () => {
     loadData();
   }, []);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIntroState(false);
-    }, 2500);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIntroState(false);
+  //   }, 2500);
+  // }, []);
 
   useEffect(() => {
     const handleScroll = () => {

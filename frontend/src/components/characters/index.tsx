@@ -3,27 +3,14 @@ import { Carousel } from "./carousel";
 import { getDataPages } from "src/services/api";
 import { HomePage, ICharacters, Page } from "src/services/api-types";
 import styles from "./index.module.scss";
+import { CHARACTERS_MOCK } from "src/constants";
 
 export const Characters = () => {
   const [title, setTitle] = useState("Meet the Characters");
-  const [charsOnShow, setCharsOnShow] = useState<ICharacters[]>([]);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [currentChar, setCurrentChar] = useState<ICharacters>({
-    id: 0,
-    meta: { type: "" },
-    description: "",
-    name: "",
-    carousel_image: {
-      id: 0,
-      meta: {
-        type: "",
-        detail_url: "",
-        download_url: "",
-      },
-      title: "",
-    },
-  });
-  const [isOnShow, setIsOnShow] = useState(false);
+  const [charsOnShow, setCharsOnShow] = useState<ICharacters[]>(CHARACTERS_MOCK);
+  const [currentSlide, setCurrentSlide] = useState(2);
+  const [currentChar, setCurrentChar] = useState<ICharacters>(CHARACTERS_MOCK[3]);
+  const [isOnShow, setIsOnShow] = useState(true);
 
   const loadData = async () => {
     const res = await getDataPages(Page.home, [
@@ -43,9 +30,9 @@ export const Characters = () => {
     }
   };
 
-  useEffect(() => {
-    loadData();
-  }, []);
+  // useEffect(() => {
+  //   loadData();
+  // }, []);
 
   return (
     <article className={styles.chars}>

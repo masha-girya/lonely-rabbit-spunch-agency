@@ -9,11 +9,10 @@ import styles from "./index.module.scss";
 
 interface INews {
   title?: string;
-  buttonTitle?: string;
 }
 
 export const NewsList: React.FC<INews> = (props) => {
-  const { title, buttonTitle } = props;
+  const { title } = props;
   const [news, setNews] = useState<INewsSingle[]>([]);
   const { isMobile, isDesktop } = useDevice();
 
@@ -32,7 +31,7 @@ export const NewsList: React.FC<INews> = (props) => {
   const button = (
     <a href="/news">
       <Button
-        name={buttonTitle ?? "All our news"}
+        name={"All our news"}
         onClick={() => {}}
       />
     </a>

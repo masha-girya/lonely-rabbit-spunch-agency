@@ -8,7 +8,7 @@ import { INewsSingle, NewsPage, Page } from "src/services/api-types";
 import styles from "./index.module.scss";
 
 const News = () => {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("Lonely Rabbit News");
   const [newsData, setNewsData] = useState<INewsSingle[]>([]);
   const [newsAmount, setNewsAmount] = useState(4);
   const [isLoading, setIsLoading] = useState(false);
@@ -67,6 +67,9 @@ const News = () => {
               <NewsCard key={item.id} card={item} />
             </div>
           ))}
+          {newsData.length === 0 && !isLoading && (
+            <p>There are no news yet</p>
+          )}
         </div>
         <div className={styles.news__button}>
           <Button name="Show More" onClick={handleShowMore} isOnLoad={isLoading} />

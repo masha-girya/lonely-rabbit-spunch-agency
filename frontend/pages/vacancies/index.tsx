@@ -10,7 +10,7 @@ import { IVacancySinglePage, Page, VacanciesPage } from "src/services/api-types"
 const Vacancies = () => {
   const [title, setTitle] = useState("")
   const [text, setText] = useState("");
-  const [vacancies, setVacancies] = useState<IVacancySinglePage[]>([]);
+  const [vacancies, setVacancies] = useState<IVacancySinglePage[]>(Array(5).fill(VACANCY_MOCK));
 
 
   const loadData = useCallback(async () => {
@@ -51,8 +51,8 @@ const Vacancies = () => {
         </div>
         <div className={styles.vacancies__listBox}>
           <div className={styles.vacancies__list}>
-            {vacancies.map((item) => (
-              <VacancyCard key={item.id} vacancy={item} />
+            {vacancies.map((item, i) => (
+              <VacancyCard key={i} vacancy={item} />
             ))}
           </div>
         </div>

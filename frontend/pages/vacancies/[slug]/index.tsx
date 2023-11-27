@@ -9,12 +9,13 @@ import { IVacancySinglePage, Page } from "src/services/api-types";
 import { getPageBySlug } from "src/services/api";
 import styles from "./index.module.scss";
 import { ContentConstructor } from "@components/content-constructor";
+import { VACANCY_MOCK } from "src/constants";
 
 const VacancyInner = () => {
   const router = useRouter();
   const { slug } = router.query;
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [vacancy, setVacancy] = useState<null | IVacancySinglePage>(null);
+  const [vacancy, setVacancy] = useState(VACANCY_MOCK);
 
   const loadData = useCallback(async () => {
     if (typeof slug === "string") {

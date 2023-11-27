@@ -11,7 +11,7 @@ import logoImage from "./assets/strikes_logo_white.png";
 import styles from "./index.module.scss";
 
 export const CtaBanner = () => {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLogoVisible, setIsLogoVisible] = useState(false);
   const { isMobile, isTablet, isDesktop, isSmallNote } = useDevice();
@@ -29,7 +29,7 @@ export const CtaBanner = () => {
 
   useEffect(() => {
     if(isDesktop || isSmallNote) {
-      setTimeout(() => setIsLogoVisible(true), 4000);
+      setTimeout(() => setIsLogoVisible(true), 200);
     }
     if(isMobile || isTablet){
       setIsLogoVisible(true);

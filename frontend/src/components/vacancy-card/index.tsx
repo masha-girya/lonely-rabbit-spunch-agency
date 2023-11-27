@@ -10,7 +10,6 @@ interface IVacancyCard {
 export const VacancyCard: React.FC<IVacancyCard> = (props) => {
   const { vacancy } = props;
   const { caption, date, meta, title } = vacancy;
-  const router = useRouter();
 
   return (
     <div className={styles.vacancy}>

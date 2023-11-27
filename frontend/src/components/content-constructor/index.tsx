@@ -4,7 +4,7 @@ import { IBody, IBodyImage } from "src/services/api-types";
 import styles from "./index.module.scss";
 
 interface IContentConstructor {
-  content: IBody[];
+  content: any[];
   stylesCustom?: string;
 }
 

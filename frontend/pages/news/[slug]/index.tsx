@@ -55,7 +55,7 @@ const NewsInner = () => {
               />
             </section>
           </article>
-          <NewsList title={newsTitle} buttonTitle="See more news" />
+          <NewsList title={newsTitle} />
         </main>
       ) : (
         <div className={styles.newsInner__banner}></div>
